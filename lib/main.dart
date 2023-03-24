@@ -12,7 +12,9 @@ void main() {
         useMaterial3: true,
         colorScheme:
             ColorScheme.light(primary: GlobalVariables.secondaryColor)),
-    darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
+    darkTheme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.dark(primary: GlobalVariables.secondaryColor)),
     themeMode: ThemeMode.light,
     onGenerateRoute: (settings) => generateRoute(settings),
     home: const AuthScreen(),
