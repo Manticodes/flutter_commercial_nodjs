@@ -1,4 +1,4 @@
-const mongoose = requierd('mongoose');
+const mongoose = require('mongoose');
 
 const userScheman = mongoose.Schema({
     name: {
@@ -19,8 +19,26 @@ const userScheman = mongoose.Schema({
                 return value.match(re);
 
 
-            }
+            },
+            message: "please dont joke with us"
+
         }
 
+    },
+    password: {
+        requierd: true,
+        type: String
+    },
+    address: {
+        type: String,
+        default: '',
+    },
+    type: {
+        type: String,
+        default: 'user',
     }
-})
+
+});
+
+const User = mongoose.model("User", userScheman);
+module.exports = User;
