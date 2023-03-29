@@ -20,7 +20,7 @@ const userScheman = mongoose.Schema({
 
 
             },
-            message: "please dont joke with us"
+            message: "Please Enter valid Email"
 
         }
 

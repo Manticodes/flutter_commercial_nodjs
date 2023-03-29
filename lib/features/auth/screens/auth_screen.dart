@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_commercial_nodjs/features/auth/services/auth_server.dart';
 import 'package:flutter_commercial_nodjs/features/auth/widgets/costum_button.dart';
 import 'package:flutter_commercial_nodjs/features/auth/widgets/costume_textfield.dart';
 
@@ -21,6 +22,14 @@ class _AuthScreenState extends State<AuthScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
+
+  void dispose() {
+    super.dispose();
+    _emailController.dispose();
+    _nameController.dispose();
+    _passController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +63,17 @@ class _AuthScreenState extends State<AuthScreen> {
                       ),
                       CostumeTextField(
                           controller: _nameController, label: 'Name'),
-                      CostumeButton(title: 'Sing up', onTap: () {})
+                      CostumeButton(
+                          title: 'Sing up',
+                          onTap: () {
+                            if (_signUpFormKey.currentState!.validate()) {
+                              AuthService().signUpUser(
+                                  email: _emailController.text,
+                                  password: _passController.text,
+                                  name: _nameController.text,
+                                  context: context);
+                            }
+                          })
                     ],
                   ),
                 )

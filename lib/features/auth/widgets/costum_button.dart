@@ -10,7 +10,7 @@ class CostumeButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(15.0),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onTap,
         style: ElevatedButton.styleFrom(
             minimumSize: const Size(double.infinity, 50)),
         child: Text(title),

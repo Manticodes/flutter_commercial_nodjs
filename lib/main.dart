@@ -3,8 +3,6 @@ import 'package:flutter_commercial_nodjs/constants/global_variable.dart';
 import 'package:flutter_commercial_nodjs/features/auth/screens/auth_screen.dart';
 import 'package:flutter_commercial_nodjs/router.dart';
 
-import 'constants/color_schemes.dart';
-
 void main() {
   runApp(MaterialApp(
     title: 'Flutter Demo',

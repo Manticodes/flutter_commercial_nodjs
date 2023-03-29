@@ -41,7 +41,12 @@ class _PassTextFieldState extends State<PassTextField> {
                   },
                 ),
         ),
-        validator: (val) {},
+        validator: (val) {
+          if (val == null || val.isEmpty) {
+            return 'Please enter your Password';
+          }
+          return null;
+        },
       ),
     );
   }

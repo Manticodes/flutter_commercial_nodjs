@@ -9,12 +9,21 @@ class CostumeTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 15.0, left: 15, right: 15),
+      padding: const EdgeInsets.only(
+        top: 20.0,
+        left: 15,
+        right: 15,
+      ),
       child: TextFormField(
         controller: controller,
         decoration:
             InputDecoration(border: OutlineInputBorder(), label: Text(label)),
-        validator: (val) {},
+        validator: (val) {
+          if (val == null || val.isEmpty) {
+            return 'Please enter your $label';
+          }
+          return null;
+        },
       ),
     );
   }
