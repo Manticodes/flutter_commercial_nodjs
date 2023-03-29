@@ -91,7 +91,7 @@ class _AuthScreenState extends State<AuthScreen> {
           ),
           auth == Auth.signin
               ? Form(
-                  key: _signUpFormKey,
+                  key: _signInFormKey,
                   child: Column(
                     children: [
                       CostumeTextField(
@@ -102,7 +102,16 @@ class _AuthScreenState extends State<AuthScreen> {
                         controller: _passController,
                         label: 'Password',
                       ),
-                      CostumeButton(title: 'Sing up', onTap: () {})
+                      CostumeButton(
+                          title: 'Sing In',
+                          onTap: () {
+                            if (_signInFormKey.currentState!.validate()) {
+                              AuthService().signInUser(
+                                  email: _emailController.text,
+                                  password: _passController.text,
+                                  context: context);
+                            }
+                          })
                     ],
                   ),
                 )

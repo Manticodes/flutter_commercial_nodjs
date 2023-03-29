@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 String uri = 'http://192.168.1.35:27017';
 String uriSignup = 'http://192.168.1.35:27017/api/signup';
+String uriSignIn = 'http://192.168.1.35:27017/api/signin';
 
 class GlobalVariables {
   // COLORS
