@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
     return BlocBuilder<UserBloc, UserState>(
       builder: (context, state) {
         return Scaffold(
-          body: Text('welcome ${state.user.name}'),
+          body: Center(child: Text('welcome ${state.user.name}')),
         );
       },
     );

@@ -30,6 +30,12 @@ class _AuthScreenState extends State<AuthScreen> {
     _passController.dispose();
   }
 
+  void clearField() {
+    _emailController.clear();
+    _nameController.clear();
+    _passController.clear();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +51,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 onChanged: (Auth? val) {
                   setState(() {
                     auth = val!;
+                    clearField();
                   });
                 }),
           ),
@@ -86,6 +93,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 onChanged: (Auth? val) {
                   setState(() {
                     auth = val!;
+                    clearField();
                   });
                 }),
           ),

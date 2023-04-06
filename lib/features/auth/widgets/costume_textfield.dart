@@ -16,8 +16,8 @@ class CostumeTextField extends StatelessWidget {
       ),
       child: TextFormField(
         controller: controller,
-        decoration:
-            InputDecoration(border: OutlineInputBorder(), label: Text(label)),
+        decoration: InputDecoration(
+            border: const OutlineInputBorder(), label: Text(label)),
         validator: (val) {
           if (val == null || val.isEmpty) {
             return 'Please enter your $label';

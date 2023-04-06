@@ -39,6 +39,7 @@ class AuthService {
           onSuccess: () {
             ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Account has been created')));
+            signInUser(email: email, password: password, context: context);
           });
     } catch (e) {
       ScaffoldMessenger.of(context)
