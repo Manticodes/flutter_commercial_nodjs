@@ -22,6 +22,6 @@ void httpErrorHandle({
       break;
     default:
       ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(response.body)));
+          .showSnackBar(SnackBar(content: Text('some thing wents wrong')));
   }
 }

@@ -12,6 +12,8 @@ import 'package:flutter_commercial_nodjs/screens/home/home_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../logic/bloc_token/token_bloc.dart';
+
 class AuthService {
   void signUpUser(
       {required String email,
@@ -63,8 +65,11 @@ class AuthService {
           response: response,
           context: context,
           onSuccess: () async {
-            SharedPreferences prefs = await SharedPreferences.getInstance();
-            prefs.setString('x-auth-token', jsonDecode(response.body)['token']);
+            // SharedPreferences prefs = await SharedPreferences.getInstance();
+            context
+                .read<TokenBloc>()
+                .add(GetToken(token: jsonDecode(response.body)['token']));
+            //  prefs.setString('x-auth-token', jsonDecode(response.body)['token']);
             context.read<UserBloc>().add(SetUser(user: response.body));
             Navigator.pushNamedAndRemoveUntil(
               context,
@@ -75,6 +80,19 @@ class AuthService {
     } catch (e) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.toString())));
+    }
+  }
+
+  void getUserData(
+      {required String token, required BuildContext context}) async {
+    var tokenResponse = await http.post(Uri.parse(uriTokenValid),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'x-auth-token': token
+        });
+    var response = jsonDecode(tokenResponse.body);
+    if (response == true) {
+      //get data
     }
   }
 }
