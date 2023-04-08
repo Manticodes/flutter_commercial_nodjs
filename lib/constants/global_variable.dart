@@ -4,6 +4,7 @@ String uri = 'http://192.168.1.39:27017';
 String uriSignup = 'http://192.168.1.39:27017/api/signup';
 String uriSignIn = 'http://192.168.1.39:27017/api/signin';
 String uriTokenValid = 'http://192.168.1.39:27017/api/validtoken';
+String urigetUser = 'http://192.168.1.39:27017/api/getuser';
 
 class GlobalVariables {
   // COLORS

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_commercial_nodjs/logic/bloc_token/token_bloc.dart';
 
 import '../../logic/bloc_user/user_bloc.dart';
 
@@ -15,14 +14,13 @@ class HomeScreen extends StatelessWidget {
         context,
         userState,
       ) {
-        return BlocBuilder<TokenBloc, TokenState>(
-          builder: (context, tokenState) {
-            return Scaffold(
-              body: Center(
-                  child: Text(
-                      'welcome ${userState.user.name} your token is : ${tokenState.token} ')),
-            );
-          },
+        return Scaffold(
+          body: Center(
+              child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Text(
+                'welcome ${userState.user.name} your token is : \n\n ${userState.user.token}'),
+          )),
         );
       },
     );

@@ -9,10 +9,9 @@ import 'package:flutter_commercial_nodjs/constants/global_variable.dart';
 import 'package:flutter_commercial_nodjs/logic/bloc_user/user_bloc.dart';
 import 'package:flutter_commercial_nodjs/model/user.dart';
 import 'package:flutter_commercial_nodjs/screens/home/home_screen.dart';
+import 'package:flutter_commercial_nodjs/screens/home/tab_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../../logic/bloc_token/token_bloc.dart';
 
 class AuthService {
   void signUpUser(
@@ -65,15 +64,13 @@ class AuthService {
           response: response,
           context: context,
           onSuccess: () async {
-            // SharedPreferences prefs = await SharedPreferences.getInstance();
-            context
-                .read<TokenBloc>()
-                .add(GetToken(token: jsonDecode(response.body)['token']));
-            //  prefs.setString('x-auth-token', jsonDecode(response.body)['token']);
+            SharedPreferences prefs = await SharedPreferences.getInstance();
+
+            prefs.setString('x-auth-token', jsonDecode(response.body)['token']);
             context.read<UserBloc>().add(SetUser(user: response.body));
             Navigator.pushNamedAndRemoveUntil(
               context,
-              HomeScreen.routeName,
+              TabScreen.route,
               (route) => false,
             );
           });
@@ -83,16 +80,28 @@ class AuthService {
     }
   }
 
-  void getUserData(
-      {required String token, required BuildContext context}) async {
+  void getUserData({required BuildContext context}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('x-auth-token');
+    if (token == null) {
+      prefs.setString('x-auth-token', '');
+    }
+    //check the token is valid or not
     var tokenResponse = await http.post(Uri.parse(uriTokenValid),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
-          'x-auth-token': token
+          'x-auth-token': token!
         });
     var response = jsonDecode(tokenResponse.body);
     if (response == true) {
-      //get data
+      //get data of user
+      http.Response userDataRes = await http.get(Uri.parse(urigetUser),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+            'x-auth-token': token
+          });
+
+      context.read<UserBloc>().add(SetUser(user: userDataRes.body));
     }
   }
 }

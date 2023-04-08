@@ -2,23 +2,36 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_commercial_nodjs/constants/global_variable.dart';
 import 'package:flutter_commercial_nodjs/features/auth/screens/auth_screen.dart';
+import 'package:flutter_commercial_nodjs/features/auth/services/auth_server.dart';
 import 'package:flutter_commercial_nodjs/router.dart';
-
-import 'logic/bloc_token/token_bloc.dart';
+import 'package:flutter_commercial_nodjs/screens/home/tab_screen.dart';
 import 'logic/bloc_user/user_bloc.dart';
 
 void main() {
-  runApp(MultiBlocProvider(
-    providers: [
-      BlocProvider(
-        create: (context) => UserBloc(),
-      ),
-      BlocProvider(
-        create: (context) => TokenBloc(),
-      ),
-    ],
-    child: BlocBuilder<TokenBloc, TokenState>(
-      builder: (context, state) {
+  runApp(BlocProvider(
+    create: (context) => UserBloc(),
+    child: MyApp(),
+  ));
+}
+
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    AuthService().getUserData(context: context);
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<UserBloc, UserState>(
+      builder: (context, userState) {
         return MaterialApp(
           title: 'Flutter Demo',
           theme: ThemeData(
@@ -31,9 +44,11 @@ void main() {
                   primary: GlobalVariables.secondaryColor)),
           themeMode: ThemeMode.light,
           onGenerateRoute: (settings) => generateRoute(settings),
-          home: const AuthScreen(),
+          home: userState.user.token.isNotEmpty
+              ? const TabScreen()
+              : const AuthScreen(),
         );
       },
-    ),
-  ));
+    );
+  }
 }
