@@ -8,10 +8,12 @@ const mongoose = require('mongoose');
 const authRouter = require('./routes/auth');
 
 //define parameter
-const db = "mongodb://root:tTQkZHCFFUxMiQBfckF1Slj3@grace.iran.liara.ir:33161/my-app?authSource=admin";
+const db = "mongodb://root:tTQkZHCFFUxMiQBfckF1Slj3@flutter-amazone-clone:27017/my-app?authSource=admin";
 const PORT = 27017;
 
 //initilize express
+//mongodb://root:tTQkZHCFFUxMiQBfckF1Slj3@flutter-amazone-clone:27017/my-app?authSource=admin
+//mongodb://root:tTQkZHCFFUxMiQBfckF1Slj3@grace.iran.liara.ir:33161/my-app?authSource=admin
 
 const app = express();
 
