@@ -10,7 +10,7 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
           builder: (_) => const AuthScreen(), settings: routeSettings);
     case HomeScreen.routeName:
       return MaterialPageRoute(
-          builder: (_) => const HomeScreen(), settings: routeSettings);
+          builder: (_) => HomeScreen(), settings: routeSettings);
     case TabScreen.route:
       return MaterialPageRoute(
           builder: (context) => const TabScreen(), settings: routeSettings);

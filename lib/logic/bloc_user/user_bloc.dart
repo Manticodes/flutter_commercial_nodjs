@@ -20,10 +20,23 @@ class UserBloc extends Bloc<UserEvent, UserState> {
                 token: '',
                 type: ''))) {
     on<SetUser>(_onSetUser);
+    on<CleanUser>(_onCleanUser);
   }
 
   FutureOr<void> _onSetUser(SetUser event, Emitter<UserState> emit) {
     User user = User.fromJson(event.user);
     emit(UserState(user: user));
+  }
+
+  FutureOr<void> _onCleanUser(CleanUser event, Emitter<UserState> emit) {
+    emit(UserState(
+        user: User(
+            adress: '',
+            email: '',
+            id: '',
+            name: '',
+            password: '',
+            token: '',
+            type: '')));
   }
 }

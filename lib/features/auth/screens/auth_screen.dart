@@ -74,8 +74,10 @@ class _AuthScreenState extends State<AuthScreen> {
                           title: 'Sing up',
                           onTap: () {
                             if (_signUpFormKey.currentState!.validate()) {
+                              String lEmail =
+                                  _emailController.text.toLowerCase();
                               AuthService().signUpUser(
-                                  email: _emailController.text,
+                                  email: lEmail,
                                   password: _passController.text,
                                   name: _nameController.text,
                                   context: context);
@@ -114,8 +116,10 @@ class _AuthScreenState extends State<AuthScreen> {
                           title: 'Sing In',
                           onTap: () {
                             if (_signInFormKey.currentState!.validate()) {
+                              String lEmail =
+                                  _emailController.text.toLowerCase();
                               AuthService().signInUser(
-                                  email: _emailController.text,
+                                  email: lEmail,
                                   password: _passController.text,
                                   context: context);
                             }

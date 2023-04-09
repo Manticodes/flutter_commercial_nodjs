@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_commercial_nodjs/constants/global_variable.dart';
 import 'package:flutter_commercial_nodjs/features/auth/screens/auth_screen.dart';
 import 'package:flutter_commercial_nodjs/features/auth/services/auth_server.dart';
 import 'package:flutter_commercial_nodjs/router.dart';
@@ -37,11 +36,11 @@ class _MyAppState extends State<MyApp> {
           theme: ThemeData(
               useMaterial3: true,
               colorScheme: const ColorScheme.light(
-                  primary: GlobalVariables.secondaryColor)),
+                  primary: Color.fromARGB(255, 239, 80, 62))),
           darkTheme: ThemeData(
               useMaterial3: true,
               colorScheme: const ColorScheme.dark(
-                  primary: GlobalVariables.secondaryColor)),
+                  primary: Color.fromARGB(255, 239, 80, 62))),
           themeMode: ThemeMode.light,
           onGenerateRoute: (settings) => generateRoute(settings),
           home: userState.user.token.isNotEmpty

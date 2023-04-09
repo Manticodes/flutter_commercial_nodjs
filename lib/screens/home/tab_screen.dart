@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:flutter_commercial_nodjs/features/account/screens/account_screen.dart';
 import 'package:flutter_commercial_nodjs/screens/home/home_screen.dart';
 
 class TabScreen extends StatefulWidget {
@@ -12,10 +13,8 @@ class TabScreen extends StatefulWidget {
 
 class _TabScreenState extends State<TabScreen> {
   List pages = [
-    const HomeScreen(),
-    const Center(
-      child: Text('acount'),
-    ),
+    HomeScreen(),
+    AccountScreen(),
     const Center(
       child: Text('kart'),
     )
@@ -41,9 +40,11 @@ class _TabScreenState extends State<TabScreen> {
               decoration: BoxDecoration(
                   border: Border(
                       top: BorderSide(
-                          color: _pageIndex == 0 ? Colors.amber : Colors.white,
+                          color: _pageIndex == 0
+                              ? Color.fromARGB(255, 248, 90, 90)
+                              : Colors.white,
                           width: 5))),
-              child: const Icon(Icons.home),
+              child: const Icon(Icons.home_outlined),
             ),
           ),
           BottomNavigationBarItem(
@@ -53,7 +54,9 @@ class _TabScreenState extends State<TabScreen> {
               decoration: BoxDecoration(
                   border: Border(
                       top: BorderSide(
-                          color: _pageIndex == 1 ? Colors.amber : Colors.white,
+                          color: _pageIndex == 1
+                              ? Color.fromARGB(255, 248, 90, 90)
+                              : Colors.white,
                           width: 5))),
               child: const Icon(Icons.person_outline_outlined),
             ),
@@ -65,7 +68,9 @@ class _TabScreenState extends State<TabScreen> {
               decoration: BoxDecoration(
                   border: Border(
                       top: BorderSide(
-                          color: _pageIndex == 2 ? Colors.amber : Colors.white,
+                          color: _pageIndex == 2
+                              ? Color.fromARGB(255, 248, 90, 90)
+                              : Colors.white,
                           width: 5))),
               child: badges.Badge(
                   stackFit: StackFit.passthrough,
