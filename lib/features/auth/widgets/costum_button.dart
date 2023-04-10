@@ -12,7 +12,7 @@ class CostumeButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onTap,
         style: ElevatedButton.styleFrom(
-            minimumSize: const Size(double.infinity, 50)),
+            elevation: 15, minimumSize: const Size(double.infinity, 50)),
         child: Text(title),
       ),
     );

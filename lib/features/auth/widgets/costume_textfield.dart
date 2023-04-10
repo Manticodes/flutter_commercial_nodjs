@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 class CostumeTextField extends StatelessWidget {
   final TextEditingController controller;
   final String label;
+  final int maxLines;
+
   const CostumeTextField(
-      {super.key, required this.controller, required this.label});
+      {super.key,
+      required this.controller,
+      required this.label,
+      this.maxLines = 1});
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +20,10 @@ class CostumeTextField extends StatelessWidget {
         right: 15,
       ),
       child: TextFormField(
+        maxLines: maxLines,
+        onTapOutside: (event) {
+          FocusManager.instance.primaryFocus!.unfocus();
+        },
         controller: controller,
         decoration: InputDecoration(
             border: const OutlineInputBorder(), label: Text(label)),

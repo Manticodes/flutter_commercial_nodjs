@@ -25,11 +25,10 @@ class _PostScreenState extends State<PostScreen> {
 
   void _addPost() {
     showModalBottomSheet(
-      backgroundColor: Color.fromARGB(214, 255, 255, 255),
       context: context,
       isScrollControlled: true,
       builder: (context) {
-        return AddProductScreen();
+        return SingleChildScrollView(child: AddProductScreen());
       },
     );
   }

@@ -18,6 +18,9 @@ class _PassTextFieldState extends State<PassTextField> {
     return Padding(
       padding: const EdgeInsets.only(top: 15.0, left: 15, right: 15),
       child: TextFormField(
+        onTapOutside: (event) {
+          FocusManager.instance.primaryFocus!.unfocus();
+        },
         controller: widget.controller,
         obscureText: hide == true ? true : false,
         decoration: InputDecoration(
