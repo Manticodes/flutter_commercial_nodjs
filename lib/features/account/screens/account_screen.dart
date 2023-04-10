@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_commercial_nodjs/features/account/widgets/consumable.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../logic/bloc_user/user_bloc.dart';
 
@@ -76,7 +77,12 @@ class AccountScreen extends StatelessWidget {
                 children: [
                   AccountTopButton(
                     text: 'Log Out',
-                    func: () {},
+                    func: () async {
+                      context.read<UserBloc>().add(CleanUser());
+                      SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
+                      prefs.clear();
+                    },
                   ),
                   AccountTopButton(
                     text: 'Wish List',
