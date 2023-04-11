@@ -10,7 +10,7 @@ class Product {
   final String category;
   final double price;
   final String? id;
-  final String? userId;
+
   Product({
     required this.name,
     required this.description,
@@ -19,7 +19,6 @@ class Product {
     required this.category,
     required this.price,
     this.id,
-    this.userId,
   });
 
   Product copyWith({
@@ -30,7 +29,6 @@ class Product {
     String? category,
     double? price,
     String? id,
-    String? userId,
   }) {
     return Product(
       name: name ?? this.name,
@@ -40,7 +38,6 @@ class Product {
       category: category ?? this.category,
       price: price ?? this.price,
       id: id ?? this.id,
-      userId: userId ?? this.userId,
     );
   }
 
@@ -56,9 +53,6 @@ class Product {
     if (id != null) {
       result.addAll({'id': id});
     }
-    if (userId != null) {
-      result.addAll({'userId': userId});
-    }
 
     return result;
   }
@@ -72,7 +66,6 @@ class Product {
       category: map['category'] ?? '',
       price: map['price']?.toDouble() ?? 0.0,
       id: map['_id'],
-      userId: map['userId'],
     );
   }
 
@@ -83,7 +76,7 @@ class Product {
 
   @override
   String toString() {
-    return 'Product(name: $name, description: $description, quantity: $quantity, images: $images, category: $category, price: $price, id: $id, userId: $userId)';
+    return 'Product(name: $name, description: $description, quantity: $quantity, images: $images, category: $category, price: $price, id: $id)';
   }
 
   @override
@@ -97,8 +90,7 @@ class Product {
         listEquals(other.images, images) &&
         other.category == category &&
         other.price == price &&
-        other.id == id &&
-        other.userId == userId;
+        other.id == id;
   }
 
   @override
@@ -109,7 +101,6 @@ class Product {
         images.hashCode ^
         category.hashCode ^
         price.hashCode ^
-        id.hashCode ^
-        userId.hashCode;
+        id.hashCode;
   }
 }

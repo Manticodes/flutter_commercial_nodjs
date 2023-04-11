@@ -68,7 +68,9 @@ class AccountScreen extends StatelessWidget {
                   ),
                   AccountTopButton(
                     text: 'Seller',
-                    func: () {},
+                    func: () {
+                      print(state.user.type);
+                    },
                   )
                 ],
               ),
@@ -82,11 +84,16 @@ class AccountScreen extends StatelessWidget {
                       SharedPreferences prefs =
                           await SharedPreferences.getInstance();
                       prefs.clear();
+                      print(prefs.get('x-auth-token'));
                     },
                   ),
                   AccountTopButton(
                     text: 'Wish List',
-                    func: () {},
+                    func: () async {
+                      SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
+                      print(prefs.get('x-auth-token'));
+                    },
                   )
                 ],
               ),

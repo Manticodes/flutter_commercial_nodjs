@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 
 //import from other file
 const authRouter = require('./routes/auth');
+const adminRouter = require('./routes/admin');
 
 //define parameter
 const db = "mongodb://root:tTQkZHCFFUxMiQBfckF1Slj3@flutter-amazone-clone:27017/my-app?authSource=admin";
@@ -23,6 +24,7 @@ const app = express();
 //middleware
 app.use(express.json());
 app.use(authRouter);
+app.use(adminRouter);
 
 
 //connect db

@@ -5,8 +5,6 @@ const userScheman = mongoose.Schema({
         required: true,
         type: String,
         trim: true,
-
-
     },
     email: {
         requierd: true,

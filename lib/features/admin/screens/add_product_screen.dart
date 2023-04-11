@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_commercial_nodjs/features/admin/services/admin_services.dart';
 import 'package:flutter_commercial_nodjs/features/admin/widgets/utilities.dart';
 import 'package:flutter_commercial_nodjs/features/auth/widgets/costum_button.dart';
 import 'package:flutter_commercial_nodjs/features/auth/widgets/costume_textfield.dart';
@@ -19,6 +20,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
   final TextEditingController quantityController = TextEditingController();
+  final _addproductFormKey = GlobalKey<FormState>();
   List<File> images = [];
 
   @override
@@ -48,10 +50,11 @@ class _AddProductScreenState extends State<AddProductScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container( 
+    return Container(
       padding:
           EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       child: Form(
+        key: _addproductFormKey,
         child: Column(
           children: [
             SizedBox(
@@ -159,7 +162,24 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 ),
               ],
             ),
-            CostumeButton(title: 'ADD', onTap: () {})
+            CostumeButton(
+                title: 'ADD',
+                onTap: () {
+                  debugPrint(
+                      _addproductFormKey.currentState!.validate().toString());
+                  debugPrint(productNameController.text);
+                  if (_addproductFormKey.currentState!.validate() &&
+                      images.isNotEmpty) {
+                    AdminServices().sellProduct(
+                        context: context,
+                        name: productNameController.text,
+                        description: descriptionController.text,
+                        price: double.parse(priceController.text),
+                        quantity: double.parse(quantityController.text),
+                        category: dropVal,
+                        images: images);
+                  }
+                })
           ],
         ),
       ),

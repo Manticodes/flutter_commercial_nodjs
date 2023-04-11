@@ -15,6 +15,7 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
+  static const String routename = '/MyApp';
   const MyApp({super.key});
 
   @override
@@ -46,9 +47,9 @@ class _MyAppState extends State<MyApp> {
             themeMode: ThemeMode.light,
             onGenerateRoute: (settings) => generateRoute(settings),
             home: userState.user.token.isNotEmpty
-                ? userState.user.type == 'user'
-                    ? const TabScreen()
-                    : AdminScreen()
+                ? userState.user.type == 'admin'
+                    ? const AdminScreen()
+                    : const TabScreen()
                 : const AuthScreen());
       },
     );

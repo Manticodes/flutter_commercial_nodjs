@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_commercial_nodjs/constants/error_handle.dart';
 import 'package:flutter_commercial_nodjs/constants/global_variable.dart';
 import 'package:flutter_commercial_nodjs/logic/bloc_user/user_bloc.dart';
+import 'package:flutter_commercial_nodjs/main.dart';
 import 'package:flutter_commercial_nodjs/model/user.dart';
 import 'package:flutter_commercial_nodjs/screens/home/home_screen.dart';
 import 'package:flutter_commercial_nodjs/screens/home/tab_screen.dart';
@@ -68,9 +69,10 @@ class AuthService {
 
             prefs.setString('x-auth-token', jsonDecode(response.body)['token']);
             context.read<UserBloc>().add(SetUser(user: response.body));
+
             Navigator.pushNamedAndRemoveUntil(
               context,
-              TabScreen.route,
+              MyApp.routename,
               (route) => false,
             );
           });

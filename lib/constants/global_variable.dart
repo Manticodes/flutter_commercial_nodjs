@@ -5,6 +5,8 @@ String uriSignup = 'https://amazone-clone.iran.liara.run/api/signup';
 String uriSignIn = 'https://amazone-clone.iran.liara.run/api/signin';
 String uriTokenValid = 'https://amazone-clone.iran.liara.run/api/validtoken';
 String urigetUser = 'https://amazone-clone.iran.liara.run/api/getuser';
+String uriAdminupload =
+    'https://amazone-clone.iran.liara.run/admin/add-product';
 
 List categoryImageLinks = [
   {
