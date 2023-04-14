@@ -75,4 +75,14 @@ class AdminServices {
           .showSnackBar(SnackBar(content: Text(e.toString())));
     }
   }
+
+  void getProduct() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('x-auth-token');
+    http.Response response = await http.get(Uri.parse(uriGetProduct), headers: {
+      'Content-Type': 'application/json; charset=UTF-8',
+      'x-auth-token': token!,
+    });
+    var a = response.body;
+  }
 }

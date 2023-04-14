@@ -7,6 +7,8 @@ String uriTokenValid = 'https://amazone-clone.iran.liara.run/api/validtoken';
 String urigetUser = 'https://amazone-clone.iran.liara.run/api/getuser';
 String uriAdminupload =
     'https://amazone-clone.iran.liara.run/admin/add-product';
+String uriGetProduct =
+    'https://amazone-clone.iran.liara.run/admin/get-products';
 
 List categoryImageLinks = [
   {
