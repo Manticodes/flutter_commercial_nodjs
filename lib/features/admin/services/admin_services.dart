@@ -1,13 +1,14 @@
 import 'dart:io';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:minio/io.dart';
+import 'package:minio/minio.dart';
+// ignore: depend_on_referenced_packages
+import 'package:path/path.dart' as pathfinder;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_commercial_nodjs/constants/error_handle.dart';
 import 'package:flutter_commercial_nodjs/constants/global_variable.dart';
 import 'package:flutter_commercial_nodjs/model/product.dart';
-import 'package:minio/minio.dart';
-import 'package:minio/io.dart';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:path/path.dart' as pathfinder;
 
 class AdminServices {
   void sellProduct({
@@ -27,6 +28,8 @@ class AdminServices {
       const String secretKey = '2b6b3387-f9b1-4e6c-a999-d0368987c411';
       const String bucket = 'amazone-clone';
 
+      // https://amazone-clone.storage.iran.liara.space/Essentials/maxresdefault.jpg
+
       List<String> imageUrls = [];
       final minio = Minio(
         endPoint: endPoint,
@@ -35,13 +38,15 @@ class AdminServices {
         region: '',
       );
       for (int i = 0; i < images.length; i++) {
-        String res = await minio.fPutObject(
+        final String finalUrl =
+            'https://amazone-clone.storage.iran.liara.space/$category/${pathfinder.basename(images[i].path)}';
+        await minio.fPutObject(
           bucket,
           '$category/${pathfinder.basename(images[i].path)}',
           images[i].path,
         );
-        debugPrint(res);
-        imageUrls.add(res);
+        debugPrint(finalUrl);
+        imageUrls.add(finalUrl);
       }
       Product product = Product(
           name: name,

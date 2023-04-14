@@ -9,8 +9,6 @@ import 'package:flutter_commercial_nodjs/constants/global_variable.dart';
 import 'package:flutter_commercial_nodjs/logic/bloc_user/user_bloc.dart';
 import 'package:flutter_commercial_nodjs/main.dart';
 import 'package:flutter_commercial_nodjs/model/user.dart';
-import 'package:flutter_commercial_nodjs/screens/home/home_screen.dart';
-import 'package:flutter_commercial_nodjs/screens/home/tab_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -34,7 +32,7 @@ class AuthService {
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
           });
-      // ignore: use_build_context_synchronously
+
       httpErrorHandle(
           response: response,
           context: context,
@@ -60,7 +58,6 @@ class AuthService {
             'Content-Type': 'application/json; charset=UTF-8',
           });
 
-      // ignore: use_build_context_synchronously
       httpErrorHandle(
           response: response,
           context: context,

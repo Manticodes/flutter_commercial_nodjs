@@ -4,7 +4,8 @@ class PassTextField extends StatefulWidget {
   final TextEditingController controller;
   final String label;
 
-  PassTextField({super.key, required this.controller, required this.label});
+  const PassTextField(
+      {super.key, required this.controller, required this.label});
 
   @override
   State<PassTextField> createState() => _PassTextFieldState();

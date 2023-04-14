@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:flutter_commercial_nodjs/features/admin/screens/post_screen.dart';
 
@@ -35,7 +37,7 @@ class _AdminScreenState extends State<AdminScreen> {
                   'lib/assets/images/logo.png',
                 ),
               ),
-              Text(
+              const Text(
                 'Admin Panel',
                 style: TextStyle(fontWeight: FontWeight.bold),
               )
@@ -61,7 +63,7 @@ class _AdminScreenState extends State<AdminScreen> {
                   border: Border(
                       top: BorderSide(
                           color: _pageIndex == 0
-                              ? Color.fromARGB(255, 248, 90, 90)
+                              ? const Color.fromARGB(255, 248, 90, 90)
                               : Colors.white,
                           width: 5))),
               child: const Icon(Icons.home_outlined),
@@ -75,7 +77,7 @@ class _AdminScreenState extends State<AdminScreen> {
                   border: Border(
                       top: BorderSide(
                           color: _pageIndex == 1
-                              ? Color.fromARGB(255, 248, 90, 90)
+                              ? const Color.fromARGB(255, 248, 90, 90)
                               : Colors.white,
                           width: 5))),
               child: const Icon(Icons.analytics_outlined),
@@ -89,7 +91,7 @@ class _AdminScreenState extends State<AdminScreen> {
                   border: Border(
                       top: BorderSide(
                           color: _pageIndex == 2
-                              ? Color.fromARGB(255, 248, 90, 90)
+                              ? const Color.fromARGB(255, 248, 90, 90)
                               : Colors.white,
                           width: 5))),
               child: const Icon(Icons.inbox_outlined),

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_commercial_nodjs/logic/bloc_user/user_bloc.dart';
 
 import '../../constants/global_variable.dart';
 
 class AdressBar extends StatelessWidget {
-  final state;
+  final UserState state;
   const AdressBar({
     super.key,
     required this.state,
@@ -91,7 +92,7 @@ class HomeProductScroller extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color.fromARGB(0, 35, 34, 34),
+      color: const Color.fromARGB(0, 35, 34, 34),
       height: 320,
       width: double.infinity,
       child: Padding(
@@ -120,7 +121,7 @@ class HomeProductScroller extends StatelessWidget {
                           images[index]['text'],
                           maxLines: 1,
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),

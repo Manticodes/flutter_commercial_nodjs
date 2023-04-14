@@ -21,7 +21,7 @@ void httpErrorHandle({
           SnackBar(content: Text(jsonDecode(response.body)['error'])));
       break;
     default:
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('some thing wents wrong')));
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('some thing wents wrong')));
   }
 }

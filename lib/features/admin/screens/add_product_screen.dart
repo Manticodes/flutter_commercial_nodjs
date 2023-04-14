@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'dart:io';
 
 import 'package:carousel_slider/carousel_slider.dart';
@@ -20,7 +22,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
   final TextEditingController quantityController = TextEditingController();
-  final _addproductFormKey = GlobalKey<FormState>();
+  final addproductFormKey = GlobalKey<FormState>();
   List<File> images = [];
 
   @override
@@ -54,10 +56,10 @@ class _AddProductScreenState extends State<AddProductScreen> {
       padding:
           EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       child: Form(
-        key: _addproductFormKey,
+        key: addproductFormKey,
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Padding(
@@ -78,7 +80,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                   : InkWell(
                       onTap: imagePicker,
                       child: DottedBorder(
-                          dashPattern: [10, 10],
+                          dashPattern: const [10, 10],
                           borderType: BorderType.RRect,
                           radius: const Radius.circular(20),
                           child: Container(
@@ -119,13 +121,13 @@ class _AddProductScreenState extends State<AddProductScreen> {
                                 images.clear();
                               });
                             },
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.delete,
                             )),
                       ),
                     ],
                   )
-                : SizedBox(
+                : const SizedBox(
                     height: 20,
                   ),
             CostumeTextField(
@@ -148,8 +150,8 @@ class _AddProductScreenState extends State<AddProductScreen> {
                     value: dropVal,
                     items: productCategories.map((String e) {
                       return DropdownMenuItem(
-                        child: Text(e),
                         value: e,
+                        child: Text(e),
                       );
                     }).toList(),
                     onChanged: (value) {
@@ -166,9 +168,9 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 title: 'ADD',
                 onTap: () {
                   debugPrint(
-                      _addproductFormKey.currentState!.validate().toString());
+                      addproductFormKey.currentState!.validate().toString());
                   debugPrint(productNameController.text);
-                  if (_addproductFormKey.currentState!.validate() &&
+                  if (addproductFormKey.currentState!.validate() &&
                       images.isNotEmpty) {
                     AdminServices().sellProduct(
                         context: context,

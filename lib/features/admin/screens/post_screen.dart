@@ -24,13 +24,13 @@ class _PostScreenState extends State<PostScreen> {
                 SharedPreferences pref = await SharedPreferences.getInstance();
                 pref.clear();
               },
-              child: InkWell(child: Center(child: Text('texr')))),
+              child: const InkWell(child: Center(child: Text('texr')))),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
               _addPost();
             },
-            child: Icon(Icons.add),
             tooltip: 'Add Your Product',
+            child: const Icon(Icons.add),
           ),
         );
       },
