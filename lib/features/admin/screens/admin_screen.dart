@@ -1,7 +1,11 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_commercial_nodjs/features/admin/screens/post_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../logic/bloc_user/user_bloc.dart';
 
 class AdminScreen extends StatefulWidget {
   const AdminScreen({Key? key}) : super(key: key);
@@ -38,10 +42,23 @@ class _AdminScreenState extends State<AdminScreen> {
                   'lib/assets/images/logo.png',
                 ),
               ),
-              const Text(
-                'Admin Panel',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              )
+              Row(
+                children: [
+                  const Text(
+                    'Admin Panel',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  IconButton(
+                      onPressed: () async {
+                        context.read<UserBloc>().add(CleanUser());
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        prefs.clear();
+                        debugPrint(prefs.get('x-auth-token').toString());
+                      },
+                      icon: const Icon(Icons.logout_outlined))
+                ],
+              ),
             ],
           ),
         ),

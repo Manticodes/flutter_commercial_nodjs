@@ -8,10 +8,38 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
+  bool showError = false;
+  @override
+  void initState() {
+    Future.delayed(Duration(seconds: 10), () {
+      if (mounted) {
+        setState(() {
+          showError = true;
+          print(showError);
+        });
+      }
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: CircularProgressIndicator()),
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(child: CircularProgressIndicator()),
+          if (showError)
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Card(
+                  child: Container(
+                child: const Text('Take too long , pls check network'),
+                margin: EdgeInsets.all(10),
+              )),
+            )
+        ],
+      ),
     );
   }
 }

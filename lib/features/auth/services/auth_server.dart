@@ -101,10 +101,20 @@ class AuthService {
             'x-auth-token': token
           });
 
-      context.read<UserBloc>().add(SetUser(user: userDataRes.body));
       user = User.fromJson(userDataRes.body);
+    } else {
+      user = User(
+          adress: '',
+          email: '',
+          id: '',
+          name: '',
+          password: '',
+          token: '',
+          type: '');
     }
+    context.read<UserBloc>().add(SetUser(user: user.toJson()));
 
+    debugPrint('token is : ${user.token}');
     return user;
   }
 }

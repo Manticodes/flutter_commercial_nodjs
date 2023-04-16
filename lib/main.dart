@@ -4,6 +4,7 @@ import 'package:flutter_commercial_nodjs/features/admin/screens/admin_screen.dar
 import 'package:flutter_commercial_nodjs/features/auth/screens/auth_screen.dart';
 import 'package:flutter_commercial_nodjs/features/auth/services/auth_server.dart';
 import 'package:flutter_commercial_nodjs/router.dart';
+import 'package:flutter_commercial_nodjs/screens/home/loading.dart';
 import 'package:flutter_commercial_nodjs/screens/home/tab_screen.dart';
 import 'logic/bloc_user/user_bloc.dart';
 
@@ -26,9 +27,13 @@ class _MyAppState extends State<MyApp> {
   @override
   bool loaded = false;
   void initState() {
-    AuthService()
-        .getUserData(context: context)
-        .whenComplete(() => loaded = true);
+    AuthService().getUserData(context: context).whenComplete(() {
+      setState(() {
+        loaded = true;
+      });
+
+      print(loaded);
+    });
     super.initState();
   }
 
@@ -49,11 +54,13 @@ class _MyAppState extends State<MyApp> {
                     primary: Color.fromARGB(255, 239, 80, 62))),
             themeMode: ThemeMode.light,
             onGenerateRoute: (settings) => generateRoute(settings),
-            home: userState.user.token.isNotEmpty
-                ? userState.user.type == 'admin'
-                    ? const AdminScreen()
-                    : const TabScreen()
-                : const AuthScreen());
+            home: loaded == false
+                ? Loading()
+                : userState.user.token.isNotEmpty
+                    ? userState.user.type == 'admin'
+                        ? const AdminScreen()
+                        : const TabScreen()
+                    : const AuthScreen());
       },
     );
   }
