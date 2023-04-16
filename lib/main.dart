@@ -24,8 +24,11 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   @override
+  bool loaded = false;
   void initState() {
-    AuthService().getUserData(context: context);
+    AuthService()
+        .getUserData(context: context)
+        .whenComplete(() => loaded = true);
     super.initState();
   }
 

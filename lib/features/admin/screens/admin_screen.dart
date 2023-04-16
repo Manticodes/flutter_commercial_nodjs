@@ -5,6 +5,7 @@ import 'package:flutter_commercial_nodjs/features/admin/screens/post_screen.dart
 
 class AdminScreen extends StatefulWidget {
   const AdminScreen({Key? key}) : super(key: key);
+  static const String routeName = 'AdminScreen';
 
   @override
   _AdminScreenState createState() => _AdminScreenState();

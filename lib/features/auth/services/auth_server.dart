@@ -79,7 +79,8 @@ class AuthService {
     }
   }
 
-  void getUserData({required BuildContext context}) async {
+  Future<User> getUserData({required BuildContext context}) async {
+    late User user;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('x-auth-token');
     if (token == null) {
@@ -101,6 +102,9 @@ class AuthService {
           });
 
       context.read<UserBloc>().add(SetUser(user: userDataRes.body));
+      user = User.fromJson(userDataRes.body);
     }
+
+    return user;
   }
 }
