@@ -38,11 +38,40 @@ class _PostScreenState extends State<PostScreen> {
                 } else if (snapshot.data!.isEmpty) {
                   return Text('There is no product');
                 } else {
-                  return ListView.builder(
+                  return GridView.builder(
+                    itemCount: 2,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2),
                     itemBuilder: (context, index) {
-                      return Text(snapshot.data![index].name);
+                      //   final productData = products![index];
+                      return Column(
+                        children: [
+                          SizedBox(
+                            height: 140,
+                            child: Text('product pic here'),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  "productData.name",
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 2,
+                                ),
+                              ),
+                              IconButton(
+                                onPressed: () {},
+                                icon: const Icon(
+                                  Icons.delete_outline,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      );
                     },
-                    itemCount: snapshot.data!.length,
                   );
                 }
               }
