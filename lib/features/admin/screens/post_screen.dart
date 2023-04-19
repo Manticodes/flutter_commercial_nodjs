@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_commercial_nodjs/features/admin/screens/add_product_screen.dart';
 import 'package:flutter_commercial_nodjs/features/admin/services/admin_services.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_commercial_nodjs/model/product.dart';
 
 import '../../../logic/bloc_user/user_bloc.dart';
 
@@ -27,24 +27,27 @@ class _PostScreenState extends State<PostScreen> {
           body: FutureBuilder(
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(child: const CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator());
               }
               if (snapshot.hasError) {
-                return Center(child: Text(snapshot.error.toString() + 'hahah'));
+                return Center(
+                    child: Text(
+                        '${snapshot.error}there is something wrong try later'));
               } else {
                 if (snapshot.data == null) {
-                  return Center(
-                      child: const Text(' Some Thing is not ok here '));
+                  return const Center(
+                      child: Text(' Some Thing is not ok here '));
                 } else if (snapshot.data!.isEmpty) {
-                  return Text('There is no product');
+                  return const Text('There is no product');
                 } else {
+                  List<Product> products = snapshot.data!;
                   return GridView.builder(
                     itemCount: 2,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2),
                     itemBuilder: (context, index) {
-                      //   final productData = products![index];
+                      final productData = products[index];
                       return Column(
                         children: [
                           SizedBox(

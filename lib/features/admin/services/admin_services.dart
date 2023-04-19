@@ -14,7 +14,7 @@ import 'package:flutter_commercial_nodjs/constants/global_variable.dart';
 import 'package:flutter_commercial_nodjs/model/product.dart';
 
 class AdminServices {
-  void sellProduct({
+  Future<bool> sellProduct({
     required BuildContext context,
     required String name,
     required String description,
@@ -30,8 +30,6 @@ class AdminServices {
       const String accessKey = 'oss98spdpt7e93l2';
       const String secretKey = '2b6b3387-f9b1-4e6c-a999-d0368987c411';
       const String bucket = 'amazone-clone';
-
-      // https://amazone-clone.storage.iran.liara.space/Essentials/maxresdefault.jpg
 
       List<String> imageUrls = [];
       final minio = Minio(
@@ -73,9 +71,11 @@ class AdminServices {
                 const SnackBar(content: Text('product added succecfully')));
             Navigator.pop(context);
           });
+      return true;
     } catch (e) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.toString())));
+      return false;
     }
   }
 

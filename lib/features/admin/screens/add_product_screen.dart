@@ -24,6 +24,8 @@ class _AddProductScreenState extends State<AddProductScreen> {
   final TextEditingController quantityController = TextEditingController();
   final addproductFormKey = GlobalKey<FormState>();
   List<File> images = [];
+  bool loading = false;
+  late Future<bool> addProductF;
 
   @override
   void dispose() {
@@ -164,15 +166,38 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 ),
               ],
             ),
+            if (loading)
+              FutureBuilder(
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return CircularProgressIndicator();
+                    } else {
+                      Future.delayed(
+                        Duration(seconds: 2),
+                        () {
+                          loading = false;
+                        },
+                      );
+                      return Text('SomeThing is Wrong try again');
+                    }
+                  },
+                  future: addProductF),
             CostumeButton(
                 title: 'ADD',
                 onTap: () {
                   debugPrint(
                       addproductFormKey.currentState!.validate().toString());
+
                   debugPrint(productNameController.text);
+
                   if (addproductFormKey.currentState!.validate() &&
-                      images.isNotEmpty) {
-                    AdminServices().sellProduct(
+                      images.isNotEmpty &&
+                      !loading) {
+                    setState(() {
+                      loading = true;
+                    });
+
+                    addProductF = AdminServices().sellProduct(
                         context: context,
                         name: productNameController.text,
                         description: descriptionController.text,
