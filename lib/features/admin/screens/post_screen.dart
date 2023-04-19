@@ -42,36 +42,26 @@ class _PostScreenState extends State<PostScreen> {
                 } else {
                   List<Product> products = snapshot.data!;
                   return GridView.builder(
-                    itemCount: 2,
+                    itemCount: products.length,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2),
                     itemBuilder: (context, index) {
-                      final productData = products[index];
                       return Column(
                         children: [
                           SizedBox(
-                            height: 140,
-                            child: Text('product pic here'),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  "productData.name",
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 2,
-                                ),
+                            height: 150,
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 8.0, right: 8, left: 8),
+                              child: Image.network(
+                                products[index].images[0],
+                                fit: BoxFit.contain,
                               ),
-                              IconButton(
-                                onPressed: () {},
-                                icon: const Icon(
-                                  Icons.delete_outline,
-                                ),
-                              ),
-                            ],
+                            ),
                           ),
+                          Text(products[index].name),
+                          Text(products[index].description)
                         ],
                       );
                     },

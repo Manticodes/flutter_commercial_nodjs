@@ -205,6 +205,9 @@ class _AddProductScreenState extends State<AddProductScreen> {
                         quantity: double.parse(quantityController.text),
                         category: dropVal,
                         images: images);
+                    addProductF.whenComplete(() {
+                      debugPrint('add product future completed');
+                    });
                   }
                 })
           ],
