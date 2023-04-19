@@ -102,43 +102,61 @@ class HomeProductScroller extends StatelessWidget {
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.all(15.0),
-              child: Container(
-                height: 220,
-                width: 200,
-                color: Colors.transparent,
-                child: Column(
-                  children: [
-                    Image.network(
-                      images[index]['image'],
-                      fit: BoxFit.contain,
-                    ),
-                    Center(
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                          top: 8.0,
-                        ),
-                        child: Text(
-                          images[index]['text'],
-                          maxLines: 1,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        '${images[index]['price']} تومان  ',
-                        textAlign: TextAlign.center,
-                      ),
-                    )
-                  ],
-                ),
+              child: SingleProductImage(
+                index: index,
+                images: images,
               ),
             );
           },
           itemCount: images.length,
         ),
+      ),
+    );
+  }
+}
+
+class SingleProductImage extends StatelessWidget {
+  const SingleProductImage({
+    super.key,
+    required this.images,
+    required this.index,
+  });
+  final int index;
+  final List images;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 220,
+      width: 200,
+      color: Colors.transparent,
+      child: Column(
+        children: [
+          Image.network(
+            images[index]['image'],
+            fit: BoxFit.contain,
+          ),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.only(
+                top: 8.0,
+              ),
+              child: Text(
+                images[index]['text'],
+                maxLines: 1,
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              '${images[index]['price']} تومان  ',
+              textAlign: TextAlign.center,
+            ),
+          )
+        ],
       ),
     );
   }
