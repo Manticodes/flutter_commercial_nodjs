@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_commercial_nodjs/features/admin/screens/add_product_screen.dart';
 import 'package:flutter_commercial_nodjs/features/admin/screens/admin_screen.dart';
 import 'package:flutter_commercial_nodjs/features/auth/screens/auth_screen.dart';
 import 'package:flutter_commercial_nodjs/main.dart';
@@ -22,6 +23,9 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
     case AdminScreen.routeName:
       return MaterialPageRoute(
           builder: (context) => const AdminScreen(), settings: routeSettings);
+    case AddProductScreen.royteName:
+      return MaterialPageRoute(
+          builder: (context) => AddProductScreen(), settings: routeSettings);
     default:
       return MaterialPageRoute(
           builder: (_) => const Scaffold(

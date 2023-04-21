@@ -73,7 +73,7 @@ class _PostScreenState extends State<PostScreen> {
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
-              _addPost();
+              Navigator.pushNamed(context, AddProductScreen.royteName);
             },
             tooltip: 'Add Your Product',
             child: const Icon(Icons.add),
@@ -83,7 +83,7 @@ class _PostScreenState extends State<PostScreen> {
     );
   }
 
-  void _addPost() {
+  /* void _addPost() {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -91,5 +91,5 @@ class _PostScreenState extends State<PostScreen> {
         return SingleChildScrollView(child: AddProductScreen());
       },
     );
-  }
+  } */
 }

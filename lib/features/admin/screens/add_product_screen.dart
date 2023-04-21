@@ -12,6 +12,7 @@ import 'package:flutter_commercial_nodjs/features/auth/widgets/costume_textfield
 
 class AddProductScreen extends StatefulWidget {
   const AddProductScreen({Key? key}) : super(key: key);
+  static const String royteName = 'addProductScreen';
 
   @override
   _AddProductScreenState createState() => _AddProductScreenState();
@@ -54,163 +55,190 @@ class _AddProductScreenState extends State<AddProductScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding:
-          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-      child: Form(
-        key: addproductFormKey,
-        child: Column(
+    return Scaffold(
+      appBar: AppBar(
+        flexibleSpace: Container(),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 15).copyWith(top: 20),
-              child: images.isNotEmpty
-                  ? CarouselSlider(
-                      items: images.map((e) {
-                        return Image.file(
-                          e,
-                          fit: BoxFit.fill,
-                        );
-                      }).toList(),
-                      options: CarouselOptions(
-                          viewportFraction: 1,
-                          height: 210,
-                          enableInfiniteScroll: false))
-                  : InkWell(
-                      onTap: imagePicker,
-                      child: DottedBorder(
-                          dashPattern: const [10, 10],
-                          borderType: BorderType.RRect,
-                          radius: const Radius.circular(20),
-                          child: Container(
-                            width: double.infinity,
-                            height: 150,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
-                                  Icon(
-                                    Icons.folder_open_outlined,
-                                    size: 35,
-                                  ),
-                                  Text(
-                                    'Select product Image',
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                        color: Color.fromARGB(255, 58, 58, 58)),
-                                  )
-                                ]),
-                          )),
-                    ),
-            ),
-            images.isNotEmpty
-                ? Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          right: 20.0,
-                        ),
-                        child: IconButton(
-                            onPressed: () {
-                              setState(() {
-                                images.clear();
-                              });
-                            },
-                            icon: const Icon(
-                              Icons.delete,
-                            )),
-                      ),
-                    ],
-                  )
-                : const SizedBox(
-                    height: 20,
-                  ),
-            CostumeTextField(
-                controller: productNameController, label: 'Product Name'),
-            CostumeTextField(
-              controller: descriptionController,
-              label: 'Description',
-              maxLines: 5,
-            ),
-            CostumeTextField(controller: priceController, label: 'price'),
-            CostumeTextField(
-              controller: quantityController,
-              label: 'Quantity',
+            Container(
+              alignment: Alignment.topLeft,
+              child: Image.asset(
+                'lib/assets/images/logo.png',
+              ),
             ),
             Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0, top: 15),
-                  child: DropdownButton(
-                    value: dropVal,
-                    items: productCategories.map((String e) {
-                      return DropdownMenuItem(
-                        value: e,
-                        child: Text(e),
-                      );
-                    }).toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        dropVal = value.toString();
-                      });
-                    },
-                    icon: const Icon(Icons.keyboard_arrow_down_outlined),
-                  ),
+              children: const [
+                Text(
+                  'Add Product page',
+                  style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ],
             ),
-            if (loading)
-              FutureBuilder(
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return CircularProgressIndicator();
-                    } else {
-                      Future.delayed(
-                        Duration(seconds: 2),
-                        () {
-                          loading = false;
-                        },
-                      );
-                      return Text('SomeThing is Wrong try again');
-                    }
-                  },
-                  future: addProductF),
-            CostumeButton(
-                title: 'ADD',
-                onTap: () {
-                  debugPrint(
-                      addproductFormKey.currentState!.validate().toString());
-
-                  debugPrint(productNameController.text);
-
-                  if (addproductFormKey.currentState!.validate() &&
-                      images.isNotEmpty &&
-                      !loading) {
-                    setState(() {
-                      loading = true;
-                    });
-
-                    addProductF = AdminServices().sellProduct(
-                        context: context,
-                        name: productNameController.text,
-                        description: descriptionController.text,
-                        price: double.parse(priceController.text),
-                        quantity: double.parse(quantityController.text),
-                        category: dropVal,
-                        images: images);
-                    addProductF.whenComplete(() {
-                      debugPrint('add product future completed');
-                    });
-                  }
-                })
           ],
+        ),
+      ),
+      body: Container(
+        child: Form(
+          key: addproductFormKey,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15)
+                      .copyWith(top: 20),
+                  child: images.isNotEmpty
+                      ? CarouselSlider(
+                          items: images.map((e) {
+                            return Image.file(
+                              e,
+                              fit: BoxFit.fill,
+                            );
+                          }).toList(),
+                          options: CarouselOptions(
+                              viewportFraction: 1,
+                              height: 210,
+                              enableInfiniteScroll: false))
+                      : InkWell(
+                          onTap: imagePicker,
+                          child: DottedBorder(
+                              dashPattern: const [10, 10],
+                              borderType: BorderType.RRect,
+                              radius: const Radius.circular(20),
+                              child: Container(
+                                width: double.infinity,
+                                height: 150,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: const [
+                                      Icon(
+                                        Icons.folder_open_outlined,
+                                        size: 35,
+                                      ),
+                                      Text(
+                                        'Select product Image',
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                            color: Color.fromARGB(
+                                                255, 58, 58, 58)),
+                                      )
+                                    ]),
+                              )),
+                        ),
+                ),
+                images.isNotEmpty
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              right: 20.0,
+                            ),
+                            child: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    images.clear();
+                                  });
+                                },
+                                icon: const Icon(
+                                  Icons.delete,
+                                )),
+                          ),
+                        ],
+                      )
+                    : const SizedBox(
+                        height: 20,
+                      ),
+                CostumeTextField(
+                    controller: productNameController, label: 'Product Name'),
+                CostumeTextField(
+                  controller: descriptionController,
+                  label: 'Description',
+                  maxLines: 5,
+                ),
+                CostumeTextField(controller: priceController, label: 'price'),
+                CostumeTextField(
+                  controller: quantityController,
+                  label: 'Quantity',
+                ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20.0, top: 15),
+                      child: DropdownButton(
+                        value: dropVal,
+                        items: productCategories.map((String e) {
+                          return DropdownMenuItem(
+                            value: e,
+                            child: Text(e),
+                          );
+                        }).toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            dropVal = value.toString();
+                          });
+                        },
+                        icon: const Icon(Icons.keyboard_arrow_down_outlined),
+                      ),
+                    ),
+                  ],
+                ),
+                if (loading)
+                  FutureBuilder(
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return CircularProgressIndicator();
+                        } else {
+                          Future.delayed(
+                            Duration(seconds: 2),
+                            () {
+                              loading = false;
+                            },
+                          );
+                          return Text('SomeThing is Wrong try again');
+                        }
+                      },
+                      future: addProductF),
+                CostumeButton(
+                    title: 'ADD',
+                    onTap: () {
+                      debugPrint(addproductFormKey.currentState!
+                          .validate()
+                          .toString());
+
+                      debugPrint(productNameController.text);
+
+                      if (addproductFormKey.currentState!.validate() &&
+                          images.isNotEmpty &&
+                          !loading) {
+                        setState(() {
+                          loading = true;
+                        });
+
+                        addProductF = AdminServices().sellProduct(
+                            context: context,
+                            name: productNameController.text,
+                            description: descriptionController.text,
+                            price: double.parse(priceController.text),
+                            quantity: double.parse(quantityController.text),
+                            category: dropVal,
+                            images: images);
+                        addProductF.whenComplete(() {
+                          debugPrint('add product future completed');
+                        });
+                      }
+                    })
+              ],
+            ),
+          ),
         ),
       ),
     );
