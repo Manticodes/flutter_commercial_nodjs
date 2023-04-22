@@ -66,73 +66,24 @@ class _PostScreenState extends State<PostScreen> {
                                   products[index].name,
                                   textAlign: TextAlign.center,
                                   style: const TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                  ),
+                                      fontSize: 20,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ),
                             ),
                             Align(
                               alignment: Alignment.topRight,
-                              child: IconButton(
-                                  onPressed: () {},
-                                  icon: const Icon(Icons.delete)),
+                              child: CircleAvatar(
+                                backgroundColor: Color.fromARGB(32, 3, 3, 3),
+                                child: IconButton(
+                                    onPressed: () {},
+                                    icon: const Icon(Icons.delete)),
+                              ),
                             )
                           ],
                         ),
                       );
-
-                      /* Column(
-                        children: [
-                          SizedBox(
-                              height: 140,
-                              child: Image.network(products[index].images[0])),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  products[index].name,
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 2,
-                                ),
-                              ),
-                              IconButton(
-                                onPressed: () => {},
-                                icon: const Icon(
-                                  Icons.delete_outline,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ); */
-
-                      /* Column(
-                        children: [
-                          Container(
-                            height: 150,
-                            width: MediaQuery.of(context).size.width * 0.4,
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image:
-                                        NetworkImage(products[index].images[0]),
-                                    fit: BoxFit.cover)),
-                          ),
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Text(products[index].name),
-                                IconButton(
-                                    onPressed: () {},
-                                    icon: const Icon(
-                                        Icons.delete_outline_outlined))
-                              ],
-                            ),
-                          ),
-                        ],
-                      ); */
                     },
                   );
                 }
@@ -151,14 +102,4 @@ class _PostScreenState extends State<PostScreen> {
       },
     );
   }
-
-  /* void _addPost() {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      builder: (context) {
-        return SingleChildScrollView(child: AddProductScreen());
-      },
-    );
-  } */
 }
