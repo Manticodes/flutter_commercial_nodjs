@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_commercial_nodjs/constants/global_variable.dart';
 import 'package:flutter_commercial_nodjs/screens/home/carousel_slider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../logic/bloc_user/user_bloc.dart';
 import 'home_widgets.dart';
 
+// ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
   static const String routeName = '/home';
   TextEditingController searchController = TextEditingController();
@@ -67,9 +66,9 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     AdressBar(state: state),
-                    Cataloge(),
-                    CarouselSliderImage(),
-                    DealOfDayText(),
+                    const Cataloge(),
+                    const CarouselSliderImage(),
+                    const DealOfDayText(),
                     HomeProductScroller(images: homeDealImageLinks)
                   ],
                 ),

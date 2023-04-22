@@ -41,7 +41,7 @@ class _TabScreenState extends State<TabScreen> {
                   border: Border(
                       top: BorderSide(
                           color: _pageIndex == 0
-                              ? Color.fromARGB(255, 248, 90, 90)
+                              ? const Color.fromARGB(255, 248, 90, 90)
                               : Colors.white,
                           width: 5))),
               child: const Icon(Icons.home_outlined),
@@ -55,7 +55,7 @@ class _TabScreenState extends State<TabScreen> {
                   border: Border(
                       top: BorderSide(
                           color: _pageIndex == 1
-                              ? Color.fromARGB(255, 248, 90, 90)
+                              ? const Color.fromARGB(255, 248, 90, 90)
                               : Colors.white,
                           width: 5))),
               child: const Icon(Icons.person_outline_outlined),
@@ -69,15 +69,15 @@ class _TabScreenState extends State<TabScreen> {
                   border: Border(
                       top: BorderSide(
                           color: _pageIndex == 2
-                              ? Color.fromARGB(255, 248, 90, 90)
+                              ? const Color.fromARGB(255, 248, 90, 90)
                               : Colors.white,
                           width: 5))),
-              child: badges.Badge(
+              child: const badges.Badge(
                   stackFit: StackFit.passthrough,
                   badgeStyle: badges.BadgeStyle(
                       badgeColor: Color.fromARGB(83, 255, 255, 255)),
                   badgeContent: Text('2'),
-                  child: const Icon(Icons.shop_2_outlined)),
+                  child: Icon(Icons.shop_2_outlined)),
             ),
           )
         ],

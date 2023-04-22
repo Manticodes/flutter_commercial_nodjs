@@ -11,7 +11,7 @@ import 'logic/bloc_user/user_bloc.dart';
 void main() {
   runApp(BlocProvider(
     create: (context) => UserBloc(),
-    child: MyApp(),
+    child: const MyApp(),
   ));
 }
 
@@ -24,15 +24,13 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  @override
   bool loaded = false;
+  @override
   void initState() {
     AuthService().getUserData(context: context).whenComplete(() {
       setState(() {
         loaded = true;
       });
-
-      print(loaded);
     });
     super.initState();
   }
@@ -55,7 +53,7 @@ class _MyAppState extends State<MyApp> {
             themeMode: ThemeMode.light,
             onGenerateRoute: (settings) => generateRoute(settings),
             home: loaded == false
-                ? Loading()
+                ? const Loading()
                 : userState.user.token.isNotEmpty
                     ? userState.user.type == 'admin'
                         ? const AdminScreen()

@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_commercial_nodjs/features/admin/screens/add_product_screen.dart';
@@ -47,23 +49,90 @@ class _PostScreenState extends State<PostScreen> {
                         const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2),
                     itemBuilder: (context, index) {
-                      return Column(
-                        children: [
-                          SizedBox(
-                            height: 150,
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 8.0, right: 8, left: 8),
-                              child: Image.network(
-                                products[index].images[0],
-                                fit: BoxFit.contain,
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Stack(
+                          children: [
+                            Center(
+                                child:
+                                    Image.network(products[index].images[0])),
+                            Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Container(
+                                width: double.infinity,
+                                color: Colors.black.withOpacity(0.5),
+                                padding: const EdgeInsets.all(16),
+                                child: Text(
+                                  products[index].name,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                          Text(products[index].name),
-                          Text(products[index].description)
-                        ],
+                            Align(
+                              alignment: Alignment.topRight,
+                              child: IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(Icons.delete)),
+                            )
+                          ],
+                        ),
                       );
+
+                      /* Column(
+                        children: [
+                          SizedBox(
+                              height: 140,
+                              child: Image.network(products[index].images[0])),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  products[index].name,
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 2,
+                                ),
+                              ),
+                              IconButton(
+                                onPressed: () => {},
+                                icon: const Icon(
+                                  Icons.delete_outline,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ); */
+
+                      /* Column(
+                        children: [
+                          Container(
+                            height: 150,
+                            width: MediaQuery.of(context).size.width * 0.4,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image:
+                                        NetworkImage(products[index].images[0]),
+                                    fit: BoxFit.cover)),
+                          ),
+                          Expanded(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Text(products[index].name),
+                                IconButton(
+                                    onPressed: () {},
+                                    icon: const Icon(
+                                        Icons.delete_outline_outlined))
+                              ],
+                            ),
+                          ),
+                        ],
+                      ); */
                     },
                   );
                 }

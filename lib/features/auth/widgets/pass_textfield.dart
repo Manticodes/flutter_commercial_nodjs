@@ -25,11 +25,11 @@ class _PassTextFieldState extends State<PassTextField> {
         controller: widget.controller,
         obscureText: hide == true ? true : false,
         decoration: InputDecoration(
-          border: OutlineInputBorder(),
+          border: const OutlineInputBorder(),
           label: Text(widget.label),
           suffixIcon: hide == true
               ? InkWell(
-                  child: Icon(Icons.remove_red_eye),
+                  child: const Icon(Icons.remove_red_eye),
                   onTap: () {
                     setState(() {
                       hide = false;
@@ -37,7 +37,7 @@ class _PassTextFieldState extends State<PassTextField> {
                   },
                 )
               : InkWell(
-                  child: Icon(Icons.password),
+                  child: const Icon(Icons.password),
                   onTap: () {
                     setState(() {
                       hide = true;

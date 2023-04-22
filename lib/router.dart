@@ -25,7 +25,8 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
           builder: (context) => const AdminScreen(), settings: routeSettings);
     case AddProductScreen.royteName:
       return MaterialPageRoute(
-          builder: (context) => AddProductScreen(), settings: routeSettings);
+          builder: (context) => const AddProductScreen(),
+          settings: routeSettings);
     default:
       return MaterialPageRoute(
           builder: (_) => const Scaffold(

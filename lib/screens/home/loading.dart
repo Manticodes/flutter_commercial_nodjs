@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 
 class Loading extends StatefulWidget {
@@ -11,11 +13,10 @@ class _LoadingState extends State<Loading> {
   bool showError = false;
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 10), () {
+    Future.delayed(const Duration(seconds: 10), () {
       if (mounted) {
         setState(() {
           showError = true;
-          print(showError);
         });
       }
     });
@@ -28,14 +29,14 @@ class _LoadingState extends State<Loading> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Center(child: CircularProgressIndicator()),
+          const Center(child: CircularProgressIndicator()),
           if (showError)
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: Card(
                   child: Container(
+                margin: const EdgeInsets.all(10),
                 child: const Text('Take too long , pls check network'),
-                margin: EdgeInsets.all(10),
               )),
             )
         ],
