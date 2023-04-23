@@ -9,6 +9,8 @@ String uriAdminupload =
     'https://amazone-clone.iran.liara.run/admin/add-product';
 String uriGetProduct =
     'https://amazone-clone.iran.liara.run/admin/get-products';
+String uriDeleteProduct =
+    'https://amazone-clone.iran.liara.run/admin/deleteproduct';
 
 List categoryImageLinks = [
   {

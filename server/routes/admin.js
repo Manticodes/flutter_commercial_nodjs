@@ -39,7 +39,7 @@ adminRouter.post('/admin/deleteproduct', admin, async (req, res) => {
     try {
         const { id } = req.body;
         const product = await Product.findByIdAndDelete(id);
-        product = await product.save();
+
         res.json(product)
     } catch (error) {
         res.status(500).json({ error: error.message });

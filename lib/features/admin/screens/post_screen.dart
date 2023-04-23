@@ -77,7 +77,14 @@ class _PostScreenState extends State<PostScreen> {
                               child: CircleAvatar(
                                 backgroundColor: Color.fromARGB(32, 3, 3, 3),
                                 child: IconButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      AdminServices().deleteProduct(
+                                          context: context,
+                                          product: products[index],
+                                          onSuccess: () {
+                                            setState(() {});
+                                          });
+                                    },
                                     icon: const Icon(Icons.delete)),
                               ),
                             )
