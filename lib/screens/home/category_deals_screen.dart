@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_commercial_nodjs/screens/home/services.dart';
 
+import '../../model/product.dart';
+import 'home_widgets.dart';
+
 class CategoryDealsScreen extends StatefulWidget {
   static const String routeName = 'category';
   const CategoryDealsScreen({Key? key, required this.category})
@@ -41,7 +44,25 @@ class _CategoryDealsScreenState extends State<CategoryDealsScreen> {
           future: HomeServices()
               .getcategoryProduct(context: context, category: widget.category),
           builder: (context, snapshot) {
-            return DecoratedBox(decoration: BoxDecoration(color: Colors.amber));
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            if (snapshot.hasError) {
+              return Center(
+                  child: Text(
+                      '${snapshot.error}there is something wrong try later'));
+            } else {
+              if (snapshot.data == null) {
+                return const Center(child: Text(' Some Thing is not ok here '));
+              } else if (snapshot.data!.isEmpty) {
+                return const Text('There is no product');
+              } else {
+                List<Product> products = snapshot.data!;
+                return HomeProductScroller2(
+                  products: products,
+                );
+              }
+            }
           },
         ));
   }

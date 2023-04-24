@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_commercial_nodjs/logic/bloc_user/user_bloc.dart';
+import 'package:flutter_commercial_nodjs/model/product.dart';
 import 'package:flutter_commercial_nodjs/screens/home/category_deals_screen.dart';
 
 import '../../constants/global_variable.dart';
@@ -164,6 +165,96 @@ class SingleProductImage extends StatelessWidget {
             ),
           )
         ],
+      ),
+    );
+  }
+}
+
+class HomeProductScroller2 extends StatelessWidget {
+  const HomeProductScroller2({
+    super.key,
+    required this.products,
+  });
+
+  final List<Product> products;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: const Color.fromARGB(0, 35, 34, 34),
+      height: 320,
+      width: double.infinity,
+      child: Padding(
+        padding: const EdgeInsets.only(top: 15.0),
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: SingleProductImage2(
+                product: products[index],
+              ),
+            );
+          },
+          itemCount: products.length,
+        ),
+      ),
+    );
+  }
+}
+
+class SingleProductImage2 extends StatelessWidget {
+  const SingleProductImage2({
+    super.key,
+    required this.product,
+  });
+
+  final Product product;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 220,
+      width: 200,
+      color: Colors.transparent,
+      child: Card(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 10.0, right: 8, left: 8),
+              child: ClipRRect(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    topRight: Radius.circular(10)),
+                child: Image.network(
+                  product.images[0],
+                  fit: BoxFit.cover,
+                  height: 200,
+                ),
+              ),
+            ),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: 4.0,
+                ),
+                child: Text(
+                  product.name,
+                  maxLines: 1,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Text(
+                '${product.price} تومان  ',
+                textAlign: TextAlign.center,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

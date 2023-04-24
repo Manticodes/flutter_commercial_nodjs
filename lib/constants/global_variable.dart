@@ -18,22 +18,22 @@ List categoryImageLinks = [
   {
     'image':
         'https://dkstatics-public.digikala.com/digikala-categories/af02140ea60e0fd478b09b279976a095c95615b6_1656161174.png?x-oss-process=image/format,webp',
-    'text': 'regional'
+    'text': 'Fashion'
   },
   {
     'image':
         'https://dkstatics-public.digikala.com/digikala-categories/5795b31a635f1e23df96a908c009f31744ede38f_1656160928.png?x-oss-process=image/format,webp',
-    'text': 'Clothing'
+    'text': 'Appliances'
   },
   {
     'image':
         'https://dkstatics-public.digikala.com/digikala-categories/8f80e75e4c2dca42ee0538e100c7a7b05455aa88_1662360265.png?x-oss-process=image/format,webp',
-    'text': 'Digitals'
+    'text': 'Mobiles'
   },
   {
     'image':
         'https://dkstatics-public.digikala.com/digikala-categories/1c44d5964f259e0725ec86ca9739de888f1862c7_1656161158.png?x-oss-process=image/format,webp',
-    'text': 'Sports'
+    'text': 'Essentials'
   },
 ];
 const List<String> carouselImages = [
