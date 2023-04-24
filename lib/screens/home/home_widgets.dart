@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_commercial_nodjs/logic/bloc_user/user_bloc.dart';
+import 'package:flutter_commercial_nodjs/screens/home/category_deals_screen.dart';
 
 import '../../constants/global_variable.dart';
 
@@ -57,23 +58,29 @@ class Cataloge extends StatelessWidget {
           itemExtent: 95,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
-            return Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                      right: 8.0, left: 8, top: 8, bottom: 4),
-                  child: CircleAvatar(
-                      backgroundColor: Colors.transparent,
-                      radius: 28,
-                      child: Image.network(categoryImageLinks[index]['image'],
-                          fit: BoxFit.cover)),
-                ),
-                Text(
-                  categoryImageLinks[index]['text'],
-                  style: const TextStyle(
-                      fontSize: 12, fontWeight: FontWeight.w500),
-                )
-              ],
+            return InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, CategoryDealsScreen.routeName,
+                    arguments: categoryImageLinks[index]['text']);
+              },
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        right: 8.0, left: 8, top: 8, bottom: 4),
+                    child: CircleAvatar(
+                        backgroundColor: Colors.transparent,
+                        radius: 28,
+                        child: Image.network(categoryImageLinks[index]['image'],
+                            fit: BoxFit.cover)),
+                  ),
+                  Text(
+                    categoryImageLinks[index]['text'],
+                    style: const TextStyle(
+                        fontSize: 12, fontWeight: FontWeight.w500),
+                  )
+                ],
+              ),
             );
           },
           itemCount: 4),

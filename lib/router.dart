@@ -3,6 +3,7 @@ import 'package:flutter_commercial_nodjs/features/admin/screens/add_product_scre
 import 'package:flutter_commercial_nodjs/features/admin/screens/admin_screen.dart';
 import 'package:flutter_commercial_nodjs/features/auth/screens/auth_screen.dart';
 import 'package:flutter_commercial_nodjs/main.dart';
+import 'package:flutter_commercial_nodjs/screens/home/category_deals_screen.dart';
 import 'package:flutter_commercial_nodjs/screens/home/home_screen.dart';
 import 'package:flutter_commercial_nodjs/screens/home/tab_screen.dart';
 
@@ -26,6 +27,11 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
     case AddProductScreen.royteName:
       return MaterialPageRoute(
           builder: (context) => const AddProductScreen(),
+          settings: routeSettings);
+    case CategoryDealsScreen.routeName:
+      return MaterialPageRoute(
+          builder: (context) =>
+              CategoryDealsScreen(category: routeSettings.arguments.toString()),
           settings: routeSettings);
     default:
       return MaterialPageRoute(
