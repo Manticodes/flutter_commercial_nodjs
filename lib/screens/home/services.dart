@@ -9,32 +9,35 @@ import '../../constants/error_handle.dart';
 import '../../constants/global_variable.dart';
 import '../../model/product.dart';
 
-Future<List<Product>> getcategoryProduct(
-    {required BuildContext context, required String category}) async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  String? token = prefs.getString('x-auth-token');
-  List<Product> productList = [];
-  try {
-    http.Response response = await http
-        .get(Uri.parse('$uriCategoryGetProduct?category=$category'), headers: {
-      'Content-Type': 'application/json; charset=UTF-8',
-      'x-auth-token': token!,
-    });
+class HomeServices {
+  Future<List<Product>> getcategoryProduct(
+      {required BuildContext context, required String category}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('x-auth-token');
+    List<Product> productList = [];
+    try {
+      http.Response response = await http.get(
+          Uri.parse('$uriCategoryGetProduct?category=$category'),
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            'x-auth-token': token!,
+          });
 
-    httpErrorHandle(
-        response: response,
-        context: context,
-        onSuccess: () {
-          for (int i = 0; i < jsonDecode(response.body).length; i++) {
-            Product product =
-                Product.fromJson(jsonEncode(jsonDecode(response.body)[i]));
-            productList.add(product);
-          }
-        });
-  } catch (e) {
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text(e.toString())));
+      httpErrorHandle(
+          response: response,
+          context: context,
+          onSuccess: () {
+            for (int i = 0; i < jsonDecode(response.body).length; i++) {
+              Product product =
+                  Product.fromJson(jsonEncode(jsonDecode(response.body)[i]));
+              productList.add(product);
+            }
+          });
+    } catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.toString())));
+    }
+
+    return productList;
   }
-
-  return productList;
 }
