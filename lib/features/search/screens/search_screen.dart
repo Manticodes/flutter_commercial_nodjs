@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_commercial_nodjs/screens/home/services.dart';
+import 'package:flutter_commercial_nodjs/features/search/services/search_services.dart';
 
-import '../../model/product.dart';
-import 'home_widgets.dart';
+import '../../../model/product.dart';
+import '../../../screens/home/home_widgets.dart';
 
-class CategoryDealsScreen extends StatefulWidget {
-  static const String routeName = '/category';
-  const CategoryDealsScreen({Key? key, required this.category})
-      : super(key: key);
-  final String category;
+class SearchScreen extends StatefulWidget {
+  static const String routeName = '/searchRoute';
+  final String searchQuerry;
+  const SearchScreen({Key? key, required this.searchQuerry}) : super(key: key);
 
   @override
-  State<CategoryDealsScreen> createState() => _CategoryDealsScreenState();
+  _SearchScreenState createState() => _SearchScreenState();
 }
 
-class _CategoryDealsScreenState extends State<CategoryDealsScreen> {
+class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,20 +28,18 @@ class _CategoryDealsScreenState extends State<CategoryDealsScreen> {
                   'lib/assets/images/logo.png',
                 ),
               ),
-              Row(
-                children: [
-                  Text(
-                    widget.category,
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
+              Row(children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Result for ${widget.searchQuerry}'),
+                ),
+              ])
             ],
           ),
         ),
         body: FutureBuilder(
-          future: HomeServices()
-              .getcategoryProduct(context: context, category: widget.category),
+          future: SearchService().getSearchProduct(
+              context: context, searchQuery: widget.searchQuerry),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());

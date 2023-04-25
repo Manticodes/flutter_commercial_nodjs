@@ -13,6 +13,8 @@ String uriDeleteProduct =
     'https://amazone-clone.iran.liara.run/admin/deleteproduct';
 String uriCategoryGetProduct =
     'https://amazone-clone.iran.liara.run/api/get-products';
+String uriSearchProduct =
+    'https://amazone-clone.iran.liara.run/api/get-products/search';
 
 List categoryImageLinks = [
   {

@@ -16,5 +16,18 @@ productRouter.get('/api/get-products', auth, async (req, res) => {
 });
 
 
+productRouter.get('/api/get-products/:name', auth, async (req, res) => {
+    try {
+
+        const products = await Product.find({ name: { $regex: req.params.name, $options: "i" }, });
+        res.json(products);
+
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+
+
 
 module.exports = productRouter;
