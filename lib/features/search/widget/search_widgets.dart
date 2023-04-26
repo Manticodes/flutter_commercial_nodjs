@@ -67,7 +67,17 @@ class SearchWidgets extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 15.0, top: 8),
                         child: Text(
-                          'دسته :' + product.category,
+                          product.category + ' : دسته ',
+                          overflow: TextOverflow.clip,
+                          textAlign: TextAlign.left,
+                          style: const TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15.0, top: 8),
+                        child: Text(
+                          product.quantity > 0 ? 'موجود است' : 'موجود نیست',
                           overflow: TextOverflow.clip,
                           textAlign: TextAlign.left,
                           style: const TextStyle(
