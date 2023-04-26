@@ -64,6 +64,16 @@ class SearchWidgets extends StatelessWidget {
                           ],
                         )),
                       ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15.0, top: 8),
+                        child: Text(
+                          'دسته :' + product.category,
+                          overflow: TextOverflow.clip,
+                          textAlign: TextAlign.left,
+                          style: const TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.w500),
+                        ),
+                      ),
                     ]),
               )
             ]),
