@@ -30,7 +30,7 @@ class SearchWidgets extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 15.0, top: 8),
+                        padding: const EdgeInsets.only(left: 15.0, top: 5),
                         child: Text(
                           product.name,
                           overflow: TextOverflow.clip,
@@ -40,17 +40,7 @@ class SearchWidgets extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 15.0, top: 8),
-                        child: Text(
-                          product.description,
-                          overflow: TextOverflow.clip,
-                          textAlign: TextAlign.left,
-                          style: const TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 13.0, top: 8),
+                        padding: const EdgeInsets.only(left: 10.0, top: 5),
                         child: Text.rich(TextSpan(
                           children: [
                             const WidgetSpan(
@@ -59,30 +49,57 @@ class SearchWidgets extends StatelessWidget {
                               size: 20,
                               color: Colors.green,
                             )),
-                            WidgetSpan(child: Text(product.price.toString())),
-                            const WidgetSpan(child: Text('  تومان'))
+                            WidgetSpan(
+                              child: Text(
+                                product.price.round().toString(),
+                                style: TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            const WidgetSpan(
+                                child: Text(
+                              '  تومان',
+                              style: TextStyle(fontSize: 15),
+                            ))
                           ],
                         )),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 15.0, top: 8),
+                        padding: const EdgeInsets.only(left: 15.0, top: 5),
                         child: Text(
                           product.category + ' : دسته ',
                           overflow: TextOverflow.clip,
                           textAlign: TextAlign.left,
                           style: const TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.w500),
+                            fontSize: 12,
+                          ),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 15.0, top: 8),
-                        child: Text(
-                          product.quantity > 0 ? 'موجود است' : 'موجود نیست',
-                          overflow: TextOverflow.clip,
-                          textAlign: TextAlign.left,
-                          style: const TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.w500),
-                        ),
+                        padding: const EdgeInsets.only(left: 10.0, top: 5),
+                        child: product.quantity > 0
+                            ? product.quantity < 6
+                                ? Text.rich(TextSpan(
+                                    children: [
+                                      WidgetSpan(
+                                          child: Text(
+                                        ' عدد در انبار موجود می باشد ',
+                                        style: TextStyle(color: Colors.red),
+                                      )),
+                                      WidgetSpan(
+                                          child: Text(
+                                        product.quantity.round().toString(),
+                                        style: TextStyle(color: Colors.red),
+                                      )),
+                                      const WidgetSpan(
+                                          child: Text(
+                                        ' فقط ',
+                                        style: TextStyle(color: Colors.red),
+                                      )),
+                                    ],
+                                  ))
+                                : Text('موجود در انباز')
+                            : Text('موجود نمی باشد'),
                       ),
                     ]),
               )
