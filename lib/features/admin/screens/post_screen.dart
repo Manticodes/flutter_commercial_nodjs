@@ -75,7 +75,7 @@ class _PostScreenState extends State<PostScreen> {
                             Align(
                               alignment: Alignment.topRight,
                               child: CircleAvatar(
-                                backgroundColor: Color.fromARGB(32, 3, 3, 3),
+                                backgroundColor: const Color.fromARGB(32, 3, 3, 3),
                                 child: IconButton(
                                     onPressed: () {
                                       AdminServices().deleteProduct(

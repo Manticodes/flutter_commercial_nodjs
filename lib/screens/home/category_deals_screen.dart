@@ -33,7 +33,7 @@ class _CategoryDealsScreenState extends State<CategoryDealsScreen> {
                 children: [
                   Text(
                     widget.category,
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ],
               ),

@@ -13,7 +13,7 @@ class TabScreen extends StatefulWidget {
 
 class _TabScreenState extends State<TabScreen> {
   List pages = [
-    HomeScreen(),
+    const HomeScreen(),
     AccountScreen(),
     const Center(
       child: Text('kart'),

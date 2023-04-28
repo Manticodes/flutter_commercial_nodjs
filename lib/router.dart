@@ -4,9 +4,12 @@ import 'package:flutter_commercial_nodjs/features/admin/screens/admin_screen.dar
 import 'package:flutter_commercial_nodjs/features/auth/screens/auth_screen.dart';
 import 'package:flutter_commercial_nodjs/features/search/screens/search_screen.dart';
 import 'package:flutter_commercial_nodjs/main.dart';
+import 'package:flutter_commercial_nodjs/model/product.dart';
 import 'package:flutter_commercial_nodjs/screens/home/category_deals_screen.dart';
 import 'package:flutter_commercial_nodjs/screens/home/home_screen.dart';
 import 'package:flutter_commercial_nodjs/screens/home/tab_screen.dart';
+
+import 'features/product_details/screens/product_details_screen.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
   switch (routeSettings.name) {
@@ -15,7 +18,7 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
           builder: (_) => const AuthScreen(), settings: routeSettings);
     case HomeScreen.routeName:
       return MaterialPageRoute(
-          builder: (_) => HomeScreen(), settings: routeSettings);
+          builder: (_) => const HomeScreen(), settings: routeSettings);
     case TabScreen.route:
       return MaterialPageRoute(
           builder: (context) => const TabScreen(), settings: routeSettings);
@@ -39,6 +42,11 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
         builder: (context) =>
             SearchScreen(searchQuerry: routeSettings.arguments.toString()),
         settings: routeSettings,
+      );
+    case ProductDetailsScreen.routeName:
+      return MaterialPageRoute(
+        builder: (context) =>
+            ProductDetailsScreen(product: routeSettings.arguments as Product),
       );
     default:
       return MaterialPageRoute(
