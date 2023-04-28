@@ -105,7 +105,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 ],
               ),
             ),
-            CostumDivider()
+            CostumDivider(),
+            ProductDescription(product: widget.product),
           ],
         ),
       ),
