@@ -180,3 +180,35 @@ class _ProductDescriptionState extends State<ProductDescription> {
     );
   }
 }
+
+class ProductInCardWidget extends StatelessWidget {
+  const ProductInCardWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 12.0, bottom: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Row(
+            children: [
+              Text(
+                ' در سبد شما ',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              CircleAvatar(
+                radius: 15,
+                child: Text('1'),
+              ),
+            ],
+          ),
+          SizedBox(width: 15),
+          Row(
+            children: [Icon(Icons.add), Icon(Icons.remove)],
+          ),
+        ],
+      ),
+    );
+  }
+}

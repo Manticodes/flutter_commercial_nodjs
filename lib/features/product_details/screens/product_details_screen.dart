@@ -110,14 +110,18 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             CostumDivider(),
             ProductDescription(product: widget.product),
             CostumDivider(),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: CostumeButton(
-                  title: 'افزودن به سبد خرید',
-                  onTap: () {
-                    isAdded = true;
-                  }),
-            )
+            isAdded
+                ? ProductInCardWidget()
+                : Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: CostumeButton(
+                        title: 'افزودن به سبد خرید',
+                        onTap: () {
+                          setState(() {
+                            isAdded = true;
+                          });
+                        }),
+                  ),
           ],
         ),
       ),
