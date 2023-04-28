@@ -73,9 +73,9 @@ class CostumDivider extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Container(
-        height: 4,
+        height: 3,
         decoration: BoxDecoration(
-            color: Color.fromARGB(255, 158, 156, 156),
+            color: Color.fromARGB(255, 216, 215, 215),
             boxShadow: [
               BoxShadow(
                   color: Colors.grey.withOpacity(0.3),
@@ -155,8 +155,7 @@ class _ProductDescriptionState extends State<ProductDescription> {
                 ),
                 children: [
                   TextSpan(
-                    text:
-                        'گوشی موبایل iPhone 13 CH پرچم‌دار جدید شرکت اپل است که با چند ویژگی جدید و دوربین دوگانه روانه بازار شده است. نمایشگر آیفون 13 به پنل Super Retina مجهز ‌شده است تا تصاویر بسیار مطلوبی را به کاربر عرضه کند. این نمایشگر رزولوشن بسیار بالایی دارد؛ به‌طوری‌که در اندازه­‌ی 6.1 اینچی‌اش، حدود 460 پیکسل را در هر اینچ جا داده است. امکان شارژ بی‌‌سیم باتری در این گوشی وجود دارد. تشخیص چهره با استفاده از دوربین جلو دیگر ویژگی است که در آیفون جدید اپل به کار گرفته شده است. از نظر سخت‌‌ا ...',
+                    text: widget.product.description,
                   ),
                 ]),
             maxLines: isReadmore ? null : 3,
@@ -176,7 +175,7 @@ class _ProductDescriptionState extends State<ProductDescription> {
               isReadmore = !isReadmore;
             });
           },
-        )
+        ),
       ],
     );
   }

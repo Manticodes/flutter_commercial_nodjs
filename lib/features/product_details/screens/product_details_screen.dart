@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_commercial_nodjs/features/auth/widgets/costum_button.dart';
 import 'package:flutter_commercial_nodjs/features/search/widget/stars.dart';
 import 'package:flutter_commercial_nodjs/model/product.dart';
 
@@ -15,6 +16,7 @@ class ProductDetailsScreen extends StatefulWidget {
 }
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
+  bool isAdded = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,6 +109,15 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             ),
             CostumDivider(),
             ProductDescription(product: widget.product),
+            CostumDivider(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: CostumeButton(
+                  title: 'افزودن به سبد خرید',
+                  onTap: () {
+                    isAdded = true;
+                  }),
+            )
           ],
         ),
       ),

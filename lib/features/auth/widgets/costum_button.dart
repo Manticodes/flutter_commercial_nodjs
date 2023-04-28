@@ -13,7 +13,13 @@ class CostumeButton extends StatelessWidget {
         onPressed: onTap,
         style: ElevatedButton.styleFrom(
             elevation: 15, minimumSize: const Size(double.infinity, 50)),
-        child: Text(title),
+        child: Text(
+          title,
+          style: TextStyle(
+              color: Color.fromARGB(255, 83, 14, 14),
+              fontSize: 15,
+              fontWeight: FontWeight.bold),
+        ),
       ),
     );
   }
