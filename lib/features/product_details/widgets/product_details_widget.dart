@@ -189,36 +189,57 @@ class ProductInCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 12.0, bottom: 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Row(
-            children: const [
-              Text(
-                ' در سبد شما ',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 12.0, bottom: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                children: const [
+                  Text(
+                    ' در سبد شما ',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Icon(Icons.add),
+              ),
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: CircleAvatar(
+                  radius: 15,
+                  child: Text('1'),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Icon(Icons.remove),
               ),
             ],
           ),
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Icon(Icons.add),
-          ),
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: CircleAvatar(
-              radius: 15,
-              child: Text('1'),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.shopping_cart_outlined,
+              size: 30,
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Icon(Icons.remove),
-          ),
-        ],
-      ),
+            Text(
+              '20000',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              ' : مجموع قیمت ',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
