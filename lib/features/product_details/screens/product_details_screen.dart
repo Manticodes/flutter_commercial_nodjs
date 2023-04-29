@@ -143,6 +143,22 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           ],
         ),
       ),
+      bottomNavigationBar: BottomAppBar(
+        height: MediaQuery.of(context).size.height * 0.07,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Text(' 200000 ',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+            Text(' : سبد خرید شما ',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+            Icon(
+              Icons.shopping_cart_outlined,
+              color: Colors.red,
+            )
+          ],
+        ),
+      ),
     );
   }
 }

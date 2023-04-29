@@ -225,16 +225,16 @@ class ProductInCardWidget extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.shopping_cart_outlined,
-              size: 30,
+            Text(
+              ' تومان ',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             Text(
               '20000',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             Text(
-              ' : مجموع قیمت ',
+              ' : مجموع قیمت این محصول',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ],
