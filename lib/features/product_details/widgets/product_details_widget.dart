@@ -49,12 +49,13 @@ class _ProductDetailsCarouselState extends State<ProductDetailsCarousel> {
               child: Container(
                 width: 8.0,
                 height: 8.0,
-                margin: EdgeInsets.symmetric(vertical: 3.0, horizontal: 3.0),
+                margin:
+                    const EdgeInsets.symmetric(vertical: 3.0, horizontal: 3.0),
                 decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: (Theme.of(context).brightness == Brightness.dark
-                            ? Color.fromARGB(255, 218, 96, 96)
-                            : Color.fromARGB(255, 239, 9, 9))
+                            ? const Color.fromARGB(255, 218, 96, 96)
+                            : const Color.fromARGB(255, 239, 9, 9))
                         .withOpacity(_current == entry.key ? 0.9 : 0.4)),
               ),
             );
@@ -75,13 +76,13 @@ class CostumDivider extends StatelessWidget {
       child: Container(
         height: 3,
         decoration: BoxDecoration(
-            color: Color.fromARGB(255, 216, 215, 215),
+            color: const Color.fromARGB(255, 216, 215, 215),
             boxShadow: [
               BoxShadow(
                   color: Colors.grey.withOpacity(0.3),
                   spreadRadius: 2,
                   blurRadius: 7,
-                  offset: Offset(0, 3))
+                  offset: const Offset(0, 3))
             ]),
       ),
     );
@@ -144,14 +145,13 @@ class _ProductDescriptionState extends State<ProductDescription> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10),
+          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
           child: Text.rich(
             TextSpan(
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 15,
                   color: Color.fromARGB(255, 113, 113, 113),
-                  fontFamily: 'Vazir',
                 ),
                 children: [
                   TextSpan(
@@ -164,17 +164,20 @@ class _ProductDescriptionState extends State<ProductDescription> {
             textDirection: TextDirection.rtl,
           ),
         ),
-        InkWell(
-          child: Text(isReadmore ? 'پنهان کردن متن' : 'ادامه مطلب',
-              style: TextStyle(
-                color: Colors.blue,
-                fontWeight: FontWeight.bold,
-              )),
-          onTap: () {
-            setState(() {
-              isReadmore = !isReadmore;
-            });
-          },
+        Padding(
+          padding: const EdgeInsets.only(top: 8.0),
+          child: InkWell(
+            child: Text(isReadmore ? 'پنهان کردن متن' : 'ادامه مطلب',
+                style: const TextStyle(
+                  color: Colors.blue,
+                  fontWeight: FontWeight.bold,
+                )),
+            onTap: () {
+              setState(() {
+                isReadmore = !isReadmore;
+              });
+            },
+          ),
         ),
       ],
     );
@@ -192,20 +195,27 @@ class ProductInCardWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Row(
-            children: [
+            children: const [
               Text(
                 ' در سبد شما ',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              CircleAvatar(
-                radius: 15,
-                child: Text('1'),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
             ],
           ),
-          SizedBox(width: 15),
-          Row(
-            children: [Icon(Icons.add), Icon(Icons.remove)],
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Icon(Icons.add),
+          ),
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: CircleAvatar(
+              radius: 15,
+              child: Text('1'),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Icon(Icons.remove),
           ),
         ],
       ),

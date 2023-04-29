@@ -91,6 +91,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 ],
               ),
             ),
+            SizedBox(
+              height: 7,
+            ),
             Padding(
               padding: const EdgeInsets.only(right: 11.0),
               child: Row(
@@ -107,9 +110,21 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 ],
               ),
             ),
+            SizedBox(
+              height: 5,
+            ),
             CostumDivider(),
+            SizedBox(
+              height: 5,
+            ),
             ProductDescription(product: widget.product),
+            SizedBox(
+              height: 15,
+            ),
             CostumDivider(),
+            SizedBox(
+              height: 5,
+            ),
             isAdded
                 ? ProductInCardWidget()
                 : Padding(
@@ -122,6 +137,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           });
                         }),
                   ),
+            SizedBox(
+              height: 40,
+            ),
           ],
         ),
       ),
