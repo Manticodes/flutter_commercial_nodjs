@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_commercial_nodjs/features/auth/widgets/costum_button.dart';
 import 'package:flutter_commercial_nodjs/features/search/widget/stars.dart';
 import 'package:flutter_commercial_nodjs/model/product.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import '../widgets/product_details_widget.dart';
 
@@ -91,7 +92,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 7,
             ),
             Padding(
@@ -110,23 +111,23 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
-            CostumDivider(),
-            SizedBox(
+            const CostumDivider(),
+            const SizedBox(
               height: 5,
             ),
             ProductDescription(product: widget.product),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
-            CostumDivider(),
-            SizedBox(
+            const CostumDivider(),
+            const SizedBox(
               height: 5,
             ),
             isAdded
-                ? ProductInCardWidget()
+                ? const ProductInCardWidget()
                 : Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: CostumeButton(
@@ -137,8 +138,43 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           });
                         }),
                   ),
-            SizedBox(
-              height: 40,
+            const SizedBox(
+              height: 20,
+            ),
+            const CostumDivider(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: const [
+                Padding(
+                  padding: EdgeInsets.only(right: 20.0),
+                  child: Text(
+                    'لطفا به این محصول امتیاز دهید',
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 76, 75, 75)),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: RatingBar.builder(
+                      direction: Axis.horizontal,
+                      initialRating: 3,
+                      allowHalfRating: true,
+                      itemCount: 5,
+                      itemBuilder: (context, index) =>
+                          const Icon(Icons.star, color: Colors.amber),
+                      onRatingUpdate: (rating) {}),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 20,
             ),
           ],
         ),
@@ -148,11 +184,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Text(' 200000 ',
+            const Text(' 200000 ',
                 style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
-            Text(' : سبد خرید شما ',
+            const Text(' : سبد خرید شما ',
                 style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
-            Icon(
+            const Icon(
               Icons.shopping_cart_outlined,
               color: Colors.red,
             )
