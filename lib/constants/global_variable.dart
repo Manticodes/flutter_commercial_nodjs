@@ -15,6 +15,8 @@ String uriCategoryGetProduct =
     'https://amazone-clone.iran.liara.run/api/get-products';
 String uriSearchProduct =
     'https://amazone-clone.iran.liara.run/api/get-products/search';
+String uriRateProduct =
+    'https://amazone-clone.iran.liara.run/api/rate-products';
 
 List categoryImageLinks = [
   {
