@@ -5,7 +5,8 @@ import 'dart:core';
 import '../../../model/product.dart';
 
 class ProductDetailsCarousel extends StatefulWidget {
-  ProductDetailsCarousel({Key? key, required this.product}) : super(key: key);
+  const ProductDetailsCarousel({Key? key, required this.product})
+      : super(key: key);
   final Product product;
 
   @override
@@ -90,7 +91,7 @@ class CostumDivider extends StatelessWidget {
 }
 
 class ProductDescription extends StatefulWidget {
-  ProductDescription({Key? key, required this.product}) : super(key: key);
+  const ProductDescription({Key? key, required this.product}) : super(key: key);
   final Product product;
 
   @override
@@ -204,18 +205,18 @@ class ProductInCardWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Icon(Icons.add),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: CircleAvatar(
                   radius: 15,
                   child: Text('1'),
                 ),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Icon(Icons.remove),
               ),
@@ -224,7 +225,7 @@ class ProductInCardWidget extends StatelessWidget {
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: const [
             Text(
               ' تومان ',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),

@@ -29,7 +29,7 @@ void rateProduct({
         context: context,
         onSuccess: () {
           ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text('امتیاز شما ثبت شد')));
+              .showSnackBar(const SnackBar(content: Text('امتیاز شما ثبت شد')));
         });
   } catch (e) {
     ScaffoldMessenger.of(context)

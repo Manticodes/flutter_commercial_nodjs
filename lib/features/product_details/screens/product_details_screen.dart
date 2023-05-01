@@ -183,12 +183,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         height: MediaQuery.of(context).size.height * 0.07,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            const Text(' 200000 ',
+          children: const [
+            Text(' 200000 ',
                 style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
-            const Text(' : سبد خرید شما ',
+            Text(' : سبد خرید شما ',
                 style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
-            const Icon(
+            Icon(
               Icons.shopping_cart_outlined,
               color: Colors.red,
             )

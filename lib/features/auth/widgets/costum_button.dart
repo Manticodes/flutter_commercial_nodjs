@@ -15,7 +15,7 @@ class CostumeButton extends StatelessWidget {
             elevation: 15, minimumSize: const Size(double.infinity, 50)),
         child: Text(
           title,
-          style: TextStyle(
+          style: const TextStyle(
               color: Color.fromARGB(255, 83, 14, 14),
               fontSize: 15,
               fontWeight: FontWeight.bold),
