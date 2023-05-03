@@ -1,19 +1,23 @@
 import 'dart:convert';
 
 class Rating {
-  final String id;
+
+  final String userId;
   final double rate;
   Rating({
-    required this.id,
+    required this.userId,
+
     required this.rate,
   });
 
   Rating copyWith({
-    String? id,
+
+    String? userId,
     double? rate,
   }) {
     return Rating(
-      id: id ?? this.id,
+      userId: userId ?? this.userId,
+
       rate: rate ?? this.rate,
     );
   }
@@ -21,7 +25,9 @@ class Rating {
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
 
-    result.addAll({'id': id});
+
+    result.addAll({'userId': userId});
+
     result.addAll({'rate': rate});
 
     return result;
@@ -29,7 +35,9 @@ class Rating {
 
   factory Rating.fromMap(Map<String, dynamic> map) {
     return Rating(
-      id: map['userId'] ?? '',
+
+      userId: map['userId'] ?? '',
+
       rate: map['rate']?.toDouble() ?? 0.0,
     );
   }
@@ -39,15 +47,19 @@ class Rating {
   factory Rating.fromJson(String source) => Rating.fromMap(json.decode(source));
 
   @override
-  String toString() => 'Rating(id: $id, rate: $rate)';
+
+  String toString() => 'Rating(userId: $userId, rate: $rate)';
+
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is Rating && other.id == id && other.rate == rate;
+
+    return other is Rating && other.userId == userId && other.rate == rate;
   }
 
   @override
-  int get hashCode => id.hashCode ^ rate.hashCode;
+  int get hashCode => userId.hashCode ^ rate.hashCode;
+
 }
