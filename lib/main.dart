@@ -39,6 +39,8 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return BlocBuilder<UserBloc, UserState>(
       builder: (context, userState) {
+        debugPrint(
+            ' ${userState.user.id}  has data ? ${userState.user.token} ');
         return MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',

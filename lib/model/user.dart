@@ -1,6 +1,8 @@
 import 'dart:convert';
 
-class User {
+import 'package:equatable/equatable.dart';
+
+class User extends Equatable {
   final String id;
   final String name;
   final String password;
@@ -47,4 +49,8 @@ class User {
   String toJson() => json.encode(toMap());
 
   factory User.fromJson(String source) => User.fromMap(json.decode(source));
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [email, id, name, password, adress, type, token];
 }

@@ -102,6 +102,7 @@ class AuthService {
           });
 
       user = User.fromJson(userDataRes.body);
+      context.read<UserBloc>().add(SetUser(user: userDataRes.body));
     } else {
       user = User(
           adress: '',
@@ -112,7 +113,7 @@ class AuthService {
           token: '',
           type: '');
     }
-    context.read<UserBloc>().add(SetUser(user: user.toJson()));
+    print(user.email + user.id);
 
     debugPrint('token is : ${user.token}');
     return user;
