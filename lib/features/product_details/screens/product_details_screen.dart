@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_commercial_nodjs/features/auth/widgets/costum_button.dart';
+import 'package:flutter_commercial_nodjs/features/product_details/services/product_detail_services.dart';
 import 'package:flutter_commercial_nodjs/features/search/widget/stars.dart';
 import 'package:flutter_commercial_nodjs/model/product.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -126,6 +127,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             const SizedBox(
               height: 5,
             ),
+            // TODO : redesign this part below
             isAdded
                 ? const ProductInCardWidget()
                 : Padding(
@@ -169,7 +171,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       itemCount: 5,
                       itemBuilder: (context, index) =>
                           const Icon(Icons.star, color: Colors.amber),
-                      onRatingUpdate: (rating) {}),
+                      onRatingUpdate: (rating) {
+                        ProductDetailServices().rateProduct(
+                            context: context,
+                            product: widget.product,
+                            rating: rating);
+                      }),
                 ),
               ],
             ),

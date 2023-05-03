@@ -9,30 +9,32 @@ import '../../../constants/error_handle.dart';
 import '../../../constants/global_variable.dart';
 import '../../../model/product.dart';
 
-void rateProduct({
-  required BuildContext context,
-  required Product product,
-  required double rating,
-}) async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  String? token = prefs.getString('x-auth-token');
+class ProductDetailServices {
+  void rateProduct({
+    required BuildContext context,
+    required Product product,
+    required double rating,
+  }) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('x-auth-token');
 
-  try {
-    http.Response response = await http.post(Uri.parse(uriRateProduct),
-        headers: {
-          'Content-Type': 'application/json; charset=UTF-8',
-          'x-auth-token': token!,
-        },
-        body: jsonEncode({'id': product.id, 'rating': rating}));
-    httpErrorHandle(
-        response: response,
-        context: context,
-        onSuccess: () {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(const SnackBar(content: Text('امتیاز شما ثبت شد')));
-        });
-  } catch (e) {
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text(e.toString())));
+    try {
+      http.Response response = await http.post(Uri.parse(uriRateProduct),
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            'x-auth-token': token!,
+          },
+          body: jsonEncode({'id': product.id, 'rating': rating}));
+      httpErrorHandle(
+          response: response,
+          context: context,
+          onSuccess: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('امتیاز شما ثبت شد')));
+          });
+    } catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.toString())));
+    }
   }
 }
