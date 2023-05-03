@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
+import 'package:flutter_commercial_nodjs/model/rating.dart';
+
 class Product {
   final String name;
   final String description;
@@ -10,6 +12,7 @@ class Product {
   final String category;
   final double price;
   final String? id;
+  final List<Rating>? ratings;
 
   Product({
     required this.name,
@@ -19,6 +22,7 @@ class Product {
     required this.category,
     required this.price,
     this.id,
+    this.ratings,
   });
 
   Product copyWith({
@@ -29,6 +33,7 @@ class Product {
     String? category,
     double? price,
     String? id,
+    List<Rating>? ratings,
   }) {
     return Product(
       name: name ?? this.name,
@@ -38,6 +43,7 @@ class Product {
       category: category ?? this.category,
       price: price ?? this.price,
       id: id ?? this.id,
+      ratings: ratings ?? this.ratings,
     );
   }
 
@@ -53,6 +59,9 @@ class Product {
     if (id != null) {
       result.addAll({'id': id});
     }
+    if (ratings != null) {
+      result.addAll({'ratings': ratings!.map((x) => x?.toMap()).toList()});
+    }
 
     return result;
   }
@@ -65,7 +74,10 @@ class Product {
       images: List<String>.from(map['images']),
       category: map['category'] ?? '',
       price: map['price']?.toDouble() ?? 0.0,
-      id: map['_id'],
+      id: map['id'],
+      ratings: map['ratings'] != null
+          ? List<Rating>.from(map['ratings']?.map((x) => Rating.fromMap(x)))
+          : null,
     );
   }
 
@@ -76,7 +88,7 @@ class Product {
 
   @override
   String toString() {
-    return 'Product(name: $name, description: $description, quantity: $quantity, images: $images, category: $category, price: $price, id: $id)';
+    return 'Product(name: $name, description: $description, quantity: $quantity, images: $images, category: $category, price: $price, id: $id, ratings: $ratings)';
   }
 
   @override
@@ -90,7 +102,8 @@ class Product {
         listEquals(other.images, images) &&
         other.category == category &&
         other.price == price &&
-        other.id == id;
+        other.id == id &&
+        listEquals(other.ratings, ratings);
   }
 
   @override
@@ -101,6 +114,7 @@ class Product {
         images.hashCode ^
         category.hashCode ^
         price.hashCode ^
-        id.hashCode;
+        id.hashCode ^
+        ratings.hashCode;
   }
 }
