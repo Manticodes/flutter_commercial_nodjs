@@ -39,6 +39,8 @@ class AdminServices {
         secretKey: secretKey,
         region: '',
       );
+// TODO : logic to remove pic from server
+
       for (int i = 0; i < images.length; i++) {
         final String finalUrl =
             'https://amazone-clone.storage.iran.liara.space/$category/${pathfinder.basename(images[i].path)}';

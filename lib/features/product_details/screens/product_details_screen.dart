@@ -5,12 +5,15 @@ import 'package:flutter_commercial_nodjs/features/search/widget/stars.dart';
 import 'package:flutter_commercial_nodjs/model/product.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
+import '../../../model/user.dart';
 import '../widgets/product_details_widget.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
-  const ProductDetailsScreen({Key? key, required this.product})
+  const ProductDetailsScreen(
+      {Key? key, required this.product, required this.user})
       : super(key: key);
   final Product product;
+  final User user;
   static const String routeName = '/productdetailScreen';
 
   @override
@@ -18,6 +21,28 @@ class ProductDetailsScreen extends StatefulWidget {
 }
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
+  double avgStar = 0;
+  double myStar = 0;
+  void calculateStar() {
+    if (widget.product.ratings != null) {}
+    var ratingList = widget.product.ratings;
+    double totalRating = 0;
+    for (var i = 0; i < ratingList!.length; i++) {
+      totalRating += ratingList[i].rate;
+      if (widget.user.id == ratingList[i].userId) {
+        print('adding rating to this user id' + widget.user.id);
+        myStar = ratingList[i].rate;
+      }
+    }
+    avgStar = totalRating / ratingList.length;
+  }
+
+  @override
+  void initState() {
+    calculateStar();
+    super.initState();
+  }
+
   bool isAdded = false;
   @override
   Widget build(BuildContext context) {
@@ -100,7 +125,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               padding: const EdgeInsets.only(right: 11.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
-                children: const [
+                children: [
                   Text(
                     '0 دیدگاه کاربران ',
                     style: TextStyle(
@@ -108,7 +133,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         fontWeight: FontWeight.bold,
                         fontSize: 12),
                   ),
-                  Stars(rating: 4)
+                  Stars(rating: avgStar > 0 ? avgStar : 0)
                 ],
               ),
             ),
@@ -166,7 +191,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   padding: const EdgeInsets.all(8.0),
                   child: RatingBar.builder(
                       direction: Axis.horizontal,
-                      initialRating: 3,
+                      initialRating: myStar != 0 ? myStar : 3,
                       allowHalfRating: true,
                       itemCount: 5,
                       itemBuilder: (context, index) =>
@@ -186,6 +211,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           ],
         ),
       ),
+      // TODO : add functionallity here
       bottomNavigationBar: BottomAppBar(
         height: MediaQuery.of(context).size.height * 0.07,
         child: Row(

@@ -5,6 +5,7 @@ import 'package:flutter_commercial_nodjs/features/auth/screens/auth_screen.dart'
 import 'package:flutter_commercial_nodjs/features/search/screens/search_screen.dart';
 import 'package:flutter_commercial_nodjs/main.dart';
 import 'package:flutter_commercial_nodjs/model/product.dart';
+import 'package:flutter_commercial_nodjs/model/user.dart';
 import 'package:flutter_commercial_nodjs/screens/home/category_deals_screen.dart';
 import 'package:flutter_commercial_nodjs/screens/home/home_screen.dart';
 import 'package:flutter_commercial_nodjs/screens/home/tab_screen.dart';
@@ -44,9 +45,10 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
         settings: routeSettings,
       );
     case ProductDetailsScreen.routeName:
+      List<dynamic> args = routeSettings.arguments as List<dynamic>;
       return MaterialPageRoute(
-        builder: (context) =>
-            ProductDetailsScreen(product: routeSettings.arguments as Product),
+        builder: (context) => ProductDetailsScreen(
+            product: args[0] as Product, user: args[1] as User),
       );
     default:
       return MaterialPageRoute(
