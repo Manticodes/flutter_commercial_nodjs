@@ -15,6 +15,17 @@ class SearchWidgets extends StatelessWidget {
     return ListView.builder(
       itemBuilder: (context, index) {
         Product product = products[index];
+        double avgStar = 0;
+
+        if (product.ratings != null) {}
+        var ratingList = product.ratings;
+        double totalRating = 0;
+        for (var i = 0; i < ratingList!.length; i++) {
+          totalRating += ratingList[i].rate;
+        }
+        if (totalRating != 0) {
+          avgStar = totalRating / ratingList.length;
+        }
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: BlocBuilder<UserBloc, UserState>(
@@ -125,10 +136,11 @@ class SearchWidgets extends StatelessWidget {
                                           : const Text(' موجود در انبار')
                                       : const Text(' موجود نمی باشد'),
                                 ),
-                                const Padding(
-                                  padding: EdgeInsets.only(left: 14.0, top: 5),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(left: 14.0, top: 5),
                                   child: Stars(
-                                    rating: 4,
+                                    rating: avgStar,
                                   ),
                                 ),
                               ]),

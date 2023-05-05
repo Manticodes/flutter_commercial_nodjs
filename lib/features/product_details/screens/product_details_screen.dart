@@ -152,7 +152,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             const SizedBox(
               height: 5,
             ),
-            // TODO : redesign this part below
+            // TODO : redesign this part below and add functionallity here
             isAdded
                 ? const ProductInCardWidget()
                 : Padding(
