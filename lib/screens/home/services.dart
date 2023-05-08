@@ -40,4 +40,33 @@ class HomeServices {
 
     return productList;
   }
+
+  Future<List<Product>> getDeals(BuildContext context) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('x-auth-token');
+    List<Product> productList = [];
+
+    try {
+      http.Response response =
+          await http.get(Uri.parse(uriDealOfDay), headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'x-auth-token': token!,
+      });
+      httpErrorHandle(
+          response: response,
+          context: context,
+          onSuccess: () {
+            for (int i = 0; i < 4; i++) {
+              Product product =
+                  Product.fromJson(jsonEncode(jsonDecode(response.body)[i]));
+              productList.add(product);
+            }
+          });
+    } catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.toString())));
+    }
+
+    return productList;
+  }
 }
