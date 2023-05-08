@@ -5,6 +5,8 @@ import 'package:flutter_commercial_nodjs/screens/home/category_deals_screen.dart
 import 'package:flutter_commercial_nodjs/screens/home/services.dart';
 
 import '../../constants/global_variable.dart';
+import '../../features/search/services/search_services.dart';
+import '../../features/search/widget/search_widgets.dart';
 
 class AdressBar extends StatelessWidget {
   final UserState state;
@@ -100,36 +102,40 @@ class SingleProductImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 220,
+      height: 250,
       width: 200,
       color: Colors.transparent,
-      child: Column(
-        children: [
-          Image.network(
-            product.images[0],
-            fit: BoxFit.contain,
-          ),
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.only(
-                top: 8.0,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Image.network(
+              product.images[0],
+              fit: BoxFit.contain,
+              height: 200,
+            ),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: 8.0,
+                ),
+                child: Text(
+                  product.name,
+                  maxLines: 1,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
               ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Text(
-                product.name,
-                maxLines: 1,
+                '${product.price} تومان  ',
                 textAlign: TextAlign.center,
-                style: const TextStyle(fontWeight: FontWeight.bold),
               ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              '${product.price} تومان  ',
-              textAlign: TextAlign.center,
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
@@ -194,7 +200,7 @@ class SingleProductImage2 extends StatelessWidget {
                 child: Image.network(
                   product.images[0],
                   fit: BoxFit.cover,
-                  height: 200,
+                  height: 180,
                 ),
               ),
             ),
@@ -246,6 +252,85 @@ class DealOfDayText extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class DealOfTheDayWidget extends StatelessWidget {
+  const DealOfTheDayWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: HomeServices().getDealsProduct(context: context),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        if (snapshot.hasError) {
+          return Center(
+              child:
+                  Text('${snapshot.error}there is something wrong try later'));
+        } else {
+          if (snapshot.data == null) {
+            return const Center(child: Text(' Some Thing is not ok here '));
+          } else if (snapshot.data!.isEmpty) {
+            return const Text('There is no product');
+          } else {
+            List<Product> products = snapshot.data!;
+            return Container(
+              height: 320,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return SingleProductImage(product: products[index]);
+                },
+                itemCount: 4,
+              ),
+            );
+          }
+        }
+      },
+    );
+  }
+}
+
+class HomeScreenSearchWidget extends StatelessWidget {
+  const HomeScreenSearchWidget({
+    super.key,
+    required this.searchController,
+  });
+
+  final TextEditingController searchController;
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: SearchService().getSearchProduct(
+          context: context, searchQuery: searchController.text),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        if (snapshot.hasError) {
+          return Center(
+              child:
+                  Text('${snapshot.error}there is something wrong try later'));
+        } else {
+          if (snapshot.data == null) {
+            return const Center(child: Text(' Some Thing is not ok here '));
+          } else if (snapshot.data!.isEmpty) {
+            return const Text('There is no product');
+          } else {
+            List<Product> products = snapshot.data!;
+            return SearchWidgets(
+              products: products,
+            );
+          }
+        }
+      },
     );
   }
 }

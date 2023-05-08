@@ -88,35 +88,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
                         return false;
                       },
-                      child: FutureBuilder(
-                        future: SearchService().getSearchProduct(
-                            context: context,
-                            searchQuery: searchController.text),
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return const Center(
-                                child: CircularProgressIndicator());
-                          }
-                          if (snapshot.hasError) {
-                            return Center(
-                                child: Text(
-                                    '${snapshot.error}there is something wrong try later'));
-                          } else {
-                            if (snapshot.data == null) {
-                              return const Center(
-                                  child: Text(' Some Thing is not ok here '));
-                            } else if (snapshot.data!.isEmpty) {
-                              return const Text('There is no product');
-                            } else {
-                              List<Product> products = snapshot.data!;
-                              return SearchWidgets(
-                                products: products,
-                              );
-                            }
-                          }
-                        },
-                      ),
+                      child: HomeScreenSearchWidget(
+                          searchController: searchController),
                     )
                   : SingleChildScrollView(
                       child: Column(
@@ -125,33 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           const Cataloge(),
                           const CarouselSliderImage(),
                           const DealOfDayText(),
-                          FutureBuilder(
-                            future: HomeServices()
-                                .getDealsProduct(context: context),
-                            builder: (context, snapshot) {
-                              if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
-                                return const Center(
-                                    child: CircularProgressIndicator());
-                              }
-                              if (snapshot.hasError) {
-                                return Center(
-                                    child: Text(
-                                        '${snapshot.error}there is something wrong try later'));
-                              } else {
-                                if (snapshot.data == null) {
-                                  return const Center(
-                                      child:
-                                          Text(' Some Thing is not ok here '));
-                                } else if (snapshot.data!.isEmpty) {
-                                  return const Text('There is no product');
-                                } else {
-                                  List<Product> products = snapshot.data!;
-                                  return Text('its ok now');
-                                }
-                              }
-                            },
-                          ),
+                          DealOfTheDayWidget(),
                         ],
                       ),
                     ),

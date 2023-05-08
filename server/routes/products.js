@@ -56,7 +56,20 @@ productRouter.post('/api/rate-products', auth, async (req, res) => {
 productRouter.get('/api/get-deals', auth, async (req, res) => {
     try {
 
-        const products = await Product.find({});
+        let products = await Product.find({});
+        products = products.sort((a, b) => {
+            let aSum = 0;
+            let bSum = 0;
+            for (let index = 0; index < a.ratings.length; index++) {
+                aSum += a.ratings[index].rate;
+
+            }
+            for (let index = 0; index < b.ratings.length; index++) {
+                bSum += b.ratings[index].rate;
+
+            }
+            return aSum < bSum ? 1 : -1;
+        })
         res.json(products);
 
     } catch (error) {
