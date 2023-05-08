@@ -4,7 +4,6 @@ import 'package:flutter_commercial_nodjs/constants/global_variable.dart';
 import 'package:flutter_commercial_nodjs/features/search/widget/search_widgets.dart';
 import 'package:flutter_commercial_nodjs/screens/home/carousel_slider.dart';
 import 'package:flutter_commercial_nodjs/screens/home/services.dart';
-import '../../features/search/screens/search_screen.dart';
 import '../../features/search/services/search_services.dart';
 import '../../logic/bloc_user/user_bloc.dart';
 import '../../model/product.dart';
@@ -22,9 +21,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   TextEditingController searchController = TextEditingController();
-  void doSearch(String querry) {
-    Navigator.pushNamed(context, SearchScreen.routeName, arguments: querry);
-  }
 
   bool isSearching = false;
 

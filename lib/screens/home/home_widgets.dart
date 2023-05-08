@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_commercial_nodjs/logic/bloc_user/user_bloc.dart';
 import 'package:flutter_commercial_nodjs/model/product.dart';
 import 'package:flutter_commercial_nodjs/screens/home/category_deals_screen.dart';
 import 'package:flutter_commercial_nodjs/screens/home/services.dart';
 
 import '../../constants/global_variable.dart';
+import '../../features/product_details/screens/product_details_screen.dart';
 import '../../features/search/services/search_services.dart';
 import '../../features/search/widget/search_widgets.dart';
 
@@ -285,7 +287,17 @@ class DealOfTheDayWidget extends StatelessWidget {
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
-                  return SingleProductImage(product: products[index]);
+                  return BlocBuilder<UserBloc, UserState>(
+                    builder: (context, state) {
+                      return InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, ProductDetailsScreen.routeName,
+                                arguments: [products[index], state.user]);
+                          },
+                          child: SingleProductImage(product: products[index]));
+                    },
+                  );
                 },
                 itemCount: 4,
               ),
