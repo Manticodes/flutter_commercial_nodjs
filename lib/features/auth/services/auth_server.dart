@@ -113,7 +113,6 @@ class AuthService {
           token: '',
           type: '');
     }
-    print(user.email + user.id);
 
     debugPrint('token is : ${user.token}');
     return user;

@@ -30,7 +30,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     for (var i = 0; i < ratingList!.length; i++) {
       totalRating += ratingList[i].rate;
       if (widget.user.id == ratingList[i].userId) {
-        print('adding rating to this user id' + widget.user.id);
         myStar = ratingList[i].rate;
       }
     }
@@ -126,7 +125,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text(
+                  const Text(
                     '0 دیدگاه کاربران ',
                     style: TextStyle(
                         color: Colors.blue,

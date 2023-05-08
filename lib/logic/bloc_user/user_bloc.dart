@@ -10,7 +10,7 @@ part 'user_state.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
   UserBloc()
-      : super(UserInitial(
+      : super(const UserInitial(
             user: User(
                 adress: '',
                 email: '',
@@ -29,7 +29,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   }
 
   FutureOr<void> _onCleanUser(CleanUser event, Emitter<UserState> emit) {
-    emit(UserState(
+    emit(const UserState(
         user: User(
             adress: '',
             email: '',

@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
-
 import 'package:flutter_commercial_nodjs/model/rating.dart';
 
 class Product {
