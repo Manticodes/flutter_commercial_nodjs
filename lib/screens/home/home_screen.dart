@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_commercial_nodjs/constants/global_variable.dart';
 import 'package:flutter_commercial_nodjs/features/search/widget/search_widgets.dart';
 import 'package:flutter_commercial_nodjs/screens/home/carousel_slider.dart';
+import 'package:flutter_commercial_nodjs/screens/home/services.dart';
 import '../../features/search/screens/search_screen.dart';
 import '../../features/search/services/search_services.dart';
 import '../../logic/bloc_user/user_bloc.dart';
@@ -124,7 +125,33 @@ class _HomeScreenState extends State<HomeScreen> {
                           const Cataloge(),
                           const CarouselSliderImage(),
                           const DealOfDayText(),
-                          HomeProductScroller(images: homeDealImageLinks)
+                          FutureBuilder(
+                            future: HomeServices()
+                                .getDealsProduct(context: context),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return const Center(
+                                    child: CircularProgressIndicator());
+                              }
+                              if (snapshot.hasError) {
+                                return Center(
+                                    child: Text(
+                                        '${snapshot.error}there is something wrong try later'));
+                              } else {
+                                if (snapshot.data == null) {
+                                  return const Center(
+                                      child:
+                                          Text(' Some Thing is not ok here '));
+                                } else if (snapshot.data!.isEmpty) {
+                                  return const Text('There is no product');
+                                } else {
+                                  List<Product> products = snapshot.data!;
+                                  return Text('its ok now');
+                                }
+                              }
+                            },
+                          ),
                         ],
                       ),
                     ),

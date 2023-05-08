@@ -18,7 +18,7 @@ String uriSearchProduct =
 String uriRateProduct =
     'https://amazone-clone.iran.liara.run/api/rate-products';
 
-String uriDealOfDay = 'https://amazone-clone.iran.liara.run/api/deal-of-day';
+String uriDealOfDay = 'https://amazone-clone.iran.liara.run/api/get-deals';
 List categoryImageLinks = [
   {
     'image':

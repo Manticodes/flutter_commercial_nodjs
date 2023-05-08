@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_commercial_nodjs/logic/bloc_user/user_bloc.dart';
 import 'package:flutter_commercial_nodjs/model/product.dart';
 import 'package:flutter_commercial_nodjs/screens/home/category_deals_screen.dart';
+import 'package:flutter_commercial_nodjs/screens/home/services.dart';
 
 import '../../constants/global_variable.dart';
 
@@ -89,48 +90,12 @@ class Cataloge extends StatelessWidget {
   }
 }
 
-class HomeProductScroller extends StatelessWidget {
-  const HomeProductScroller({
-    super.key,
-    required this.images,
-  });
-
-  final List images;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: const Color.fromARGB(0, 35, 34, 34),
-      height: 320,
-      width: double.infinity,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 15.0),
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: SingleProductImage(
-                index: index,
-                images: images,
-              ),
-            );
-          },
-          itemCount: images.length,
-        ),
-      ),
-    );
-  }
-}
-
 class SingleProductImage extends StatelessWidget {
   const SingleProductImage({
     super.key,
-    required this.images,
-    required this.index,
+    required this.product,
   });
-  final int index;
-  final List images;
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
@@ -141,7 +106,7 @@ class SingleProductImage extends StatelessWidget {
       child: Column(
         children: [
           Image.network(
-            images[index]['image'],
+            product.images[0],
             fit: BoxFit.contain,
           ),
           Center(
@@ -150,7 +115,7 @@ class SingleProductImage extends StatelessWidget {
                 top: 8.0,
               ),
               child: Text(
-                images[index]['text'],
+                product.name,
                 maxLines: 1,
                 textAlign: TextAlign.center,
                 style: const TextStyle(fontWeight: FontWeight.bold),
@@ -160,7 +125,7 @@ class SingleProductImage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              '${images[index]['price']} تومان  ',
+              '${product.price} تومان  ',
               textAlign: TextAlign.center,
             ),
           )
