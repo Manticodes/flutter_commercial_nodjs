@@ -87,15 +87,20 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: HomeScreenSearchWidget(
                           searchController: searchController),
                     )
-                  : SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          AdressBar(state: state),
-                          const Cataloge(),
-                          const CarouselSliderImage(),
-                          const DealOfDayText(),
-                          DealOfTheDayWidget(),
-                        ],
+                  : RefreshIndicator(
+                      onRefresh: () async {
+                        setState(() {});
+                      },
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            AdressBar(state: state),
+                            const Cataloge(),
+                            const CarouselSliderImage(),
+                            const DealOfDayText(),
+                            DealOfTheDayWidget(),
+                          ],
+                        ),
                       ),
                     ),
             );
