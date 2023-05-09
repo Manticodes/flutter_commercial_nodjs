@@ -2,7 +2,6 @@ const express = require("express");
 const userRouter = express.Router();
 const User = require('../model/user');
 const auth = require("../middleware/auth");
-const { productSchema } = require("../model/products");
 const { Product } = require("../model/product");
 
 userRouter.post('/cart/add-product', auth, async (req, res) => {
@@ -18,17 +17,15 @@ userRouter.post('/cart/add-product', auth, async (req, res) => {
             for (let index = 0; index < user.cart.length; index++) {
                 if (user.cart[i].product._id.equals(product._id)) {
                     isProductFound = true;
-
                 }
 
             }
             if (isProductFound) {
                 let cartItem = user.cart.find((pr) => pr.product._id.equals(product._id));
-                cartItem.product += 1;
+                cartItem.quantity += 1;
 
             } else {
                 user.cart.push({ product, quantity: 1 });
-
             }
 
 
