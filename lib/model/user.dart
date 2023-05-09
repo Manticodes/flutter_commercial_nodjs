@@ -10,6 +10,7 @@ class User extends Equatable {
   final String type;
   final String token;
   final String email;
+  final List<dynamic> cart;
 
   const User(
       {required this.id,
@@ -18,7 +19,8 @@ class User extends Equatable {
       required this.adress,
       required this.type,
       required this.token,
-      required this.email});
+      required this.email,
+      required this.cart});
 
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
@@ -30,6 +32,7 @@ class User extends Equatable {
     result.addAll({'type': type});
     result.addAll({'token': token});
     result.addAll({'email': email});
+    result.addAll({'cart': cart});
 
     return result;
   }
@@ -43,6 +46,11 @@ class User extends Equatable {
       adress: map['adress'] ?? '',
       type: map['type'] ?? '',
       token: map['token'] ?? '',
+      cart: List<Map<String, dynamic>>.from(
+        map['cart']?.map(
+          (x) => Map<String, dynamic>.from(x),
+        ),
+      ),
     );
   }
 

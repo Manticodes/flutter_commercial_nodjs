@@ -18,7 +18,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
                 name: '',
                 password: '',
                 token: '',
-                type: ''))) {
+                type: '',
+                cart: []))) {
     on<SetUser>(_onSetUser);
     on<CleanUser>(_onCleanUser);
   }
@@ -37,6 +38,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
             name: '',
             password: '',
             token: '',
-            type: '')));
+            type: '',
+            cart: [])));
   }
 }

@@ -26,7 +26,8 @@ class AuthService {
           password: password,
           adress: '',
           type: '',
-          token: '');
+          token: '',
+          cart: []);
       http.Response response = await http.post(Uri.parse(uriSignup),
           body: user.toJson(),
           headers: <String, String>{
@@ -111,7 +112,8 @@ class AuthService {
           name: '',
           password: '',
           token: '',
-          type: '');
+          type: '',
+          cart: []);
     }
 
     debugPrint('token is : ${user.token}');
