@@ -30,7 +30,7 @@ userRouter.post('/cart/add-product', auth, async (req, res) => {
 
 
         }
-        user = await this.user.save();
+        user = await user.save();
         res.json(user);
 
     } catch (error) {
