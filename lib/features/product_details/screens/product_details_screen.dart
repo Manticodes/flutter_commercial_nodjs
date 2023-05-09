@@ -161,6 +161,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         onTap: () {
                           setState(() {
                             isAdded = true;
+                            ProductDetailServices().addToCart(
+                                context: context, product: widget.product);
                           });
                         }),
                   ),

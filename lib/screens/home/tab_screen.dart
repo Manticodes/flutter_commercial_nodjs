@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_commercial_nodjs/features/account/screens/account_screen.dart';
+import 'package:flutter_commercial_nodjs/screens/home/cart._screen.dart';
 import 'package:flutter_commercial_nodjs/screens/home/home_screen.dart';
+
+import '../../logic/bloc_user/user_bloc.dart';
 
 class TabScreen extends StatefulWidget {
   const TabScreen({super.key});
@@ -15,9 +19,7 @@ class _TabScreenState extends State<TabScreen> {
   List pages = [
     const HomeScreen(),
     AccountScreen(),
-    const Center(
-      child: Text('kart'),
-    )
+    CartScreen(),
   ];
   int _pageIndex = 0;
   @override
@@ -72,11 +74,15 @@ class _TabScreenState extends State<TabScreen> {
                               ? const Color.fromARGB(255, 248, 90, 90)
                               : Colors.white,
                           width: 5))),
-              child: const badges.Badge(
+              child: badges.Badge(
                   stackFit: StackFit.passthrough,
                   badgeStyle: badges.BadgeStyle(
                       badgeColor: Color.fromARGB(83, 255, 255, 255)),
-                  badgeContent: Text('2'),
+                  badgeContent: BlocBuilder<UserBloc, UserState>(
+                    builder: (context, state) {
+                      return Text(state.user.cart.length.toString());
+                    },
+                  ),
                   child: Icon(Icons.shop_2_outlined)),
             ),
           )

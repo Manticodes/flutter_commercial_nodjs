@@ -15,7 +15,7 @@ userRouter.post('/cart/add-product', auth, async (req, res) => {
         } else {
             let isProductFound = false;
             for (let index = 0; index < user.cart.length; index++) {
-                if (user.cart[i].product._id.equals(product._id)) {
+                if (user.cart[index].product._id.equals(product._id)) {
                     isProductFound = true;
                 }
 

@@ -3,10 +3,12 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../constants/error_handle.dart';
 import '../../../constants/global_variable.dart';
+import '../../../logic/bloc_user/user_bloc.dart';
 import '../../../model/product.dart';
 
 class ProductDetailServices {
@@ -54,7 +56,12 @@ class ProductDetailServices {
           body: jsonEncode({
             'id': product.id,
           }));
-      httpErrorHandle(response: response, context: context, onSuccess: () {});
+      httpErrorHandle(
+          response: response,
+          context: context,
+          onSuccess: () {
+            context.read<UserBloc>().add(AddToCart(user: response.body));
+          });
     } catch (e) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.toString())));

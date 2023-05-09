@@ -28,3 +28,8 @@ class CleanUser extends UserEvent {
   @override
   List<Object?> get props => [];
 }
+
+class LoadUser extends UserEvent {
+  @override
+  List<Object?> get props => [];
+}
