@@ -61,4 +61,26 @@ class User extends Equatable {
   @override
   // TODO: implement props
   List<Object?> get props => [email, id, name, password, adress, type, token];
+
+  User copyWith({
+    String? id,
+    String? name,
+    String? password,
+    String? adress,
+    String? type,
+    String? token,
+    String? email,
+    List<dynamic>? cart,
+  }) {
+    return User(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      password: password ?? this.password,
+      adress: adress ?? this.adress,
+      type: type ?? this.type,
+      token: token ?? this.token,
+      email: email ?? this.email,
+      cart: cart ?? this.cart,
+    );
+  }
 }

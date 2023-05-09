@@ -37,4 +37,27 @@ class ProductDetailServices {
           .showSnackBar(SnackBar(content: Text(e.toString())));
     }
   }
+
+  void addToCart({
+    required BuildContext context,
+    required Product product,
+  }) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('x-auth-token');
+
+    try {
+      http.Response response = await http.post(Uri.parse(uriAddToCart),
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            'x-auth-token': token!,
+          },
+          body: jsonEncode({
+            'id': product.id,
+          }));
+      httpErrorHandle(response: response, context: context, onSuccess: () {});
+    } catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.toString())));
+    }
+  }
 }

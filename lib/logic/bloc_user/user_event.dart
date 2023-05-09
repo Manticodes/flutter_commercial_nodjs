@@ -14,6 +14,16 @@ class SetUser extends UserEvent {
   List<Object?> get props => [user];
 }
 
+class AddToCart extends UserEvent {
+  final String user;
+  const AddToCart({
+    required this.user,
+  });
+
+  @override
+  List<Object?> get props => [user];
+}
+
 class CleanUser extends UserEvent {
   @override
   List<Object?> get props => [];
