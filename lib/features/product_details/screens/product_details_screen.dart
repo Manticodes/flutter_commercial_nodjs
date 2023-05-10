@@ -152,6 +152,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               height: 5,
             ),
             // TODO : redesign this part below and add functionallity here
+            // TODO : use api instead of bool
             isAdded
                 ? const ProductInCardWidget()
                 : Padding(

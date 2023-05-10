@@ -19,7 +19,8 @@ class _TabScreenState extends State<TabScreen> {
   List pages = [
     const HomeScreen(),
     AccountScreen(),
-    CartScreen(),
+    // CartScreen(),
+    ShoppingCartPage()
   ];
   int _pageIndex = 0;
   @override
