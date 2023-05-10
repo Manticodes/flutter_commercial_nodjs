@@ -30,31 +30,29 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
       quantity: 1,
     ),
   ];
-  @override
-  void initState() {
-    context.read<UserBloc>().add(LoadUser());
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     double totalPrice = 0;
     double totalDiscount = 0;
     double totalPriceWithDiscount = 0;
+    void calculateTotal(UserState state) {
+      for (var i = 0; i < state.user.cart.length; i++) {
+        var price = state.user.cart[i]['product']['price'];
+        debugPrint(price.toString());
+
+        totalPrice += price * state.user.cart[i]['quantity'];
+        totalDiscount += totalPrice * 0.1;
+      }
+      totalPriceWithDiscount = totalPrice - totalDiscount;
+    }
 
     totalPriceWithDiscount = totalPrice - totalDiscount;
 
-    return BlocConsumer<UserBloc, UserState>(
-      listener: (context, state) {
-        for (var i = 0; i < state.user.cart.length; i++) {
-          double price = state.user.cart[i]['product']['price'];
-          debugPrint(price.toString());
-
-          totalPrice += price * state.user.cart[i]['quantity'];
-          totalDiscount += totalPrice * 0.1;
-        }
-      },
+    return BlocBuilder<UserBloc, UserState>(
       builder: (context, state) {
+        calculateTotal(state);
+
         return Scaffold(
           appBar: AppBar(
             title: Text('Shopping Cart'),
