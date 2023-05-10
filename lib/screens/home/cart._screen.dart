@@ -10,27 +10,6 @@ class ShoppingCartPage extends StatefulWidget {
 }
 
 class _ShoppingCartPageState extends State<ShoppingCartPage> {
-  List<Product2> _products = [
-    Product2(
-      imageUrl: 'https://via.placeholder.com/150',
-      name: 'Product 1',
-      price: '19.99',
-      quantity: 1,
-    ),
-    Product2(
-      imageUrl: 'https://via.placeholder.com/150',
-      name: 'Product 2',
-      price: '29.99',
-      quantity: 1,
-    ),
-    Product2(
-      imageUrl: 'https://via.placeholder.com/150',
-      name: 'Product 3',
-      price: '39.99',
-      quantity: 1,
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
     double totalPrice = 0;
@@ -47,15 +26,13 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
       totalPriceWithDiscount = totalPrice - totalDiscount;
     }
 
-    totalPriceWithDiscount = totalPrice - totalDiscount;
-
     return BlocBuilder<UserBloc, UserState>(
       builder: (context, state) {
         calculateTotal(state);
 
         return Scaffold(
           appBar: AppBar(
-            title: Text('Shopping Cart'),
+            title: const Text('Shopping Cart'),
           ),
           body: Padding(
             padding: const EdgeInsets.all(16.0),
@@ -63,7 +40,7 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 AdressBar(state: state),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Expanded(
@@ -73,8 +50,9 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                       color: Colors.grey[100],
                       borderRadius: BorderRadius.circular(8.0),
                     ),
+                    //TODO : should get product from product api -- not user api do this by matching id
                     child: ListView.separated(
-                      itemCount: _products.length,
+                      itemCount: state.user.cart.length,
                       separatorBuilder: (BuildContext context, int index) =>
                           const Divider(height: 16.0),
                       itemBuilder: (BuildContext context, int index) {
@@ -85,7 +63,8 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                               flex: 2,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(8.0),
-                                child: Image.network(_products[index].imageUrl),
+                                child: Image.network(state.user.cart[index]
+                                    ['product']['images'][0]),
                               ),
                             ),
                             const SizedBox(width: 16.0),
@@ -95,13 +74,13 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    _products[index].name,
+                                    state.user.cart[index]['product']['name'],
                                     style:
                                         Theme.of(context).textTheme.headline6,
                                   ),
                                   const SizedBox(height: 8.0),
                                   Text(
-                                    '\$${_products[index].price}',
+                                    '\$${state.user.cart[index]['product']['price']}',
                                     style:
                                         Theme.of(context).textTheme.subtitle1,
                                   ),
@@ -111,18 +90,23 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                                       IconButton(
                                         onPressed: () {
                                           setState(() {
-                                            if (_products[index].quantity > 1) {
-                                              _products[index].quantity--;
+                                            if (state.user.cart[index]
+                                                    ['quantity'] >
+                                                1) {
+                                              state.user.cart[index]
+                                                  ['quantity']--;
                                             }
                                           });
                                         },
                                         icon: const Icon(Icons.remove),
                                       ),
-                                      Text('${_products[index].quantity}'),
+                                      Text(
+                                          '${state.user.cart[index]['quantity']}'),
                                       IconButton(
                                         onPressed: () {
                                           setState(() {
-                                            _products[index].quantity++;
+                                            state.user.cart[index]
+                                                ['quantity']++;
                                           });
                                         },
                                         icon: const Icon(Icons.add),
@@ -131,7 +115,7 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                                       GestureDetector(
                                         onTap: () {
                                           setState(() {
-                                            _products.removeAt(index);
+                                            state.user.cart[index]['quantity'];
                                           });
                                         },
                                         child: const Icon(
@@ -166,16 +150,16 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
-                        'Total Price: \$${totalPrice.toStringAsFixed(2)}',
-                        style: TextStyle(
+                        'قیمت محصولات: ${totalPrice.toStringAsFixed(0)} تومان ',
+                        style: const TextStyle(
                           fontSize: 18.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       const SizedBox(height: 8.0),
                       Text(
-                        'Total Discount: \$${totalDiscount.toStringAsFixed(2)}',
-                        style: TextStyle(
+                        'تخفیف: ${totalDiscount.toStringAsFixed(0)} تومان ',
+                        style: const TextStyle(
                           fontSize: 18.0,
                           fontWeight: FontWeight.bold,
                           color: Colors.red,
@@ -183,8 +167,8 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                       ),
                       const SizedBox(height: 8.0),
                       Text(
-                        'Total Price with Discount: \$${totalPriceWithDiscount.toStringAsFixed(2)}',
-                        style: TextStyle(
+                        'قیمت نهایی: ${totalPriceWithDiscount.toStringAsFixed(0)} تومان ',
+                        style: const TextStyle(
                           fontSize: 18.0,
                           fontWeight: FontWeight.bold,
                         ),
@@ -199,18 +183,4 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
       },
     );
   }
-}
-
-class Product2 {
-  final String imageUrl;
-  final String name;
-  final String price;
-  int quantity;
-
-  Product2({
-    required this.imageUrl,
-    required this.name,
-    required this.price,
-    this.quantity = 1,
-  });
 }
