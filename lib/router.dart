@@ -5,9 +5,9 @@ import 'package:flutter_commercial_nodjs/features/auth/screens/auth_screen.dart'
 import 'package:flutter_commercial_nodjs/main.dart';
 import 'package:flutter_commercial_nodjs/model/product.dart';
 import 'package:flutter_commercial_nodjs/model/user.dart';
-import 'package:flutter_commercial_nodjs/screens/home/category_deals_screen.dart';
-import 'package:flutter_commercial_nodjs/screens/home/home_screen.dart';
-import 'package:flutter_commercial_nodjs/screens/home/tab_screen.dart';
+import 'package:flutter_commercial_nodjs/features/home/category_deals_screen.dart';
+import 'package:flutter_commercial_nodjs/features/home/home_screen.dart';
+import 'package:flutter_commercial_nodjs/features/home/tab_screen.dart';
 
 import 'features/product_details/screens/product_details_screen.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_commercial_nodjs/screens/home/services.dart';
+import 'package:flutter_commercial_nodjs/features/home/services.dart';
 
 import '../../model/product.dart';
 import 'home_widgets.dart';

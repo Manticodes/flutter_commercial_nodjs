@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_commercial_nodjs/logic/bloc_user/user_bloc.dart';
 import 'package:flutter_commercial_nodjs/model/product.dart';
-import 'package:flutter_commercial_nodjs/screens/home/category_deals_screen.dart';
-import 'package:flutter_commercial_nodjs/screens/home/services.dart';
+import 'package:flutter_commercial_nodjs/features/home/category_deals_screen.dart';
+import 'package:flutter_commercial_nodjs/features/home/services.dart';
 
 import '../../constants/global_variable.dart';
-import '../../features/product_details/screens/product_details_screen.dart';
-import '../../features/search/services/search_services.dart';
-import '../../features/search/widget/search_widgets.dart';
+import '../product_details/screens/product_details_screen.dart';
+import '../search/services/search_services.dart';
+import '../search/widget/search_widgets.dart';
 
 class AdressBar extends StatelessWidget {
   final UserState state;

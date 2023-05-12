@@ -4,8 +4,8 @@ import 'package:flutter_commercial_nodjs/features/admin/screens/admin_screen.dar
 import 'package:flutter_commercial_nodjs/features/auth/screens/auth_screen.dart';
 import 'package:flutter_commercial_nodjs/features/auth/services/auth_server.dart';
 import 'package:flutter_commercial_nodjs/router.dart';
-import 'package:flutter_commercial_nodjs/screens/home/loading.dart';
-import 'package:flutter_commercial_nodjs/screens/home/tab_screen.dart';
+import 'package:flutter_commercial_nodjs/features/home/loading.dart';
+import 'package:flutter_commercial_nodjs/features/home/tab_screen.dart';
 import 'logic/bloc_user/user_bloc.dart';
 
 void main() {

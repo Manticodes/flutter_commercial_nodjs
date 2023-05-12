@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_commercial_nodjs/screens/home/home_widgets.dart';
+import 'package:flutter_commercial_nodjs/features/cart/widget/cat_sub_total.dart';
+import 'package:flutter_commercial_nodjs/features/home/home_widgets.dart';
 
-import '../../logic/bloc_user/user_bloc.dart';
+import '../../../logic/bloc_user/user_bloc.dart';
 
 class ShoppingCartPage extends StatefulWidget {
   @override
@@ -34,8 +35,17 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
           appBar: AppBar(
             title: const Text('Shopping Cart'),
           ),
-          body: Padding(
-            padding: const EdgeInsets.all(16.0),
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                AdressBar(state: state),
+                CatSubTotal(),
+              ],
+            ),
+          ),
+
+          /* Padding(
+            padding: const EdgeInsets.all(8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -134,14 +144,9 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 16.0),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Text('Proceed to Checkout'),
-                ),
-                const SizedBox(height: 16.0),
+                const SizedBox(height: 8.0),
                 Container(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(8.0),
                   decoration: BoxDecoration(
                     color: Colors.grey[200],
                     borderRadius: BorderRadius.circular(8.0),
@@ -150,31 +155,64 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
+                        textAlign: TextAlign.right,
                         'قیمت محصولات: ${totalPrice.toStringAsFixed(0)} تومان ',
                         style: const TextStyle(
-                          fontSize: 18.0,
+                          fontSize: 14.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const SizedBox(height: 8.0),
+                      const SizedBox(height: 2.0),
                       Text(
+                        textAlign: TextAlign.right,
                         'تخفیف: ${totalDiscount.toStringAsFixed(0)} تومان ',
                         style: const TextStyle(
-                          fontSize: 18.0,
+                          fontSize: 14.0,
                           fontWeight: FontWeight.bold,
                           color: Colors.red,
                         ),
                       ),
-                      const SizedBox(height: 8.0),
+                      const SizedBox(height: 2.0),
                       Text(
+                        textAlign: TextAlign.right,
                         'قیمت نهایی: ${totalPriceWithDiscount.toStringAsFixed(0)} تومان ',
                         style: const TextStyle(
-                          fontSize: 18.0,
+                          fontSize: 14.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ],
                   ),
+                ),
+                const SizedBox(height: 4.0),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: const Text(
+                    'خریدت رو نهایی کن',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                ),
+              ],
+            ),
+          ), */
+          bottomNavigationBar: BottomAppBar(
+            height: MediaQuery.of(context).size.height * 0.09,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('sadas'),
+                Container(
+                  decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(8)),
+                  width: 130,
+                  height: MediaQuery.of(context).size.height * 0.06,
+                  child: Center(
+                      child: Text(
+                    'تکمیل خرید',
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
+                  )),
                 ),
               ],
             ),

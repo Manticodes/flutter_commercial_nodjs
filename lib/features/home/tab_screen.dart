@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_commercial_nodjs/features/account/screens/account_screen.dart';
-import 'package:flutter_commercial_nodjs/screens/home/cart._screen.dart';
-import 'package:flutter_commercial_nodjs/screens/home/home_screen.dart';
+import 'package:flutter_commercial_nodjs/features/cart/screen/cart._screen.dart';
+import 'package:flutter_commercial_nodjs/features/home/home_screen.dart';
 
 import '../../logic/bloc_user/user_bloc.dart';
 
