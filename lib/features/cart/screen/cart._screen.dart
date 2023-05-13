@@ -200,7 +200,14 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('sadas'),
+                Text.rich(TextSpan(
+                    children: [
+                      TextSpan(text: ' جمع کل'),
+                      TextSpan(text: ' : '),
+                      TextSpan(text: ' 2000 ')
+                    ],
+                    style:
+                        TextStyle(fontSize: 15, fontWeight: FontWeight.bold))),
                 Container(
                   decoration: BoxDecoration(
                       color: Colors.red,
@@ -208,10 +215,13 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                   width: 130,
                   height: MediaQuery.of(context).size.height * 0.06,
                   child: Center(
-                      child: Text(
-                    'تکمیل خرید',
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
+                      child: InkWell(
+                    onTap: () {},
+                    child: const Text(
+                      'تکمیل خرید',
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
                   )),
                 ),
               ],
