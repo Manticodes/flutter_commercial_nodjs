@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_commercial_nodjs/features/cart/widget/cat_sub_total.dart';
+import 'package:flutter_commercial_nodjs/features/cart/widget/cart_list.dart';
 import 'package:flutter_commercial_nodjs/features/home/home_widgets.dart';
 
 import '../../../logic/bloc_user/user_bloc.dart';
@@ -39,7 +39,9 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
             child: Column(
               children: [
                 AdressBar(state: state),
-                CatSubTotal(),
+                CartList(
+                  state: state,
+                ),
               ],
             ),
           ),
