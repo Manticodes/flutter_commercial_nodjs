@@ -204,7 +204,7 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                     children: [
                       TextSpan(text: ' جمع کل'),
                       TextSpan(text: ' : '),
-                      TextSpan(text: ' 2000 ')
+                      TextSpan(text: ' ${totalPriceWithDiscount.round()} ')
                     ],
                     style:
                         TextStyle(fontSize: 15, fontWeight: FontWeight.bold))),
@@ -212,15 +212,17 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                   decoration: BoxDecoration(
                       color: Colors.red,
                       borderRadius: BorderRadius.circular(8)),
-                  width: 130,
-                  height: MediaQuery.of(context).size.height * 0.06,
+                  width: 120,
+                  height: MediaQuery.of(context).size.height * 0.055,
                   child: Center(
                       child: InkWell(
                     onTap: () {},
                     child: const Text(
                       'تکمیل خرید',
                       style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold),
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15),
                     ),
                   )),
                 ),
