@@ -12,7 +12,11 @@ class CartList extends StatelessWidget {
       decoration: BoxDecoration(color: Color.fromARGB(83, 197, 194, 194)),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(),
+        child: Column(
+          children: state.user.cart.map((e) {
+            return Text('a');
+          }).toList(),
+        ),
       ),
     );
   }
