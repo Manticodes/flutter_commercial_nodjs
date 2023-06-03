@@ -232,14 +232,17 @@ class ShoppingCartPageState extends State<ShoppingCartPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text.rich(TextSpan(
-                    children: [
-                      const TextSpan(text: ' جمع کل'),
-                      const TextSpan(text: ' : '),
-                      TextSpan(text: ' ${totalPriceWithDiscount.round()} ')
-                    ],
-                    style: const TextStyle(
-                        fontSize: 15, fontWeight: FontWeight.bold))),
+                Column(
+                  children: [
+                    const Text.rich(TextSpan(
+                        children: [
+                          TextSpan(text: ' جمع کل'),
+                        ],
+                        style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.bold))),
+                    Text(' ${totalPriceWithDiscount.round()} ')
+                  ],
+                ),
                 Container(
                   decoration: BoxDecoration(
                       color: Colors.red,
