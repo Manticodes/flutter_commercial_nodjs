@@ -5,8 +5,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-
-import '../../../constants/error_handle.dart';
 import '../../../constants/global_variable.dart';
 
 class CartServices {
@@ -22,8 +20,10 @@ class CartServices {
         'x-auth-token': token!,
       });
       itemExist = jsonDecode(response.body);
-    } catch (e) {}
-    print(itemExist);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+
     return itemExist;
   }
 }

@@ -22,17 +22,9 @@ class _CartListState extends State<CartList> {
         children: [
           Column(
             children: widget.state.user.cart.map((e) {
-              // bool itemExist = true;
               Product product = Product.fromMap(e['product']);
               int quantity = e['quantity'];
-              /*   CartServices()
-                  .getCategoryProduct(
-                      context: context, id: product.id.toString())
-                  .then((value) {
-                print('val is  ' + value.toString());
-                itemExist = value;
-              });
-              print(product.name + '  ' + itemExist.toString()); */
+
               return FutureBuilder(
                 future: CartServices()
                     .checkItemValidation(id: product.id.toString()),

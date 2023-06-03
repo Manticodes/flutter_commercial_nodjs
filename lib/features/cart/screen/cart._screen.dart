@@ -17,7 +17,6 @@ class ShoppingCartPage extends StatefulWidget {
 class ShoppingCartPageState extends State<ShoppingCartPage> {
   @override
   Widget build(BuildContext context) {
-    bool finalValidationCheck = true;
     double totalPrice = 0;
     double totalDiscount = 0;
     double totalPriceWithDiscount = 0;
@@ -40,11 +39,9 @@ class ShoppingCartPageState extends State<ShoppingCartPage> {
         bool a =
             await CartServices().checkItemValidation(id: product.id.toString());
         validationList.add(a);
-        print(validationList.toString());
       }
-      print('what about here' + validationList.toString());
+
       if (validationList.contains(false)) {
-        print('result is ' + validationList.contains(false).toString());
         return false;
       }
       return true;
@@ -69,9 +66,9 @@ class ShoppingCartPageState extends State<ShoppingCartPage> {
                 FutureBuilder(
                   builder: (context, snapshot) {
                     if (snapshot.data == false) {
-                      return Text('validation is working');
+                      return const Text('validation is working');
                     }
-                    return SizedBox();
+                    return const SizedBox();
                   },
                   future: checkValidation(state),
                 )
