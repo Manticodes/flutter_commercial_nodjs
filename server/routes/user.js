@@ -39,6 +39,26 @@ userRouter.post('/cart/add-product', auth, async (req, res) => {
     }
 
 });
+userRouter.get('/cart/check-product', auth, async (req, res) => {
+    try {
+        let product = await Product.findById(req.query.id);
+        if (product == null) {
+            res.json(
+                false
+            )
+        } else {
+            res.json(
+                true)
+
+        }
+
+
+
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+
+    }
+})
 
 
 

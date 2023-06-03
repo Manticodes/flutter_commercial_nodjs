@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_commercial_nodjs/constants/global_variable.dart';
-import 'package:flutter_commercial_nodjs/features/search/widget/search_widgets.dart';
 import 'package:flutter_commercial_nodjs/features/home/carousel_slider.dart';
-import 'package:flutter_commercial_nodjs/features/home/services.dart';
-import '../search/services/search_services.dart';
 import '../../logic/bloc_user/user_bloc.dart';
-import '../../model/product.dart';
 import 'home_widgets.dart';
 
 // ignore: must_be_immutable
@@ -98,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             const Cataloge(),
                             const CarouselSliderImage(),
                             const DealOfDayText(),
-                            DealOfTheDayWidget(),
+                            const DealOfTheDayWidget(),
                           ],
                         ),
                       ),

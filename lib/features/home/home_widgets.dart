@@ -282,7 +282,7 @@ class DealOfTheDayWidget extends StatelessWidget {
             return const Text('There is no product');
           } else {
             List<Product> products = snapshot.data!;
-            return Container(
+            return SizedBox(
               height: 320,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,

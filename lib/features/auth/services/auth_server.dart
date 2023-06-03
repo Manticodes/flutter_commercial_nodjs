@@ -27,7 +27,7 @@ class AuthService {
           adress: '',
           type: '',
           token: '',
-          cart: []);
+          cart: const []);
       http.Response response = await http.post(Uri.parse(uriSignup),
           body: user.toJson(),
           headers: <String, String>{
@@ -105,7 +105,7 @@ class AuthService {
       user = User.fromJson(userDataRes.body);
       context.read<UserBloc>().add(SetUser(user: userDataRes.body));
     } else {
-      user = User(
+      user = const User(
           adress: '',
           email: '',
           id: '',

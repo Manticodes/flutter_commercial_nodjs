@@ -6,11 +6,13 @@ import 'package:flutter_commercial_nodjs/features/home/home_widgets.dart';
 import '../../../logic/bloc_user/user_bloc.dart';
 
 class ShoppingCartPage extends StatefulWidget {
+  const ShoppingCartPage({super.key});
+
   @override
-  _ShoppingCartPageState createState() => _ShoppingCartPageState();
+  ShoppingCartPageState createState() => ShoppingCartPageState();
 }
 
-class _ShoppingCartPageState extends State<ShoppingCartPage> {
+class ShoppingCartPageState extends State<ShoppingCartPage> {
   @override
   Widget build(BuildContext context) {
     double totalPrice = 0;
@@ -19,7 +21,7 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
     void calculateTotal(UserState state) {
       for (var i = 0; i < state.user.cart.length; i++) {
         var price = state.user.cart[i]['product']['price'];
-        debugPrint(price.toString());
+        // debugPrint(price.toString());
 
         totalPrice += price * state.user.cart[i]['quantity'];
         totalDiscount += totalPrice * 0.1;
@@ -204,12 +206,12 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
               children: [
                 Text.rich(TextSpan(
                     children: [
-                      TextSpan(text: ' جمع کل'),
-                      TextSpan(text: ' : '),
+                      const TextSpan(text: ' جمع کل'),
+                      const TextSpan(text: ' : '),
                       TextSpan(text: ' ${totalPriceWithDiscount.round()} ')
                     ],
-                    style:
-                        TextStyle(fontSize: 15, fontWeight: FontWeight.bold))),
+                    style: const TextStyle(
+                        fontSize: 15, fontWeight: FontWeight.bold))),
                 Container(
                   decoration: BoxDecoration(
                       color: Colors.red,

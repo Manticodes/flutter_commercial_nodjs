@@ -20,7 +20,7 @@ class _TabScreenState extends State<TabScreen> {
     const HomeScreen(),
     AccountScreen(),
     // CartScreen(),
-    ShoppingCartPage()
+    const ShoppingCartPage()
   ];
   int _pageIndex = 0;
   @override
@@ -77,16 +77,16 @@ class _TabScreenState extends State<TabScreen> {
                           width: 5))),
               child: badges.Badge(
                   stackFit: StackFit.passthrough,
-                  badgeStyle: badges.BadgeStyle(
+                  badgeStyle: const badges.BadgeStyle(
                       badgeColor: Color.fromARGB(83, 255, 255, 255)),
                   badgeContent: BlocBuilder<UserBloc, UserState>(
                     builder: (context, state) {
                       return Text(state.user.cart.length.toString());
                     },
                   ),
-                  child: Icon(Icons.shop_2_outlined)),
+                  child: const Icon(Icons.shop_2_outlined)),
             ),
-          )
+          ),
         ],
       ),
     );
