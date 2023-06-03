@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_commercial_nodjs/features/cart/widget/cart_list.dart';
 import 'package:flutter_commercial_nodjs/features/home/home_widgets.dart';
+import 'package:flutter_commercial_nodjs/model/product.dart';
 
 import '../../../logic/bloc_user/user_bloc.dart';
+import '../services/services.dart';
 
 class ShoppingCartPage extends StatefulWidget {
   const ShoppingCartPage({super.key});
@@ -15,6 +17,7 @@ class ShoppingCartPage extends StatefulWidget {
 class ShoppingCartPageState extends State<ShoppingCartPage> {
   @override
   Widget build(BuildContext context) {
+    bool finalValidationCheck = true;
     double totalPrice = 0;
     double totalDiscount = 0;
     double totalPriceWithDiscount = 0;
@@ -29,8 +32,27 @@ class ShoppingCartPageState extends State<ShoppingCartPage> {
       totalPriceWithDiscount = totalPrice - totalDiscount;
     }
 
+    Future<bool> checkValidation(UserState state) async {
+      List<bool> validationList = [];
+
+      for (var i = 0; i < state.user.cart.length; i++) {
+        Product product = Product.fromMap(state.user.cart[i]['product']);
+        bool a =
+            await CartServices().checkItemValidation(id: product.id.toString());
+        validationList.add(a);
+        print(validationList.toString());
+      }
+      print('what about here' + validationList.toString());
+      if (validationList.contains(false)) {
+        print('result is ' + validationList.contains(false).toString());
+        return false;
+      }
+      return true;
+    }
+
     return BlocBuilder<UserBloc, UserState>(
       builder: (context, state) {
+        checkValidation(state);
         calculateTotal(state);
 
         return Scaffold(
@@ -44,6 +66,15 @@ class ShoppingCartPageState extends State<ShoppingCartPage> {
                 CartList(
                   state: state,
                 ),
+                FutureBuilder(
+                  builder: (context, snapshot) {
+                    if (snapshot.data == false) {
+                      return Text('validation is working');
+                    }
+                    return SizedBox();
+                  },
+                  future: checkValidation(state),
+                )
               ],
             ),
           ),

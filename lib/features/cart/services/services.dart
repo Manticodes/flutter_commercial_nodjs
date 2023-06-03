@@ -10,8 +10,7 @@ import '../../../constants/error_handle.dart';
 import '../../../constants/global_variable.dart';
 
 class CartServices {
-  Future<bool> checkItemValidation(
-      {required BuildContext context, required String id}) async {
+  Future<bool> checkItemValidation({required String id}) async {
     bool itemExist = true;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('x-auth-token');
@@ -22,17 +21,8 @@ class CartServices {
         'Content-Type': 'application/json; charset=UTF-8',
         'x-auth-token': token!,
       });
-
-      httpErrorHandle(
-          response: response,
-          context: context,
-          onSuccess: () {
-            itemExist = jsonDecode(response.body);
-          });
-    } catch (e) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(e.toString())));
-    }
+      itemExist = jsonDecode(response.body);
+    } catch (e) {}
     print(itemExist);
     return itemExist;
   }

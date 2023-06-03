@@ -13,3 +13,13 @@ class GetValidationList extends CartValidEvent {
   @override
   List<Object?> get props => [validList];
 }
+
+class CheckValidation extends CartValidEvent {
+  final UserState state;
+  const CheckValidation({
+    required this.state,
+  });
+
+  @override
+  List<Object?> get props => [state];
+}

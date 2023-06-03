@@ -34,8 +34,8 @@ class _CartListState extends State<CartList> {
               });
               print(product.name + '  ' + itemExist.toString()); */
               return FutureBuilder(
-                future: CartServices().checkItemValidation(
-                    context: context, id: product.id.toString()),
+                future: CartServices()
+                    .checkItemValidation(id: product.id.toString()),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(child: CircularProgressIndicator());
