@@ -13,6 +13,7 @@ class CartList extends StatefulWidget {
 }
 
 class _CartListState extends State<CartList> {
+  List<bool> validproduct = [];
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -48,6 +49,7 @@ class _CartListState extends State<CartList> {
                       return const Center(
                           child: Text(' Some Thing is not ok here '));
                     } else {
+                      validproduct.add(snapshot.data as bool);
                       return Column(
                         children: [
                           Row(
