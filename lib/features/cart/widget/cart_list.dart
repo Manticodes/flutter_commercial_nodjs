@@ -60,11 +60,15 @@ class _CartListState extends State<CartList> {
                               SizedBox(
                                 width: MediaQuery.of(context).size.width * 0.1,
                               ),
-                              Image.network(
-                                product.images[0],
-                                width: MediaQuery.of(context).size.width * 0.3,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.3,
+                              Opacity(
+                                opacity: snapshot.data == false ? 0.1 : 1,
+                                child: Image.network(
+                                  product.images[0],
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.3,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.3,
+                                ),
                               ),
                               SizedBox(
                                 width: MediaQuery.of(context).size.width * 0.03,
