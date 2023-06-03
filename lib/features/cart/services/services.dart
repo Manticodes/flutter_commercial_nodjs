@@ -10,7 +10,7 @@ import '../../../constants/error_handle.dart';
 import '../../../constants/global_variable.dart';
 
 class CartServices {
-  Future<bool> getcategoryProduct(
+  Future<bool> getCategoryProduct(
       {required BuildContext context, required String id}) async {
     bool itemExist = true;
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -33,7 +33,7 @@ class CartServices {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.toString())));
     }
-
+    print(itemExist);
     return itemExist;
   }
 }
