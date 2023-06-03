@@ -10,7 +10,7 @@ import '../../../constants/error_handle.dart';
 import '../../../constants/global_variable.dart';
 
 class CartServices {
-  Future<bool> getCategoryProduct(
+  Future<bool> checkItemValidation(
       {required BuildContext context, required String id}) async {
     bool itemExist = true;
     SharedPreferences prefs = await SharedPreferences.getInstance();

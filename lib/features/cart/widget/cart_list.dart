@@ -34,7 +34,7 @@ class _CartListState extends State<CartList> {
               });
               print(product.name + '  ' + itemExist.toString()); */
               return FutureBuilder(
-                future: CartServices().getCategoryProduct(
+                future: CartServices().checkItemValidation(
                     context: context, id: product.id.toString()),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
