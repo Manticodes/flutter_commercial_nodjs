@@ -15,7 +15,6 @@ class CartList extends StatefulWidget {
 }
 
 class _CartListState extends State<CartList> {
-  List<bool> validproduct = [];
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -40,9 +39,12 @@ class _CartListState extends State<CartList> {
               }
 
               return FutureBuilder(
-                future: CartServices()
-                    .checkItemValidation(id: product.id.toString()),
-                builder: (context, snapshot) {
+                future: Future.wait([
+                  CartServices().checkItemValidation(id: product.id.toString()),
+                  ProductDetailServices()
+                      .getOneProduct(context: context, product: product)
+                ]),
+                builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
                   if (snapshot.hasError) {
                     return Center(
                         child: Text(
@@ -51,7 +53,6 @@ class _CartListState extends State<CartList> {
                     if (snapshot.data == null) {
                       return const Center(child: CircularProgressIndicator());
                     } else {
-                      validproduct.add(snapshot.data as bool);
                       return Column(
                         children: [
                           Row(
@@ -66,7 +67,7 @@ class _CartListState extends State<CartList> {
                                     SizedBox(
                                       height: 3,
                                     ),
-                                    if (snapshot.data == false)
+                                    if (snapshot.data![0] == false)
                                       Text('پایان موجودی در انبار '),
                                     SizedBox(
                                       height: 3,
@@ -125,7 +126,7 @@ class _CartListState extends State<CartList> {
                                     SizedBox(
                                       height: 5,
                                     ),
-                                    snapshot.data == true
+                                    snapshot.data![0] == true
                                         ? Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.end,
@@ -204,7 +205,7 @@ class _CartListState extends State<CartList> {
                                 width: MediaQuery.of(context).size.width * 0.03,
                               ),
                               Opacity(
-                                opacity: snapshot.data == false ? 0.1 : 1,
+                                opacity: snapshot.data![0] == false ? 0.1 : 1,
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8),
                                   child: Image.network(

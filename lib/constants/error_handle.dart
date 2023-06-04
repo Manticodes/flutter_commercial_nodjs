@@ -20,6 +20,8 @@ void httpErrorHandle({
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(jsonDecode(response.body)['error'])));
       break;
+    case 404:
+      break;
     default:
       ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('some thing wents wrong')));

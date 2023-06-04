@@ -18,15 +18,16 @@ productRouter.get('/api/get-products', auth, async (req, res) => {
 
 productRouter.get('/api/get-one-product/:id', auth, async (req, res) => {
     try {
-
-        const product = await Product.findById(req.params.id);
-        res.json(product);
-
+        let product = await Product.findById(req.params.id);
+        if (product) {
+            res.json(product);
+        } else {
+            res.status(404).json({ error: 'Product not found' });
+        }
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
-
-})
+});
 
 
 productRouter.get('/api/get-products/search/:name', auth, async (req, res) => {
