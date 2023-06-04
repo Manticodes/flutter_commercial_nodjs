@@ -86,12 +86,6 @@ class _CartListState extends State<CartList> {
                                           textAlign: TextAlign.right,
                                           TextSpan(
                                             children: [
-                                              const WidgetSpan(
-                                                  child: Icon(
-                                                Icons.attach_money_outlined,
-                                                size: 20,
-                                                color: Colors.green,
-                                              )),
                                               WidgetSpan(
                                                 child: Text(
                                                   product.price
@@ -133,43 +127,61 @@ class _CartListState extends State<CartList> {
                                     SizedBox(
                                       height: 5,
                                     ),
-                                    if (snapshot.data == true)
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          Container(
-                                            width: 35,
-                                            height: 35,
-                                            child: Card(
-                                              child: Icon(Icons.add,
-                                                  color: Colors.red),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: 5,
-                                          ),
-                                          Text(
-                                            '${product.quantity.round()}',
-                                            overflow: TextOverflow.clip,
-                                            textAlign: TextAlign.right,
-                                            style: const TextStyle(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          SizedBox(
-                                            width: 5,
-                                          ),
-                                          Container(
-                                            width: 35,
-                                            height: 35,
-                                            child: Card(
-                                              child: Icon(Icons.remove,
-                                                  color: Colors.red),
+                                    snapshot.data == true
+                                        ? Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              Container(
+                                                width: 35,
+                                                height: 35,
+                                                child: InkWell(
+                                                  onTap: () {},
+                                                  child: Card(
+                                                    child: Icon(Icons.add,
+                                                        color: Colors.red),
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: 5,
+                                              ),
+                                              Text(
+                                                '${product.quantity.round()}',
+                                                overflow: TextOverflow.clip,
+                                                textAlign: TextAlign.right,
+                                                style: const TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                              SizedBox(
+                                                width: 5,
+                                              ),
+                                              Container(
+                                                width: 35,
+                                                height: 35,
+                                                child: InkWell(
+                                                  onTap: () {},
+                                                  child: Card(
+                                                    child: Icon(Icons.remove,
+                                                        color: Colors.red),
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          )
+                                        : InkWell(
+                                            onTap: () {},
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.end,
+                                              children: [
+                                                Text('حذف محصول'),
+                                                Icon(Icons.close),
+                                              ],
                                             ),
                                           )
-                                        ],
-                                      ),
                                   ],
                                 ),
                               ),
