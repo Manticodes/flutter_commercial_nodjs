@@ -63,6 +63,7 @@ class _CartListState extends State<CartList> {
                               Flexible(
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     SizedBox(
                                       height: 3,
@@ -81,29 +82,34 @@ class _CartListState extends State<CartList> {
                                     Padding(
                                       padding: const EdgeInsets.only(
                                           left: 10.0, top: 5),
-                                      child: Text.rich(TextSpan(
-                                        children: [
-                                          const WidgetSpan(
-                                              child: Icon(
-                                            Icons.attach_money_outlined,
-                                            size: 20,
-                                            color: Colors.green,
+                                      child: Text.rich(
+                                          textAlign: TextAlign.right,
+                                          TextSpan(
+                                            children: [
+                                              const WidgetSpan(
+                                                  child: Icon(
+                                                Icons.attach_money_outlined,
+                                                size: 20,
+                                                color: Colors.green,
+                                              )),
+                                              WidgetSpan(
+                                                child: Text(
+                                                  product.price
+                                                      .round()
+                                                      .toString(),
+                                                  style: const TextStyle(
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                              ),
+                                              const WidgetSpan(
+                                                  child: Text(
+                                                '  تومان',
+                                                style: TextStyle(fontSize: 15),
+                                              ))
+                                            ],
                                           )),
-                                          WidgetSpan(
-                                            child: Text(
-                                              product.price.round().toString(),
-                                              style: const TextStyle(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                          const WidgetSpan(
-                                              child: Text(
-                                            '  تومان',
-                                            style: TextStyle(fontSize: 15),
-                                          ))
-                                        ],
-                                      )),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(
@@ -116,38 +122,6 @@ class _CartListState extends State<CartList> {
                                           fontSize: 12,
                                         ),
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 10.0, top: 5),
-                                      child: product.quantity > 0
-                                          ? product.quantity < 6
-                                              ? Text.rich(TextSpan(
-                                                  children: [
-                                                    const WidgetSpan(
-                                                        child: Text(
-                                                      ' عدد در انبار موجود می باشد ',
-                                                      style: TextStyle(
-                                                          color: Colors.red),
-                                                    )),
-                                                    WidgetSpan(
-                                                        child: Text(
-                                                      product.quantity
-                                                          .round()
-                                                          .toString(),
-                                                      style: const TextStyle(
-                                                          color: Colors.red),
-                                                    )),
-                                                    const WidgetSpan(
-                                                        child: Text(
-                                                      ' فقط ',
-                                                      style: TextStyle(
-                                                          color: Colors.red),
-                                                    )),
-                                                  ],
-                                                ))
-                                              : const Text(' موجود در انبار')
-                                          : const Text(' موجود نمی باشد'),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(
