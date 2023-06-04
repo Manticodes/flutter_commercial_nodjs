@@ -55,12 +55,17 @@ class _CartListState extends State<CartList> {
                                     SizedBox(
                                       height: 3,
                                     ),
+                                    if (snapshot.data == false)
+                                      Text('پایان موجودی در انبار '),
+                                    SizedBox(
+                                      height: 3,
+                                    ),
                                     Text(product.name,
+                                        textAlign: TextAlign.right,
                                         softWrap: true,
                                         textDirection: TextDirection.rtl,
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold)),
-                                    Text(snapshot.data.toString())
                                   ],
                                 ),
                               ),
