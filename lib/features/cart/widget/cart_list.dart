@@ -133,41 +133,43 @@ class _CartListState extends State<CartList> {
                                     SizedBox(
                                       height: 5,
                                     ),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        Container(
-                                          width: 35,
-                                          height: 35,
-                                          child: Card(
-                                            child: Icon(Icons.add,
-                                                color: Colors.red),
+                                    if (snapshot.data == true)
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          Container(
+                                            width: 35,
+                                            height: 35,
+                                            child: Card(
+                                              child: Icon(Icons.add,
+                                                  color: Colors.red),
+                                            ),
                                           ),
-                                        ),
-                                        SizedBox(
-                                          width: 5,
-                                        ),
-                                        Text(
-                                          '${product.quantity.round()}',
-                                          overflow: TextOverflow.clip,
-                                          textAlign: TextAlign.right,
-                                          style: const TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        SizedBox(
-                                          width: 5,
-                                        ),
-                                        Container(
-                                          width: 35,
-                                          height: 35,
-                                          child: Card(
-                                            child: Icon(Icons.remove,
-                                                color: Colors.red),
+                                          SizedBox(
+                                            width: 5,
                                           ),
-                                        )
-                                      ],
-                                    ),
+                                          Text(
+                                            '${product.quantity.round()}',
+                                            overflow: TextOverflow.clip,
+                                            textAlign: TextAlign.right,
+                                            style: const TextStyle(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          SizedBox(
+                                            width: 5,
+                                          ),
+                                          Container(
+                                            width: 35,
+                                            height: 35,
+                                            child: Card(
+                                              child: Icon(Icons.remove,
+                                                  color: Colors.red),
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                   ],
                                 ),
                               ),
