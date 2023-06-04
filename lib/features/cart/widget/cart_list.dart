@@ -3,6 +3,7 @@ import 'package:flutter_commercial_nodjs/features/cart/services/services.dart';
 import 'package:flutter_commercial_nodjs/model/product.dart';
 
 import '../../../logic/bloc_user/user_bloc.dart';
+import '../../search/widget/stars.dart';
 
 class CartList extends StatefulWidget {
   const CartList({Key? key, required this.state}) : super(key: key);
@@ -24,6 +25,17 @@ class _CartListState extends State<CartList> {
             children: widget.state.user.cart.map((e) {
               Product product = Product.fromMap(e['product']);
               int quantity = e['quantity'];
+              double avgStar = 0;
+
+              if (product.ratings != null) {}
+              var ratingList = product.ratings;
+              double totalRating = 0;
+              for (var i = 0; i < ratingList!.length; i++) {
+                totalRating += ratingList[i].rate;
+              }
+              if (totalRating != 0) {
+                avgStar = totalRating / ratingList.length;
+              }
 
               return FutureBuilder(
                 future: CartServices()
@@ -66,6 +78,84 @@ class _CartListState extends State<CartList> {
                                         textDirection: TextDirection.rtl,
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold)),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 10.0, top: 5),
+                                      child: Text.rich(TextSpan(
+                                        children: [
+                                          const WidgetSpan(
+                                              child: Icon(
+                                            Icons.attach_money_outlined,
+                                            size: 20,
+                                            color: Colors.green,
+                                          )),
+                                          WidgetSpan(
+                                            child: Text(
+                                              product.price.round().toString(),
+                                              style: const TextStyle(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ),
+                                          const WidgetSpan(
+                                              child: Text(
+                                            '  تومان',
+                                            style: TextStyle(fontSize: 15),
+                                          ))
+                                        ],
+                                      )),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 15.0, top: 5),
+                                      child: Text(
+                                        '${product.category} : دسته ',
+                                        overflow: TextOverflow.clip,
+                                        textAlign: TextAlign.left,
+                                        style: const TextStyle(
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 10.0, top: 5),
+                                      child: product.quantity > 0
+                                          ? product.quantity < 6
+                                              ? Text.rich(TextSpan(
+                                                  children: [
+                                                    const WidgetSpan(
+                                                        child: Text(
+                                                      ' عدد در انبار موجود می باشد ',
+                                                      style: TextStyle(
+                                                          color: Colors.red),
+                                                    )),
+                                                    WidgetSpan(
+                                                        child: Text(
+                                                      product.quantity
+                                                          .round()
+                                                          .toString(),
+                                                      style: const TextStyle(
+                                                          color: Colors.red),
+                                                    )),
+                                                    const WidgetSpan(
+                                                        child: Text(
+                                                      ' فقط ',
+                                                      style: TextStyle(
+                                                          color: Colors.red),
+                                                    )),
+                                                  ],
+                                                ))
+                                              : const Text(' موجود در انبار')
+                                          : const Text(' موجود نمی باشد'),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 14.0, top: 5),
+                                      child: Stars(
+                                        rating: avgStar,
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
