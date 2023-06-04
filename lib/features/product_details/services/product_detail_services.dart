@@ -95,4 +95,31 @@ class ProductDetailServices {
           .showSnackBar(SnackBar(content: Text(e.toString())));
     }
   }
+
+  Future<Product> getOneProduct(
+      {required BuildContext context, required String id}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('x-auth-token');
+    Product product = Product(
+        name: '',
+        description: '',
+        quantity: 0,
+        images: [],
+        category: '',
+        price: 0);
+
+    try {
+      http.Response response =
+          await http.get(Uri.parse('$uriGetOneProduct/$id'), headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'x-auth-token': token!,
+      });
+
+      product = Product.fromJson(response.body);
+    } catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.toString())));
+    }
+    return product;
+  }
 }
