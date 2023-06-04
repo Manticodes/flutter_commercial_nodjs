@@ -45,20 +45,27 @@ class _CartListState extends State<CartList> {
                       return Column(
                         children: [
                           Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Flexible(
                                 child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
+                                    SizedBox(
+                                      height: 3,
+                                    ),
                                     Text(product.name,
                                         softWrap: true,
-                                        textDirection: TextDirection.rtl),
+                                        textDirection: TextDirection.rtl,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold)),
                                     Text(snapshot.data.toString())
                                   ],
                                 ),
                               ),
                               SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.1,
+                                width: MediaQuery.of(context).size.width * 0.03,
                               ),
                               Opacity(
                                 opacity: snapshot.data == false ? 0.1 : 1,
