@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_commercial_nodjs/features/cart/services/services.dart';
+import 'package:flutter_commercial_nodjs/features/product_details/services/product_detail_services.dart';
 import 'package:flutter_commercial_nodjs/model/product.dart';
 
 import '../../../logic/bloc_user/user_bloc.dart';
@@ -24,6 +25,7 @@ class _CartListState extends State<CartList> {
           Column(
             children: widget.state.user.cart.map((e) {
               Product product = Product.fromMap(e['product']);
+
               int quantity = e['quantity'];
               double avgStar = 0;
 
@@ -41,17 +43,13 @@ class _CartListState extends State<CartList> {
                 future: CartServices()
                     .checkItemValidation(id: product.id.toString()),
                 builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
                   if (snapshot.hasError) {
                     return Center(
                         child: Text(
                             '${snapshot.error}there is something wrong try later'));
                   } else {
                     if (snapshot.data == null) {
-                      return const Center(
-                          child: Text(' Some Thing is not ok here '));
+                      return const Center(child: CircularProgressIndicator());
                     } else {
                       validproduct.add(snapshot.data as bool);
                       return Column(
@@ -136,7 +134,14 @@ class _CartListState extends State<CartList> {
                                                 width: 35,
                                                 height: 35,
                                                 child: InkWell(
-                                                  onTap: () {},
+                                                  onTap: () {
+                                                    setState(() {
+                                                      ProductDetailServices()
+                                                          .addToCart(
+                                                              context: context,
+                                                              product: product);
+                                                    });
+                                                  },
                                                   child: Card(
                                                     child: Icon(Icons.add,
                                                         color: Colors.red),
@@ -147,7 +152,7 @@ class _CartListState extends State<CartList> {
                                                 width: 5,
                                               ),
                                               Text(
-                                                '${product.quantity.round()}',
+                                                '${quantity}',
                                                 overflow: TextOverflow.clip,
                                                 textAlign: TextAlign.right,
                                                 style: const TextStyle(

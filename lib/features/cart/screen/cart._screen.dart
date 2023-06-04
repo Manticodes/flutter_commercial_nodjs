@@ -21,12 +21,15 @@ class ShoppingCartPageState extends State<ShoppingCartPage> {
     double totalDiscount = 0;
     double totalPriceWithDiscount = 0;
     void calculateTotal(UserState state) {
+      totalPrice = 0; //clear the value of totalPrice before calculating
       for (var i = 0; i < state.user.cart.length; i++) {
         var price = state.user.cart[i]['product']['price'];
         // debugPrint(price.toString());
 
         totalPrice += price * state.user.cart[i]['quantity'];
-        totalDiscount += totalPrice * 0.1;
+        totalDiscount += price *
+            state.user.cart[i]['quantity'] *
+            0.1; //change here to calculate the discount based on the price and quantity
       }
       totalPriceWithDiscount = totalPrice - totalDiscount;
     }
@@ -240,7 +243,7 @@ class ShoppingCartPageState extends State<ShoppingCartPage> {
                         ],
                         style: TextStyle(
                             fontSize: 15, fontWeight: FontWeight.bold))),
-                    Text(' ${totalPriceWithDiscount.round()} ')
+                    Text(' ${totalPrice.round()} ')
                   ],
                 ),
                 Container(
