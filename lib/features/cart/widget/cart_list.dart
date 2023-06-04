@@ -167,10 +167,20 @@ class _CartListState extends State<CartList> {
                                                 width: 35,
                                                 height: 35,
                                                 child: InkWell(
-                                                  onTap: () {},
+                                                  onTap: () {
+                                                    ProductDetailServices()
+                                                        .minusCart(
+                                                            context: context,
+                                                            product: product);
+                                                  },
                                                   child: Card(
-                                                    child: Icon(Icons.remove,
-                                                        color: Colors.red),
+                                                    child: quantity == 1
+                                                        ? Icon(
+                                                            Icons.delete,
+                                                            color: Colors.red,
+                                                          )
+                                                        : Icon(Icons.remove,
+                                                            color: Colors.red),
                                                   ),
                                                 ),
                                               )

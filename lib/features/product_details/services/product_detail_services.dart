@@ -76,7 +76,7 @@ class ProductDetailServices {
     String? token = prefs.getString('x-auth-token');
 
     try {
-      http.Response response = await http.post(Uri.parse(uriAddToCart),
+      http.Response response = await http.post(Uri.parse(uriMinusProduct),
           headers: {
             'Content-Type': 'application/json; charset=UTF-8',
             'x-auth-token': token!,
