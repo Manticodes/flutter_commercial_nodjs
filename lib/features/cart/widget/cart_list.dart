@@ -6,6 +6,8 @@ import 'package:flutter_commercial_nodjs/model/product.dart';
 import '../../../logic/bloc_user/user_bloc.dart';
 import '../../search/widget/stars.dart';
 
+//Todo : Make an API for permanently Remove a product
+
 class CartList extends StatefulWidget {
   const CartList({Key? key, required this.state}) : super(key: key);
   final UserState state;
@@ -90,7 +92,7 @@ class _CartListState extends State<CartList> {
                                             children: [
                                               WidgetSpan(
                                                 child: Text(
-                                                  product.price
+                                                  orginalProduct.price
                                                       .round()
                                                       .toString(),
                                                   style: const TextStyle(

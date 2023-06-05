@@ -7,6 +7,8 @@ import 'package:flutter_commercial_nodjs/model/product.dart';
 import '../../../logic/bloc_user/user_bloc.dart';
 import '../services/services.dart';
 
+//TODO : use orginal price to calculate
+//TODO : use validation for all Situation
 class ShoppingCartPage extends StatefulWidget {
   const ShoppingCartPage({super.key});
 
@@ -38,7 +40,6 @@ class ShoppingCartPageState extends State<ShoppingCartPage> {
       List<bool> validationList = [];
 
       for (var i = 0; i < state.user.cart.length; i++) {
-        validationList = [];
         Product product = Product.fromMap(state.user.cart[i]['product']);
         bool a =
             await CartServices().checkItemValidation(id: product.id.toString());
