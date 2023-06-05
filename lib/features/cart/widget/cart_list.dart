@@ -69,7 +69,9 @@ class _CartListState extends State<CartList> {
                                       height: 3,
                                     ),
                                     if (snapshot.data![0] == false)
-                                      const Text('پایان موجودی در انبار '),
+                                      const Text('این محصول حذف شده است')
+                                    else if (orginalProduct.quantity == 0)
+                                      const Text('موجودی انبار تمام شده است'),
                                     const SizedBox(
                                       height: 3,
                                     ),
@@ -128,84 +130,138 @@ class _CartListState extends State<CartList> {
                                       height: 5,
                                     ),
                                     snapshot.data![0] == true
-                                        ? Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            children: [
-                                              Container(
-                                                width: 35,
-                                                height: 35,
-                                                child: InkWell(
-                                                  onTap: () {
-                                                    setState(() {
-                                                      if (quantity <
-                                                          orginalProduct
-                                                              .quantity) {
+                                        ? quantity > orginalProduct.quantity
+                                            ? Column(
+                                                children: [
+                                                  const Text(
+                                                    'کاهش موجودی انبار لطفا تعداد این محصول را کاهش دهید',
+                                                    textDirection:
+                                                        TextDirection.rtl,
+                                                    textAlign: TextAlign.right,
+                                                  ),
+                                                  SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Text(quantity.toString()),
+                                                      SizedBox(
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.3,
+                                                        height: 35,
+                                                        child: InkWell(
+                                                          onTap: () {
+                                                            ProductDetailServices()
+                                                                .minusCart(
+                                                                    context:
+                                                                        context,
+                                                                    product:
+                                                                        product);
+                                                          },
+                                                          child: Card(
+                                                            child: quantity == 1
+                                                                ? const Icon(
+                                                                    Icons
+                                                                        .delete,
+                                                                    color: Colors
+                                                                        .red,
+                                                                  )
+                                                                : const Icon(
+                                                                    Icons
+                                                                        .remove,
+                                                                    color: Colors
+                                                                        .red),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  )
+                                                ],
+                                              )
+                                            : Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  Container(
+                                                    width: 35,
+                                                    height: 35,
+                                                    child: InkWell(
+                                                      onTap: () {
+                                                        setState(() {
+                                                          if (quantity !=
+                                                              null) {
+                                                            ProductDetailServices()
+                                                                .addToCart(
+                                                                    context:
+                                                                        context,
+                                                                    product:
+                                                                        product);
+                                                          } else {
+                                                            ScaffoldMessenger
+                                                                    .of(context)
+                                                                .showSnackBar(
+                                                                    const SnackBar(
+                                                              content: Text(
+                                                                  'حداکثر موجودی'),
+                                                              duration: Duration(
+                                                                  milliseconds:
+                                                                      800),
+                                                            ));
+                                                          }
+                                                        });
+                                                      },
+                                                      child: const Card(
+                                                        child: Icon(Icons.add,
+                                                            color: Colors.red),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(
+                                                    width: 5,
+                                                  ),
+                                                  Text(
+                                                    '$quantity',
+                                                    overflow: TextOverflow.clip,
+                                                    textAlign: TextAlign.right,
+                                                    style: const TextStyle(
+                                                        fontSize: 15,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                  const SizedBox(
+                                                    width: 5,
+                                                  ),
+                                                  SizedBox(
+                                                    width: 35,
+                                                    height: 35,
+                                                    child: InkWell(
+                                                      onTap: () {
                                                         ProductDetailServices()
-                                                            .addToCart(
+                                                            .minusCart(
                                                                 context:
                                                                     context,
                                                                 product:
                                                                     product);
-                                                      } else {
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                                const SnackBar(
-                                                          content: Text(
-                                                              'حداکثر موجودی'),
-                                                          duration: Duration(
-                                                              milliseconds:
-                                                                  800),
-                                                        ));
-                                                      }
-                                                    });
-                                                  },
-                                                  child: const Card(
-                                                    child: Icon(Icons.add,
-                                                        color: Colors.red),
-                                                  ),
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                width: 5,
-                                              ),
-                                              Text(
-                                                '$quantity',
-                                                overflow: TextOverflow.clip,
-                                                textAlign: TextAlign.right,
-                                                style: const TextStyle(
-                                                    fontSize: 15,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                              const SizedBox(
-                                                width: 5,
-                                              ),
-                                              SizedBox(
-                                                width: 35,
-                                                height: 35,
-                                                child: InkWell(
-                                                  onTap: () {
-                                                    ProductDetailServices()
-                                                        .minusCart(
-                                                            context: context,
-                                                            product: product);
-                                                  },
-                                                  child: Card(
-                                                    child: quantity == 1
-                                                        ? const Icon(
-                                                            Icons.delete,
-                                                            color: Colors.red,
-                                                          )
-                                                        : const Icon(
-                                                            Icons.remove,
-                                                            color: Colors.red),
-                                                  ),
-                                                ),
+                                                      },
+                                                      child: Card(
+                                                        child: quantity == 1
+                                                            ? const Icon(
+                                                                Icons.delete,
+                                                                color:
+                                                                    Colors.red,
+                                                              )
+                                                            : const Icon(
+                                                                Icons.remove,
+                                                                color:
+                                                                    Colors.red),
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
                                               )
-                                            ],
-                                          )
                                         //TODO: add functionality
                                         : InkWell(
                                             onTap: () {},
@@ -225,7 +281,10 @@ class _CartListState extends State<CartList> {
                                 width: MediaQuery.of(context).size.width * 0.03,
                               ),
                               Opacity(
-                                opacity: snapshot.data![0] == false ? 0.1 : 1,
+                                opacity: snapshot.data![0] == false ||
+                                        product.quantity == 0
+                                    ? 0.1
+                                    : 1,
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8),
                                   child: Image.network(
