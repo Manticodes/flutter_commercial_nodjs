@@ -38,6 +38,7 @@ class ShoppingCartPageState extends State<ShoppingCartPage> {
       List<bool> validationList = [];
 
       for (var i = 0; i < state.user.cart.length; i++) {
+        validationList = [];
         Product product = Product.fromMap(state.user.cart[i]['product']);
         bool a =
             await CartServices().checkItemValidation(id: product.id.toString());

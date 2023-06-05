@@ -168,7 +168,7 @@ class _CartListState extends State<CartList> {
                                                         ),
                                                       ),
                                                     ),
-                                                  )
+                                                  ),
                                                 ],
                                               )
                                             : quantity > orginalProduct.quantity
@@ -316,15 +316,43 @@ class _CartListState extends State<CartList> {
                                         //TODO: add functionality
                                         : InkWell(
                                             onTap: () {},
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
-                                              children: const [
-                                                Text('حذف محصول'),
-                                                Icon(Icons.close),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.end,
+                                              children: [
+                                                const Text(
+                                                  'لطفا این محصول را حذف کنید',
+                                                  textDirection:
+                                                      TextDirection.rtl,
+                                                  textAlign: TextAlign.right,
+                                                ),
+                                                SizedBox(
+                                                  height: 8,
+                                                ),
+                                                SizedBox(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.3,
+                                                  height: 35,
+                                                  child: InkWell(
+                                                    onTap: () {
+                                                      //Todo : change function to remove
+                                                      ProductDetailServices()
+                                                          .minusCart(
+                                                              context: context,
+                                                              product: product);
+                                                    },
+                                                    child: const Card(
+                                                      child: Icon(
+                                                        Icons.delete,
+                                                        color: Colors.red,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
                                               ],
-                                            ),
-                                          ),
+                                            )),
                                   ],
                                 ),
                               ),
