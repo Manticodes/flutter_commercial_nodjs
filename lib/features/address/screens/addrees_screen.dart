@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AddreesScreen extends StatefulWidget {
+  static const String routename = "/addreesScreen";
   const AddreesScreen({Key? key}) : super(key: key);
 
   @override
