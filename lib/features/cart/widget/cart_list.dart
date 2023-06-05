@@ -65,19 +65,19 @@ class _CartListState extends State<CartList> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 3,
                                     ),
                                     if (snapshot.data![0] == false)
-                                      Text('پایان موجودی در انبار '),
-                                    SizedBox(
+                                      const Text('پایان موجودی در انبار '),
+                                    const SizedBox(
                                       height: 3,
                                     ),
                                     Text(product.name,
                                         textAlign: TextAlign.right,
                                         softWrap: true,
                                         textDirection: TextDirection.rtl,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontWeight: FontWeight.bold)),
                                     Padding(
                                       padding: const EdgeInsets.only(
@@ -124,7 +124,7 @@ class _CartListState extends State<CartList> {
                                         rating: avgStar,
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 5,
                                     ),
                                     snapshot.data![0] == true
@@ -151,7 +151,7 @@ class _CartListState extends State<CartList> {
                                                         ScaffoldMessenger.of(
                                                                 context)
                                                             .showSnackBar(
-                                                                SnackBar(
+                                                                const SnackBar(
                                                           content: Text(
                                                               'حداکثر موجودی'),
                                                           duration: Duration(
@@ -161,17 +161,17 @@ class _CartListState extends State<CartList> {
                                                       }
                                                     });
                                                   },
-                                                  child: Card(
+                                                  child: const Card(
                                                     child: Icon(Icons.add,
                                                         color: Colors.red),
                                                   ),
                                                 ),
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 width: 5,
                                               ),
                                               Text(
-                                                '${quantity}',
+                                                '$quantity',
                                                 overflow: TextOverflow.clip,
                                                 textAlign: TextAlign.right,
                                                 style: const TextStyle(
@@ -179,10 +179,10 @@ class _CartListState extends State<CartList> {
                                                     fontWeight:
                                                         FontWeight.bold),
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 width: 5,
                                               ),
-                                              Container(
+                                              SizedBox(
                                                 width: 35,
                                                 height: 35,
                                                 child: InkWell(
@@ -194,11 +194,12 @@ class _CartListState extends State<CartList> {
                                                   },
                                                   child: Card(
                                                     child: quantity == 1
-                                                        ? Icon(
+                                                        ? const Icon(
                                                             Icons.delete,
                                                             color: Colors.red,
                                                           )
-                                                        : Icon(Icons.remove,
+                                                        : const Icon(
+                                                            Icons.remove,
                                                             color: Colors.red),
                                                   ),
                                                 ),
@@ -211,7 +212,7 @@ class _CartListState extends State<CartList> {
                                             child: Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.end,
-                                              children: [
+                                              children: const [
                                                 Text('حذف محصول'),
                                                 Icon(Icons.close),
                                               ],
