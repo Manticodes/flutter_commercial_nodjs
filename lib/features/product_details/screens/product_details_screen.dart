@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_commercial_nodjs/features/auth/widgets/costum_button.dart';
 import 'package:flutter_commercial_nodjs/features/product_details/services/product_detail_services.dart';
 import 'package:flutter_commercial_nodjs/features/search/widget/stars.dart';
 import 'package:flutter_commercial_nodjs/model/product.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
+import '../../../logic/bloc_user/user_bloc.dart';
 import '../../../model/user.dart';
 import '../widgets/product_details_widget.dart';
 
@@ -153,20 +155,41 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             ),
             // TODO : redesign this part below and add functionallity here
             // TODO : use api instead of bool
-            isAdded
-                ? const ProductInCardWidget()
-                : Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: CostumeButton(
-                        title: 'افزودن به سبد خرید',
-                        onTap: () {
-                          setState(() {
-                            isAdded = true;
-                            ProductDetailServices().addToCart(
-                                context: context, product: widget.product);
-                          });
-                        }),
-                  ),
+            BlocBuilder<UserBloc, UserState>(
+              builder: (context, state) {
+                Product product = Product(
+                    name: '',
+                    description: '',
+                    quantity: 0,
+                    images: [],
+                    category: '',
+                    price: 0);
+                User user = state.user;
+                bool productExist = false;
+                for (var i = 0; i < user.cart.length; i++) {
+                  Product theProduct = Product.fromMap(user.cart[i]['product']);
+
+                  if (product.id == widget.product.id) {
+                    productExist = true;
+                    product = theProduct;
+                    break;
+                  }
+                }
+
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: CostumeButton(
+                      title: 'افزودن به سبد خرید',
+                      onTap: () {
+                        setState(() {
+                          isAdded = true;
+                          ProductDetailServices().addToCart(
+                              context: context, product: widget.product);
+                        });
+                      }),
+                );
+              },
+            ),
             const SizedBox(
               height: 20,
             ),
