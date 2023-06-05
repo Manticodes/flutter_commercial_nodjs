@@ -153,8 +153,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             const SizedBox(
               height: 5,
             ),
-            // TODO : redesign this part below and add functionallity here
-            // TODO : use api instead of bool
+            //TODO : add more validation and condition here like if user cart is more than stock or product is out of stock
             BlocBuilder<UserBloc, UserState>(
               builder: (context, state) {
                 Product product = Product(
