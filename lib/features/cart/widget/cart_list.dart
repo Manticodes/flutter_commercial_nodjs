@@ -53,6 +53,7 @@ class _CartListState extends State<CartList> {
                     if (snapshot.data == null) {
                       return const Center(child: CircularProgressIndicator());
                     } else {
+                      Product orginalProduct = snapshot.data![1];
                       return Column(
                         children: [
                           Row(
@@ -137,10 +138,27 @@ class _CartListState extends State<CartList> {
                                                 child: InkWell(
                                                   onTap: () {
                                                     setState(() {
-                                                      ProductDetailServices()
-                                                          .addToCart(
-                                                              context: context,
-                                                              product: product);
+                                                      if (quantity <
+                                                          orginalProduct
+                                                              .quantity) {
+                                                        ProductDetailServices()
+                                                            .addToCart(
+                                                                context:
+                                                                    context,
+                                                                product:
+                                                                    product);
+                                                      } else {
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                                SnackBar(
+                                                          content: Text(
+                                                              'حداکثر موجودی'),
+                                                          duration: Duration(
+                                                              milliseconds:
+                                                                  800),
+                                                        ));
+                                                      }
                                                     });
                                                   },
                                                   child: Card(
@@ -187,6 +205,7 @@ class _CartListState extends State<CartList> {
                                               )
                                             ],
                                           )
+                                        //TODO: add functionality
                                         : InkWell(
                                             onTap: () {},
                                             child: Row(
@@ -197,7 +216,7 @@ class _CartListState extends State<CartList> {
                                                 Icon(Icons.close),
                                               ],
                                             ),
-                                          )
+                                          ),
                                   ],
                                 ),
                               ),
