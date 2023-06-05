@@ -185,15 +185,31 @@ class _CartListState extends State<CartList> {
                                                         height: 5,
                                                       ),
                                                       Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .end,
                                                         children: [
-                                                          Text(quantity
-                                                              .toString()),
+                                                          const SizedBox(
+                                                            width: 5,
+                                                          ),
+                                                          Text(
+                                                            '$quantity',
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .clip,
+                                                            textAlign:
+                                                                TextAlign.right,
+                                                            style: const TextStyle(
+                                                                fontSize: 15,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
+                                                          const SizedBox(
+                                                            width: 5,
+                                                          ),
                                                           SizedBox(
-                                                            width: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width *
-                                                                0.3,
+                                                            width: 35,
                                                             height: 35,
                                                             child: InkWell(
                                                               onTap: () {
@@ -220,7 +236,7 @@ class _CartListState extends State<CartList> {
                                                                             .red),
                                                               ),
                                                             ),
-                                                          ),
+                                                          )
                                                         ],
                                                       )
                                                     ],
@@ -235,8 +251,9 @@ class _CartListState extends State<CartList> {
                                                         child: InkWell(
                                                           onTap: () {
                                                             setState(() {
-                                                              if (quantity !=
-                                                                  null) {
+                                                              if (quantity <
+                                                                  orginalProduct
+                                                                      .quantity) {
                                                                 ProductDetailServices()
                                                                     .addToCart(
                                                                         context:
