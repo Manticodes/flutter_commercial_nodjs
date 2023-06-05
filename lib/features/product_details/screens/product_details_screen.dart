@@ -166,28 +166,95 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     price: 0);
                 User user = state.user;
                 bool productExist = false;
+                int userQuantity = 0;
+
                 for (var i = 0; i < user.cart.length; i++) {
                   Product theProduct = Product.fromMap(user.cart[i]['product']);
 
-                  if (product.id == widget.product.id) {
+                  if (theProduct.id == widget.product.id) {
                     productExist = true;
                     product = theProduct;
+                    userQuantity = user.cart[i]['quantity'];
+
                     break;
                   }
                 }
 
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: CostumeButton(
-                      title: 'افزودن به سبد خرید',
-                      onTap: () {
-                        setState(() {
-                          isAdded = true;
-                          ProductDetailServices().addToCart(
-                              context: context, product: widget.product);
-                        });
-                      }),
-                );
+                return productExist
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: 50,
+                            height: 50,
+                            child: InkWell(
+                              onTap: () {
+                                setState(() {
+                                  if (userQuantity < widget.product.quantity) {
+                                    ProductDetailServices().addToCart(
+                                        context: context, product: product);
+                                  } else {
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(const SnackBar(
+                                      content: Text('حداکثر موجودی'),
+                                      duration: Duration(milliseconds: 800),
+                                    ));
+                                  }
+                                });
+                              },
+                              child: const Card(
+                                child: Icon(Icons.add, color: Colors.red),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Text(
+                            userQuantity.round().toString(),
+                            overflow: TextOverflow.clip,
+                            textAlign: TextAlign.right,
+                            style: const TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          SizedBox(
+                            width: 50,
+                            height: 50,
+                            child: InkWell(
+                              onTap: () {
+                                setState(() {
+                                  ProductDetailServices().minusCart(
+                                      context: context, product: product);
+                                });
+                              },
+                              child: Card(
+                                child: userQuantity == 1
+                                    ? const Icon(
+                                        Icons.delete,
+                                        color: Colors.red,
+                                      )
+                                    : const Icon(Icons.remove,
+                                        color: Colors.red),
+                              ),
+                            ),
+                          )
+                        ],
+                      )
+                    : Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: CostumeButton(
+                            title: 'افزودن به سبد خرید',
+                            onTap: () {
+                              setState(() {
+                                isAdded = true;
+                                ProductDetailServices().addToCart(
+                                    context: context, product: widget.product);
+                              });
+                            }),
+                      );
               },
             ),
             const SizedBox(

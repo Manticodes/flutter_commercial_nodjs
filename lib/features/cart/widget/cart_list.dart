@@ -143,7 +143,7 @@ class _CartListState extends State<CartList> {
                                                         TextDirection.rtl,
                                                     textAlign: TextAlign.right,
                                                   ),
-                                                  SizedBox(
+                                                  const SizedBox(
                                                     height: 8,
                                                   ),
                                                   SizedBox(
@@ -183,7 +183,7 @@ class _CartListState extends State<CartList> {
                                                         textAlign:
                                                             TextAlign.right,
                                                       ),
-                                                      SizedBox(
+                                                      const SizedBox(
                                                         height: 5,
                                                       ),
                                                       Row(
@@ -345,7 +345,7 @@ class _CartListState extends State<CartList> {
                                                       TextDirection.rtl,
                                                   textAlign: TextAlign.right,
                                                 ),
-                                                SizedBox(
+                                                const SizedBox(
                                                   height: 8,
                                                 ),
                                                 SizedBox(
