@@ -47,14 +47,14 @@ class _AddreesScreenState extends State<AddreesScreen> {
                 children: [
                   TextFormField(
                     decoration: const InputDecoration(
-                      labelText: 'Address',
-                      hintText: 'Enter your address',
+                      labelText: 'آدرس',
+                      hintText: 'آدرس خود را وارد کنید',
                       border: OutlineInputBorder(),
                       prefixIcon: Icon(Icons.home),
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your address';
+                        return 'لطفا آدرس خود را وارد کنید';
                       }
                       return null;
                     },
@@ -62,14 +62,14 @@ class _AddreesScreenState extends State<AddreesScreen> {
                   const SizedBox(height: 16),
                   TextFormField(
                     decoration: const InputDecoration(
-                      labelText: 'Address2',
-                      hintText: 'Enter your address2',
+                      labelText: 'منطقه',
+                      hintText: 'منطقه را وارد کنید',
                       border: OutlineInputBorder(),
                       prefixIcon: Icon(Icons.home),
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your address2';
+                        return 'لطفا منطقه را وارد کنید';
                       }
                       return null;
                     },
@@ -77,16 +77,16 @@ class _AddreesScreenState extends State<AddreesScreen> {
                   const SizedBox(height: 16),
                   TextFormField(
                     decoration: const InputDecoration(
-                      labelText: 'Pincode',
-                      hintText: 'Enter your pincode',
+                      labelText: 'کد پستی',
+                      hintText: 'کد پستی را وارد کنید',
                       border: OutlineInputBorder(),
                       prefixIcon: Icon(Icons.pin),
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your pincode';
+                        return 'لطفا کد پستی را وارد کنید';
                       } else if (value.length != 6) {
-                        return 'Please enter a valid pincode';
+                        return 'لطفا کد پستی معتبر وارد کنید';
                       }
                       return null;
                     },
