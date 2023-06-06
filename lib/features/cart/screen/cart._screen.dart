@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_commercial_nodjs/features/address/screens/addrees_screen.dart';
 import 'package:flutter_commercial_nodjs/features/cart/widget/cart_list.dart';
 import 'package:flutter_commercial_nodjs/features/home/home_widgets.dart';
 import 'package:flutter_commercial_nodjs/model/product.dart';
@@ -17,6 +18,10 @@ class ShoppingCartPage extends StatefulWidget {
 }
 
 class ShoppingCartPageState extends State<ShoppingCartPage> {
+  void navigateToAddress() {
+    Navigator.pushNamed(context, AddreesScreen.routename);
+  }
+
   @override
   Widget build(BuildContext context) {
     double totalPrice = 0;
@@ -29,9 +34,7 @@ class ShoppingCartPageState extends State<ShoppingCartPage> {
         // debugPrint(price.toString());
 
         totalPrice += price * state.user.cart[i]['quantity'];
-        totalDiscount += price *
-            state.user.cart[i]['quantity'] *
-            0.1; //change here to calculate the discount based on the price and quantity
+        totalDiscount += price * state.user.cart[i]['quantity'] * 0.1;
       }
       totalPriceWithDiscount = totalPrice - totalDiscount;
     }
