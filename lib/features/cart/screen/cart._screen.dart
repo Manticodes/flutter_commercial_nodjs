@@ -107,7 +107,7 @@ class ShoppingCartPageState extends State<ShoppingCartPage> {
                   height: MediaQuery.of(context).size.height * 0.055,
                   child: Center(
                       child: InkWell(
-                    onTap: () {},
+                    onTap: navigateToAddress,
                     child: const Text(
                       'تکمیل خرید',
                       style: TextStyle(
