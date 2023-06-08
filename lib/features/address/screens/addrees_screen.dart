@@ -12,6 +12,11 @@ class AddreesScreen extends StatefulWidget {
 }
 
 class _AddreesScreenState extends State<AddreesScreen> {
+  TextEditingController addreesController = TextEditingController();
+  TextEditingController regionController = TextEditingController();
+  TextEditingController postalCodeController = TextEditingController();
+  TextEditingController cityController = TextEditingController();
+
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -56,7 +61,7 @@ class _AddreesScreenState extends State<AddreesScreen> {
                         style: TextStyle(fontSize: 17),
                       ),
                       state.user.adress.isEmpty
-                          ? SizedBox(
+                          ? const SizedBox(
                               height: 5,
                             )
                           : Text(state.user.adress),
@@ -67,6 +72,7 @@ class _AddreesScreenState extends State<AddreesScreen> {
                         style: TextStyle(fontSize: 17),
                       ),
                       TextFormField(
+                        controller: addreesController,
                         decoration: const InputDecoration(
                           labelText: 'آدرس',
                           hintText: 'آدرس خود را وارد کنید',
@@ -82,6 +88,7 @@ class _AddreesScreenState extends State<AddreesScreen> {
                       ),
                       const SizedBox(height: 16),
                       TextFormField(
+                        controller: regionController,
                         decoration: const InputDecoration(
                           labelText: 'منطقه',
                           hintText: 'منطقه را وارد کنید',
@@ -97,6 +104,7 @@ class _AddreesScreenState extends State<AddreesScreen> {
                       ),
                       const SizedBox(height: 16),
                       TextFormField(
+                        controller: postalCodeController,
                         decoration: const InputDecoration(
                           labelText: 'کد پستی',
                           hintText: 'کد پستی را وارد کنید',
@@ -114,6 +122,7 @@ class _AddreesScreenState extends State<AddreesScreen> {
                       ),
                       const SizedBox(height: 16),
                       TextFormField(
+                        controller: regionController,
                         decoration: const InputDecoration(
                           labelText: 'شهر',
                           hintText: 'نام شهر را وارد کنید',
