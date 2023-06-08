@@ -17,7 +17,16 @@ class _AddreesScreenState extends State<AddreesScreen> {
   TextEditingController postalCodeController = TextEditingController();
   TextEditingController cityController = TextEditingController();
 
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  @override
+  void dispose() {
+    super.dispose();
+    addreesController.dispose();
+    regionController.dispose();
+    postalCodeController.dispose();
+    cityController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
