@@ -39,8 +39,10 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
               CategoryDealsScreen(category: routeSettings.arguments.toString()),
           settings: routeSettings);
     case AddreesScreen.routename:
+      var price = routeSettings.arguments as int;
       return MaterialPageRoute(
-          builder: (context) => const AddreesScreen(), settings: routeSettings);
+          builder: (context) => AddreesScreen(price: price),
+          settings: routeSettings);
 
     case ProductDetailsScreen.routeName:
       List<dynamic> args = routeSettings.arguments as List<dynamic>;

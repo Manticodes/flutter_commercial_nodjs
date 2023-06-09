@@ -1,14 +1,20 @@
-import 'package:url_launcher/url_launcher.dart';
-import 'package:zarinpal/zarinpal.dart';
+// ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:zarinpal/zarinpal.dart';
 
 import '../../../logic/bloc_user/user_bloc.dart';
 
 class AddreesScreen extends StatefulWidget {
+  final int price;
+
   static const String routename = "/addreesScreen";
-  const AddreesScreen({Key? key}) : super(key: key);
+  const AddreesScreen({
+    Key? key,
+    required this.price,
+  }) : super(key: key);
 
   @override
   _AddreesScreenState createState() => _AddreesScreenState();
@@ -25,7 +31,7 @@ class _AddreesScreenState extends State<AddreesScreen> {
     setState(() {
       paymentRequest
         ..setIsSandBox(true)
-        ..setAmount(1000)
+        ..setAmount(widget.price)
         ..setDescription('description')
         ..setMerchantID('asa')
         ..setCallbackURL('https://sina.com');

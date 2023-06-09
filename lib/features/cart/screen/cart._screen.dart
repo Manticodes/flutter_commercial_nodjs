@@ -18,12 +18,14 @@ class ShoppingCartPage extends StatefulWidget {
 }
 
 class ShoppingCartPageState extends State<ShoppingCartPage> {
-  void navigateToAddress() {
-    Navigator.pushNamed(context, AddreesScreen.routename);
+  void navigateToAddress(int price) {
+    Navigator.pushNamed(context, AddreesScreen.routename, arguments: price);
   }
 
   @override
   Widget build(BuildContext context) {
+    RegExp reg = RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))');
+    String Function(Match) mathFunc = (Match match) => '${match[1]},';
     double totalPrice = 0;
     double totalDiscount = 0;
     double totalPriceWithDiscount = 0;
@@ -96,7 +98,8 @@ class ShoppingCartPageState extends State<ShoppingCartPage> {
                         ],
                         style: TextStyle(
                             fontSize: 15, fontWeight: FontWeight.bold))),
-                    Text(' ${totalPrice.round()} ')
+                    Text(
+                        ' ${totalPrice.round().toString().replaceAllMapped(reg, mathFunc)} ')
                   ],
                 ),
                 Container(
@@ -107,7 +110,7 @@ class ShoppingCartPageState extends State<ShoppingCartPage> {
                   height: MediaQuery.of(context).size.height * 0.055,
                   child: Center(
                       child: InkWell(
-                    onTap: navigateToAddress,
+                    onTap: () => navigateToAddress(totalPrice.toInt()),
                     child: const Text(
                       'تکمیل خرید',
                       style: TextStyle(
