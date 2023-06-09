@@ -24,6 +24,16 @@ class AddToCart extends UserEvent {
   List<Object?> get props => [user];
 }
 
+class AddAddress extends UserEvent {
+  final String adrress;
+  const AddAddress({
+    required this.adrress,
+  });
+
+  @override
+  List<Object?> get props => [adrress];
+}
+
 class CleanUser extends UserEvent {
   @override
   List<Object?> get props => [];

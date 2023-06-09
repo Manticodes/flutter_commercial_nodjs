@@ -23,9 +23,10 @@ String uriDealOfDay = 'https://amazone-clone.iran.liara.run/api/get-deals';
 String uriCheckTheCart =
     'https://amazone-clone.iran.liara.run/cart/check-product';
 String uriMinusProduct =
-    'https://amazone-clone.iran.liara.run/cart/remove-product'; // /api/get-one-product
+    'https://amazone-clone.iran.liara.run/cart/remove-product';
 String uriGetOneProduct =
     'https://amazone-clone.iran.liara.run/api/get-one-product';
+String uriAddAdress = 'https://amazone-clone.iran.liara.run/api/add-address';
 
 List categoryImageLinks = [
   {
