@@ -17,6 +17,8 @@ class CartList extends StatefulWidget {
 }
 
 class _CartListState extends State<CartList> {
+  RegExp reg = RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))');
+  String Function(Match) mathFunc = (Match match) => '${match[1]},';
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -56,6 +58,15 @@ class _CartListState extends State<CartList> {
                       return const Center(child: CircularProgressIndicator());
                     } else {
                       Product orginalProduct = snapshot.data![1];
+                      var aPrice = product.price
+                          .round()
+                          .toString()
+                          .replaceAllMapped(reg, mathFunc);
+
+                      var totalPrice = (product.price * quantity)
+                          .round()
+                          .toString()
+                          .replaceAllMapped(reg, mathFunc);
                       return Column(
                         children: [
                           Row(
@@ -92,9 +103,7 @@ class _CartListState extends State<CartList> {
                                             children: [
                                               WidgetSpan(
                                                 child: Text(
-                                                  orginalProduct.price
-                                                      .round()
-                                                      .toString(),
+                                                  aPrice,
                                                   style: const TextStyle(
                                                       fontSize: 15,
                                                       fontWeight:
@@ -356,8 +365,7 @@ class _CartListState extends State<CartList> {
                                                         TextSpan(
                                                           children: [
                                                             TextSpan(
-                                                              text:
-                                                                  '${product.price.round() * quantity}',
+                                                              text: totalPrice,
                                                               style: TextStyle(
                                                                 color: Colors
                                                                     .green,
