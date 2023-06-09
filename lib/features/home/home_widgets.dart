@@ -95,11 +95,13 @@ class Cataloge extends StatelessWidget {
 }
 
 class SingleProductImage extends StatelessWidget {
-  const SingleProductImage({
+  SingleProductImage({
     super.key,
     required this.product,
   });
   final Product product;
+  RegExp reg = RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))');
+  String Function(Match) mathFunc = (Match match) => '${match[1]},';
 
   @override
   Widget build(BuildContext context) {
@@ -132,7 +134,7 @@ class SingleProductImage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                '${product.price} تومان  ',
+                '${product.price.round().toString().replaceAllMapped(reg, mathFunc)}  تومان  ',
                 textAlign: TextAlign.center,
               ),
             )
