@@ -22,6 +22,8 @@ class AddreesScreen extends StatefulWidget {
 }
 
 class _AddreesScreenState extends State<AddreesScreen> {
+  Future<void>? _launched;
+  final Uri toLaunch = Uri.parse('https://zarinp.al/506979');
   TextEditingController addreesController = TextEditingController();
   TextEditingController regionController = TextEditingController();
   TextEditingController postalCodeController = TextEditingController();
@@ -42,6 +44,15 @@ class _AddreesScreenState extends State<AddreesScreen> {
         }
       });
     });
+  }
+
+  Future<void> _launchInBrowser(Uri url) async {
+    if (!await launchUrl(
+      url,
+      mode: LaunchMode.externalApplication,
+    )) {
+      throw Exception('Could not launch $url');
+    }
   }
 
   void addressSelection() {}
@@ -92,22 +103,37 @@ class _AddreesScreenState extends State<AddreesScreen> {
                 builder: (context, state) {
                   return Column(
                     children: [
-                      Text(
-                        state.user.adress.isEmpty
-                            ? 'شما هیچ آدرسی ندارید'
-                            : state.user.adress,
-                        style: TextStyle(fontSize: 17),
+                      if (state.user.adress.isNotEmpty) const Text('آدرس شما'),
+                      SizedBox(
+                        height: 5,
                       ),
-                      state.user.adress.isEmpty
-                          ? const SizedBox(
-                              height: 5,
-                            )
-                          : Text(state.user.adress),
+                      Container(
+                        decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 199, 197, 197),
+                            borderRadius: BorderRadius.circular(8)),
+                        height: 40,
+                        width: double.infinity,
+                        child: Center(
+                          child: Text(
+                            textAlign: TextAlign.center,
+                            state.user.adress.isEmpty
+                                ? 'شما هیچ آدرسی ندارید'
+                                : state.user.adress,
+                            style: TextStyle(fontSize: 15),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
                       Text(
                         state.user.adress.isEmpty
                             ? 'لطفاآدرس خود را وارد کنید'
                             : 'یا جدید وارد کنید',
                         style: TextStyle(fontSize: 17),
+                      ),
+                      SizedBox(
+                        height: 8,
                       ),
                       TextFormField(
                         controller: addreesController,
@@ -188,15 +214,26 @@ class _AddreesScreenState extends State<AddreesScreen> {
                           ),
                           onPressed: () {
                             String theAddress = cityController.text +
+                                ', ' +
                                 regionController.text +
+                                ', ' +
                                 addreesController.text +
+                                ', ' +
                                 ', postalcode: ' +
                                 postalCodeController.text;
                             if (_formKey.currentState!.validate()) {
                               AddressServices().addAddress(
                                   address: theAddress, context: context);
+                              setState(() {
+                                _launched = _launchInBrowser(toLaunch);
+                              });
+
                               print('using from form');
                             } else if (state.user.adress.isNotEmpty) {
+                              setState(() {
+                                _launched = _launchInBrowser(toLaunch);
+                              });
+
                               print('using from pre address');
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
