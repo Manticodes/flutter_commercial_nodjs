@@ -107,23 +107,29 @@ userRouter.post('/cart/remove-product', auth, async (req, res) => {
 
 userRouter.post('/api/add-address', auth, async (req, res) => {
     try {
-        const userId = req.userId;
+        const { userId } = req;
+        const { address } = req.body;
+
+        if (!address) {
+            return res.status(400).json({ error: 'Address is required' });
+        }
+
         const user = await User.findById(userId);
+
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
         }
 
-        user.address = req.body.address;
+        user.address = address;
         await user.save();
+
         res.json(user);
 
     } catch (error) {
         res.status(500).json({ error: error.message });
-
     }
+});
 
-
-})
 
 
 

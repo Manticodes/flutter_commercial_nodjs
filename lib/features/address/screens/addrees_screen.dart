@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_commercial_nodjs/features/address/services/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:zarinpal/zarinpal.dart';
 
@@ -160,7 +161,7 @@ class _AddreesScreenState extends State<AddreesScreen> {
                       ),
                       const SizedBox(height: 16),
                       TextFormField(
-                        controller: regionController,
+                        controller: cityController,
                         decoration: const InputDecoration(
                           labelText: 'شهر',
                           hintText: 'نام شهر را وارد کنید',
@@ -186,7 +187,14 @@ class _AddreesScreenState extends State<AddreesScreen> {
                             padding: const EdgeInsets.symmetric(vertical: 16),
                           ),
                           onPressed: () {
+                            String theAddress = cityController.text +
+                                regionController.text +
+                                addreesController.text +
+                                ', postalcode: ' +
+                                postalCodeController.text;
                             if (_formKey.currentState!.validate()) {
+                              AddressServices().addAddress(
+                                  address: theAddress, context: context);
                               print('using from form');
                             } else if (state.user.adress.isNotEmpty) {
                               print('using from pre address');
