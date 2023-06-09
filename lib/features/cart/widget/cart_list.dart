@@ -244,6 +244,8 @@ class _CartListState extends State<CartList> {
                                                     ],
                                                   )
                                                 : Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment.end,
                                                     children: [
                                                       Row(
                                                         mainAxisAlignment:
@@ -336,21 +338,26 @@ class _CartListState extends State<CartList> {
                                                           )
                                                         ],
                                                       ),
+                                                      SizedBox(
+                                                        height: 5,
+                                                      ),
                                                       Text.rich(
+                                                        textAlign:
+                                                            TextAlign.right,
+                                                        style: const TextStyle(
+                                                          fontSize: 15,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                        textDirection:
+                                                            TextDirection.rtl,
                                                         TextSpan(
                                                           children: [
                                                             TextSpan(
-                                                              text: 'Price: ',
-                                                              style: TextStyle(
-                                                                color: Colors
-                                                                    .black,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                              ),
-                                                            ),
-                                                            TextSpan(
-                                                              text: '',
+                                                              text:
+                                                                  '${product.price.round() * quantity}',
                                                               style: TextStyle(
                                                                 color: Colors
                                                                     .green,
@@ -358,6 +365,16 @@ class _CartListState extends State<CartList> {
                                                                     FontWeight
                                                                         .bold,
                                                               ),
+                                                            ),
+                                                            TextSpan(
+                                                              text: '  تومان ',
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .black,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize: 11),
                                                             ),
                                                           ],
                                                         ),
