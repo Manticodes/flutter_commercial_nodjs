@@ -37,6 +37,8 @@ class _AddreesScreenState extends State<AddreesScreen> {
     });
   }
 
+  void addressSelection() {}
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   void dispose() {
@@ -134,6 +136,7 @@ class _AddreesScreenState extends State<AddreesScreen> {
                       const SizedBox(height: 16),
                       TextFormField(
                         controller: postalCodeController,
+                        keyboardType: TextInputType.number,
                         decoration: const InputDecoration(
                           labelText: 'کد پستی',
                           hintText: 'کد پستی را وارد کنید',
@@ -143,7 +146,7 @@ class _AddreesScreenState extends State<AddreesScreen> {
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'لطفا کد پستی را وارد کنید';
-                          } else if (value.length != 6) {
+                          } else if (value.length < 6) {
                             return 'لطفا کد پستی معتبر وارد کنید';
                           }
                           return null;
@@ -178,7 +181,13 @@ class _AddreesScreenState extends State<AddreesScreen> {
                           ),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              // Do something
+                              print('using from form');
+                            } else if (state.user.adress.isNotEmpty) {
+                              print('using from pre address');
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      content: Text('لطفا یک آدرس وارد کنید')));
                             }
                           },
                           child: const Text(
