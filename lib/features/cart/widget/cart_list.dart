@@ -243,93 +243,126 @@ class _CartListState extends State<CartList> {
                                                       )
                                                     ],
                                                   )
-                                                : Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.end,
+                                                : Column(
                                                     children: [
-                                                      Container(
-                                                        width: 35,
-                                                        height: 35,
-                                                        child: InkWell(
-                                                          onTap: () {
-                                                            setState(() {
-                                                              if (quantity <
-                                                                  orginalProduct
-                                                                      .quantity) {
-                                                                ProductDetailServices()
-                                                                    .addToCart(
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .end,
+                                                        children: [
+                                                          Container(
+                                                            width: 35,
+                                                            height: 35,
+                                                            child: InkWell(
+                                                              onTap: () {
+                                                                setState(() {
+                                                                  if (quantity <
+                                                                      orginalProduct
+                                                                          .quantity) {
+                                                                    ProductDetailServices().addToCart(
                                                                         context:
                                                                             context,
                                                                         product:
                                                                             product);
-                                                              } else {
-                                                                ScaffoldMessenger.of(
-                                                                        context)
-                                                                    .showSnackBar(
-                                                                        const SnackBar(
-                                                                  content: Text(
-                                                                      'حداکثر موجودی'),
-                                                                  duration: Duration(
-                                                                      milliseconds:
-                                                                          800),
-                                                                ));
-                                                              }
-                                                            });
-                                                          },
-                                                          child: const Card(
-                                                            child: Icon(
-                                                                Icons.add,
-                                                                color:
-                                                                    Colors.red),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      const SizedBox(
-                                                        width: 5,
-                                                      ),
-                                                      Text(
-                                                        '$quantity',
-                                                        overflow:
-                                                            TextOverflow.clip,
-                                                        textAlign:
-                                                            TextAlign.right,
-                                                        style: const TextStyle(
-                                                            fontSize: 15,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
-                                                      ),
-                                                      const SizedBox(
-                                                        width: 5,
-                                                      ),
-                                                      SizedBox(
-                                                        width: 35,
-                                                        height: 35,
-                                                        child: InkWell(
-                                                          onTap: () {
-                                                            ProductDetailServices()
-                                                                .minusCart(
-                                                                    context:
-                                                                        context,
-                                                                    product:
-                                                                        product);
-                                                          },
-                                                          child: Card(
-                                                            child: quantity == 1
-                                                                ? const Icon(
-                                                                    Icons
-                                                                        .delete,
-                                                                    color: Colors
-                                                                        .red,
-                                                                  )
-                                                                : const Icon(
-                                                                    Icons
-                                                                        .remove,
+                                                                  } else {
+                                                                    ScaffoldMessenger.of(
+                                                                            context)
+                                                                        .showSnackBar(
+                                                                            const SnackBar(
+                                                                      content: Text(
+                                                                          'حداکثر موجودی'),
+                                                                      duration: Duration(
+                                                                          milliseconds:
+                                                                              800),
+                                                                    ));
+                                                                  }
+                                                                });
+                                                              },
+                                                              child: const Card(
+                                                                child: Icon(
+                                                                    Icons.add,
                                                                     color: Colors
                                                                         .red),
+                                                              ),
+                                                            ),
                                                           ),
+                                                          const SizedBox(
+                                                            width: 5,
+                                                          ),
+                                                          Text(
+                                                            '$quantity',
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .clip,
+                                                            textAlign:
+                                                                TextAlign.right,
+                                                            style: const TextStyle(
+                                                                fontSize: 15,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
+                                                          const SizedBox(
+                                                            width: 5,
+                                                          ),
+                                                          SizedBox(
+                                                            width: 35,
+                                                            height: 35,
+                                                            child: InkWell(
+                                                              onTap: () {
+                                                                ProductDetailServices()
+                                                                    .minusCart(
+                                                                        context:
+                                                                            context,
+                                                                        product:
+                                                                            product);
+                                                              },
+                                                              child: Card(
+                                                                child: quantity ==
+                                                                        1
+                                                                    ? const Icon(
+                                                                        Icons
+                                                                            .delete,
+                                                                        color: Colors
+                                                                            .red,
+                                                                      )
+                                                                    : const Icon(
+                                                                        Icons
+                                                                            .remove,
+                                                                        color: Colors
+                                                                            .red),
+                                                              ),
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                      Text.rich(
+                                                        TextSpan(
+                                                          children: [
+                                                            TextSpan(
+                                                              text: 'Price: ',
+                                                              style: TextStyle(
+                                                                color: Colors
+                                                                    .black,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
+                                                            ),
+                                                            TextSpan(
+                                                              text: '',
+                                                              style: TextStyle(
+                                                                color: Colors
+                                                                    .green,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
+                                                            ),
+                                                          ],
                                                         ),
                                                       )
+                                                      // make a textRich that shows the price add a text beside it
                                                     ],
                                                   )
                                         //TODO: add functionality
