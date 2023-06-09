@@ -1,3 +1,6 @@
+import 'package:url_launcher/url_launcher.dart';
+import 'package:zarinpal/zarinpal.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,6 +19,23 @@ class _AddreesScreenState extends State<AddreesScreen> {
   TextEditingController regionController = TextEditingController();
   TextEditingController postalCodeController = TextEditingController();
   TextEditingController cityController = TextEditingController();
+  //TODO:  you should get zarinpal payment permission and submit a domain then simulate a real payment
+  void paymentController() {
+    PaymentRequest paymentRequest = PaymentRequest();
+    setState(() {
+      paymentRequest
+        ..setIsSandBox(true)
+        ..setAmount(1000)
+        ..setDescription('description')
+        ..setMerchantID('asa')
+        ..setCallbackURL('https://sina.com');
+      ZarinPal().startPayment(paymentRequest, (status, paymentGatewayUri) {
+        if (status == 100) {
+          launchUrl(Uri.parse(paymentGatewayUri!));
+        }
+      });
+    });
+  }
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override

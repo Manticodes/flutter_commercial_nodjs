@@ -4,41 +4,7 @@ const User = require('../model/user');
 const auth = require("../middleware/auth");
 const { Product } = require("../model/product");
 
-/* userRouter.post('/cart/add-product', auth, async (req, res) => {
-    try {
-        const { id } = req.body;
-        const product = await Product.findById(id);
-        let user = await User.findById(req.userId);
-        if (user.cart.length == 0) {
-            user.cart.push({ product, quantity: 1 });
 
-        } else {
-            let isProductFound = false;
-            for (let index = 0; index < user.cart.length; index++) {
-                if (user.cart[index].product._id.equals(product._id)) {
-                    isProductFound = true;
-                }
-
-            }
-            if (isProductFound) {
-                let cartItem = user.cart.find((pr) => pr.product._id.equals(product._id));
-                cartItem.quantity += 1;
-
-            } else {
-                user.cart.push({ product, quantity: 1 });
-            }
-
-
-        }
-        user = await user.save();
-        res.json(user);
-
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-
-    }
-
-}); */
 userRouter.post('/cart/add-product', auth, async (req, res) => {
     try {
         const productId = req.body.id;
@@ -139,6 +105,25 @@ userRouter.post('/cart/remove-product', auth, async (req, res) => {
     }
 });
 
+userRouter.post('/api/add-address', auth, async (req, res) => {
+    try {
+        const userId = req.userId;
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        user.address = req.body.address;
+        await user.save();
+        res.json(user);
+
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+
+    }
+
+
+})
 
 
 
