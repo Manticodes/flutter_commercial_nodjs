@@ -142,7 +142,11 @@ userRouter.post("/api/add-order", auth, async (req, res) => {
             orderedDate,
             stat,
             userId: req.userId,
-        })
+        });
+
+        let products = [];
+
+
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
 
@@ -156,11 +160,21 @@ userRouter.post("/api/add-order", auth, async (req, res) => {
         if (!totalPrice) {
             return res.status(400).json({ error: 'Total price is required' });
         }
-        // add product from cart 
+        // add product and quantity to products array from cart
         for (let index = 0; index < cart.length; index++) {
-
-
-
+            let product = await Product.findById(cart[index].product._id);
+            if (!product) {
+                return res.status(404).json({ error: 'Product not found' });
+            }
+            //check if quantity of product in cart is not more that Product
+            if (product.quantity > cart[index].quantity) {
+                product.quantity -= cart[index].quantity;
+                await product.save();
+                products.push({
+                    product: product,
+                    quantity: cart[index].quantity,
+                });
+            } else { return res.status(400).json({ error: 'Quantity is more than product' }); }
         }
 
 
