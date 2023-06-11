@@ -33,7 +33,7 @@ const orderSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    status: {
+    stat: {
         type: Number,
         default: 0,
     },

@@ -3,6 +3,7 @@ const userRouter = express.Router();
 const User = require('../model/user');
 const auth = require("../middleware/auth");
 const { Product } = require("../model/product");
+const Order = require("../model/order");
 
 
 userRouter.post('/cart/add-product', auth, async (req, res) => {
@@ -129,6 +130,52 @@ userRouter.post('/api/add-address', auth, async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+userRouter.post("/api/add-order", auth, async (req, res) => {
+    try {
+        const { cart, totalPrice, address } = req.body;
+        const userId = req.userId;
+        const user = await User.findById(userId);
+        let order = new Order({
+            totalPrice,
+            address,
+            products,
+            orderedDate,
+            stat,
+            userId: req.userId,
+        })
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+
+        }
+        if (!address) {
+            return res.status(400).json({ error: 'Address is required' });
+        }
+        if (!cart || cart.length === 0) {
+            return res.status(400).json({ error: 'Cart is required' });
+        }
+        if (!totalPrice) {
+            return res.status(400).json({ error: 'Total price is required' });
+        }
+        // add product from cart 
+        for (let index = 0; index < cart.length; index++) {
+
+
+
+        }
+
+
+
+
+    } catch (error) {
+
+    }
+
+
+
+
+
+
+})
 
 
 
