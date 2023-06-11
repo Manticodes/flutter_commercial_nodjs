@@ -134,17 +134,11 @@ userRouter.post("/api/add-order", auth, async (req, res) => {
     try {
         const { cart, totalPrice, address } = req.body;
         const userId = req.userId;
-        const user = await User.findById(userId);
-        let order = new Order({
-            totalPrice,
-            address,
-            products,
-            orderedDate,
-            stat,
-            userId: req.userId,
-        });
-
+        let user = await User.findById(userId);
         let products = [];
+
+
+
 
 
         if (!user) {
@@ -160,14 +154,14 @@ userRouter.post("/api/add-order", auth, async (req, res) => {
         if (!totalPrice) {
             return res.status(400).json({ error: 'Total price is required' });
         }
-        // add product and quantity to products array from cart
+
         for (let index = 0; index < cart.length; index++) {
             let product = await Product.findById(cart[index].product._id);
             if (!product) {
                 return res.status(404).json({ error: 'Product not found' });
             }
-            //check if quantity of product in cart is not more that Product
-            if (product.quantity > cart[index].quantity) {
+
+            if (product.quantity >= cart[index].quantity) {
                 product.quantity -= cart[index].quantity;
                 await product.save();
                 products.push({
@@ -176,16 +170,22 @@ userRouter.post("/api/add-order", auth, async (req, res) => {
                 });
             } else { return res.status(400).json({ error: 'Quantity is more than product' }); }
         }
-
-
-
+        let order = new Order({
+            totalPrice,
+            address,
+            products,
+            orderedDate: Date().getTime(),
+            stat,
+            userId,
+        });
+        user.cart = [];
+        user = await user.save();
+        order = await order.save();
+        res.json({ message: 'Order added successfully', order });
 
     } catch (error) {
-
+        res.status(500).json({ error: error.message });
     }
-
-
-
 
 
 
