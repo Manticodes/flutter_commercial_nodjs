@@ -5,7 +5,13 @@ const { productSchema } = require('./product');
 const orderSchema = new mongoose.Schema({
     totalPrice: {
         type: Number,
-        required: true
+        required: true,
+        validate: {
+            validator: function (v) {
+                return v >= 0;
+            },
+            message: "Price should be a positive number"
+        }
     },
     products: [{
         product: productSchema,
