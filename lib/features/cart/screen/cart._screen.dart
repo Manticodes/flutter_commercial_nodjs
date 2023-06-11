@@ -76,7 +76,7 @@ class ShoppingCartPageState extends State<ShoppingCartPage> {
                 FutureBuilder(
                   builder: (context, snapshot) {
                     if (snapshot.data == false) {
-                      return const Text('validation is working');
+                      return const Text('validation is disabled');
                     }
                     return const SizedBox();
                   },
