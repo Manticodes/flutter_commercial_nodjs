@@ -101,6 +101,11 @@ class _CartListState extends State<CartList> {
                                           textAlign: TextAlign.right,
                                           TextSpan(
                                             children: [
+                                              const WidgetSpan(
+                                                  child: Text(
+                                                '  تومان  ',
+                                                style: TextStyle(fontSize: 15),
+                                              )),
                                               WidgetSpan(
                                                 child: Text(
                                                   aPrice,
@@ -110,11 +115,6 @@ class _CartListState extends State<CartList> {
                                                           FontWeight.bold),
                                                 ),
                                               ),
-                                              const WidgetSpan(
-                                                  child: Text(
-                                                '  تومان',
-                                                style: TextStyle(fontSize: 15),
-                                              ))
                                             ],
                                           )),
                                     ),
@@ -347,7 +347,7 @@ class _CartListState extends State<CartList> {
                                                           )
                                                         ],
                                                       ),
-                                                      SizedBox(
+                                                      const SizedBox(
                                                         height: 5,
                                                       ),
                                                       Text.rich(
@@ -364,9 +364,20 @@ class _CartListState extends State<CartList> {
                                                             TextDirection.rtl,
                                                         TextSpan(
                                                           children: [
+                                                            const TextSpan(
+                                                              text: 'مجموع : ',
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .black,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize: 11),
+                                                            ),
                                                             TextSpan(
                                                               text: totalPrice,
-                                                              style: TextStyle(
+                                                              style:
+                                                                  const TextStyle(
                                                                 color: Colors
                                                                     .green,
                                                                 fontWeight:
@@ -374,7 +385,7 @@ class _CartListState extends State<CartList> {
                                                                         .bold,
                                                               ),
                                                             ),
-                                                            TextSpan(
+                                                            const TextSpan(
                                                               text: '  تومان ',
                                                               style: TextStyle(
                                                                   color: Colors
