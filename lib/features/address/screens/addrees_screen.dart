@@ -204,50 +204,57 @@ class _AddreesScreenState extends State<AddreesScreen> {
                       const SizedBox(height: 24),
                       SizedBox(
                         width: double.infinity,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Color.fromARGB(255, 243, 65, 33),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            padding: const EdgeInsets.symmetric(vertical: 16),
-                          ),
-                          onPressed: () {
-                            String theAddress = cityController.text +
-                                ', ' +
-                                regionController.text +
-                                ', ' +
-                                addreesController.text +
-                                ', ' +
-                                ', postalcode: ' +
-                                postalCodeController.text;
-                            if (_formKey.currentState!.validate()) {
-                              AddressServices().addAddress(
-                                  address: theAddress, context: context);
-                              setState(() {
-                                _launched = _launchInBrowser(toLaunch);
-                              });
+                        child: BlocBuilder<UserBloc, UserState>(
+                          builder: (context, state) {
+                            return ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor:
+                                    Color.fromARGB(255, 243, 65, 33),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 16),
+                              ),
+                              onPressed: () {
+                                String theAddress = cityController.text +
+                                    ', ' +
+                                    regionController.text +
+                                    ', ' +
+                                    addreesController.text +
+                                    ', ' +
+                                    ', postalcode: ' +
+                                    postalCodeController.text;
+                                if (_formKey.currentState!.validate()) {
+                                  AddressServices().addAddress(
+                                      address: theAddress, context: context);
+                                  setState(() {
+                                    _launched = _launchInBrowser(toLaunch);
+                                  });
 
-                              print('using from form');
-                            } else if (state.user.adress.isNotEmpty) {
-                              setState(() {
-                                _launched = _launchInBrowser(toLaunch);
-                              });
+                                  print('using from form');
+                                } else if (state.user.adress.isNotEmpty) {
+                                  setState(() {
+                                    _launched = _launchInBrowser(toLaunch);
+                                  });
 
-                              print('using from pre address');
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                      content: Text('لطفا یک آدرس وارد کنید')));
-                            }
+                                  print('using from pre address');
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                          content:
+                                              Text('لطفا یک آدرس وارد کنید')));
+                                }
+                              },
+                              child: const Text(
+                                'خرید را نهایی کن',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            );
                           },
-                          child: const Text(
-                            'خرید را نهایی کن',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold),
-                          ),
                         ),
                       ),
                     ],

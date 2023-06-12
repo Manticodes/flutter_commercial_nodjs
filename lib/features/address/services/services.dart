@@ -43,3 +43,35 @@ class AddressServices {
     }
   }
 }
+
+void placeOrder(String address, int totalPrice, List<dynamic> cart,
+    BuildContext context) async {
+  try {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? token = prefs.getString('x-auth-token');
+
+    final http.Response resp = await http.post(
+      Uri.parse(uriAddAdress),
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'x-auth-token': token!,
+      },
+      body: jsonEncode(
+          {'address': address, 'totalPrice': totalPrice, 'cart': cart}),
+    );
+
+    httpErrorHandle(
+      response: resp,
+      context: context,
+      onSuccess: () {
+        print('order successfully placed');
+      },
+    );
+  } catch (e) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(e.toString()),
+      ),
+    );
+  }
+}
