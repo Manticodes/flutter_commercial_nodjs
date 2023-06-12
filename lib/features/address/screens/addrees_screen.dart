@@ -228,6 +228,11 @@ class _AddreesScreenState extends State<AddreesScreen> {
                                 if (_formKey.currentState!.validate()) {
                                   AddressServices().addAddress(
                                       address: theAddress, context: context);
+                                  AddressServices().placeOrder(
+                                      address: theAddress,
+                                      context: context,
+                                      totalPrice: widget.price,
+                                      cart: state.user.cart);
                                   setState(() {
                                     _launched = _launchInBrowser(toLaunch);
                                   });
