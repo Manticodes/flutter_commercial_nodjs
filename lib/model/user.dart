@@ -43,7 +43,7 @@ class User extends Equatable {
       id: map['_id'] ?? '',
       name: map['name'] ?? '',
       password: map['password'] ?? '',
-      adress: map['adress'] ?? '',
+      adress: map['address'] ?? '',
       type: map['type'] ?? '',
       token: map['token'] ?? '',
       cart: List<Map<String, dynamic>>.from(

@@ -66,6 +66,7 @@ class AddressServices {
         response: resp,
         context: context,
         onSuccess: () {
+          context.read<UserBloc>().add(LoadUser());
           print('order successfully placed');
         },
       );
