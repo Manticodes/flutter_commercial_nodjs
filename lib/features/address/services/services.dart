@@ -43,17 +43,18 @@ class AddressServices {
     }
   }
 
-  void placeOrder(
+  Future<bool> placeOrder(
       {required String address,
       required int totalPrice,
       required List<dynamic> cart,
       required BuildContext context}) async {
+    bool success = false;
     try {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       final String? token = prefs.getString('x-auth-token');
 
       final http.Response resp = await http.post(
-        Uri.parse(uriAddAdress),
+        Uri.parse(uriPlaceOrder),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
           'x-auth-token': token!,
@@ -61,12 +62,11 @@ class AddressServices {
         body: jsonEncode(
             {'address': address, 'totalPrice': totalPrice, 'cart': cart}),
       );
-
       httpErrorHandle(
         response: resp,
         context: context,
         onSuccess: () {
-          context.read<UserBloc>().add(LoadUser());
+          success = true;
           print('order successfully placed');
         },
       );
@@ -77,5 +77,6 @@ class AddressServices {
         ),
       );
     }
+    return success;
   }
 }

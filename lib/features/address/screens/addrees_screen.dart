@@ -235,16 +235,21 @@ class _AddreesScreenState extends State<AddreesScreen> {
 
                                 print('using from form');
                               } else if (state.user.adress.isNotEmpty) {
-                                AddressServices().placeOrder(
-                                    address: theAddress,
-                                    context: context,
-                                    totalPrice: widget.price,
-                                    cart: state.user.cart);
-                                setState(() {
-                                  _launched = _launchInBrowser(toLaunch);
+                                AddressServices()
+                                    .placeOrder(
+                                        address: theAddress,
+                                        context: context,
+                                        totalPrice: widget.price,
+                                        cart: state.user.cart)
+                                    .then((value) {
+                                  if (value == true) {
+                                    setState(() {
+                                      _launched = _launchInBrowser(toLaunch);
+                                    });
+                                  } else {
+                                    print('not successful');
+                                  }
                                 });
-
-                                print('using from pre address');
                               } else {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
