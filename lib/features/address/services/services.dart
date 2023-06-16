@@ -43,31 +43,32 @@ class AddressServices {
     }
   }
 
-  Future<bool> placeOrder(
-      {required String address,
-      required int totalPrice,
-      required List<dynamic> cart,
-      required BuildContext context}) async {
-    bool success = false;
-    try {
-      final SharedPreferences prefs = await SharedPreferences.getInstance();
-      final String? token = prefs.getString('x-auth-token');
+  void placeOrder({
+    required BuildContext context,
+    required String address,
+    required int totalSum,
+    required List<dynamic> cart,
+  }) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('x-auth-token');
 
-      final http.Response resp = await http.post(
-        Uri.parse(uriPlaceOrder),
-        headers: {
-          'Content-Type': 'application/json; charset=UTF-8',
-          'x-auth-token': token!,
-        },
-        body: jsonEncode(
-            {'address': address, 'totalPrice': totalPrice, 'cart': cart}),
-      );
+    try {
+      http.Response res = await http.post(Uri.parse(uriPlaceOrder),
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            'x-auth-token': token!,
+          },
+          body: jsonEncode({
+            'cart': cart,
+            'address': address,
+            'totalPrice': totalSum,
+          }));
+
       httpErrorHandle(
-        response: resp,
+        response: res,
         context: context,
         onSuccess: () {
-          success = true;
-          print('order successfully placed');
+          print('msg from order service it was successfull');
         },
       );
     } catch (e) {
@@ -77,6 +78,5 @@ class AddressServices {
         ),
       );
     }
-    return success;
   }
 }

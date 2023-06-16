@@ -1,44 +1,37 @@
+const mongoose = require("mongoose");
+const { productSchema } = require("./product");
 
-const mongoose = require('mongoose');
-const { productSchema } = require('./product');
-
-const orderSchema = new mongoose.Schema({
+const orderSchema = mongoose.Schema({
+    products: [
+        {
+            product: productSchema,
+            quantity: {
+                type: Number,
+                required: true,
+            },
+        },
+    ],
     totalPrice: {
         type: Number,
         required: true,
-        validate: {
-            validator: function (v) {
-                return v >= 0;
-            },
-            message: "Price should be a positive number"
-        }
     },
-    products: [{
-        product: productSchema,
-        quantity: {
-            type: Number,
-            required: true
-        },
-    }],
     address: {
         type: String,
-        required: true
-
+        required: true,
     },
     userId: {
         required: true,
         type: String,
     },
-    orderedDate: {
+    orderedAt: {
         type: Number,
         required: true,
     },
-    stat: {
+    status: {
         type: Number,
         default: 0,
     },
-
 });
 
-const Order = mongoose.model('Order', orderSchema);
+const Order = mongoose.model("Order", orderSchema);
 module.exports = Order;

@@ -29,7 +29,7 @@ class _AddreesScreenState extends State<AddreesScreen> {
   TextEditingController postalCodeController = TextEditingController();
   TextEditingController cityController = TextEditingController();
   //TODO:  you should get zarinpal payment permission and submit a domain then simulate a real payment
-  void paymentController() {
+/*   void paymentController() {
     PaymentRequest paymentRequest = PaymentRequest();
     setState(() {
       paymentRequest
@@ -44,7 +44,7 @@ class _AddreesScreenState extends State<AddreesScreen> {
         }
       });
     });
-  }
+  } */
 
   Future<void> _launchInBrowser(Uri url) async {
     if (!await launchUrl(
@@ -213,43 +213,32 @@ class _AddreesScreenState extends State<AddreesScreen> {
                               padding: const EdgeInsets.symmetric(vertical: 16),
                             ),
                             onPressed: () {
-                              String theAddress = cityController.text +
+                              String theAddress = '${cityController.text}' +
                                   ', ' +
-                                  regionController.text +
+                                  ' ${regionController.text} ' +
                                   ', ' +
-                                  addreesController.text +
+                                  ' ${addreesController.text} ' +
                                   ', ' +
                                   ', postalcode: ' +
-                                  postalCodeController.text;
+                                  '${postalCodeController.text}';
                               if (_formKey.currentState!.validate()) {
                                 AddressServices().addAddress(
                                     address: theAddress, context: context);
                                 AddressServices().placeOrder(
-                                    address: theAddress,
-                                    context: context,
-                                    totalPrice: widget.price,
-                                    cart: state.user.cart);
-                                setState(() {
-                                  _launched = _launchInBrowser(toLaunch);
-                                });
+                                  address: theAddress,
+                                  context: context,
+                                  totalSum: widget.price,
+                                  cart: state.user.cart,
+                                );
 
                                 print('using from form');
                               } else if (state.user.adress.isNotEmpty) {
-                                AddressServices()
-                                    .placeOrder(
-                                        address: theAddress,
-                                        context: context,
-                                        totalPrice: widget.price,
-                                        cart: state.user.cart)
-                                    .then((value) {
-                                  if (value == true) {
-                                    setState(() {
-                                      _launched = _launchInBrowser(toLaunch);
-                                    });
-                                  } else {
-                                    print('not successful');
-                                  }
-                                });
+                                AddressServices().placeOrder(
+                                  address: state.user.adress,
+                                  context: context,
+                                  totalSum: widget.price,
+                                  cart: state.user.cart,
+                                );
                               } else {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
