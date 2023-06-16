@@ -65,7 +65,7 @@ class _TabScreenState extends State<TabScreen> {
             ),
           ),
           BottomNavigationBarItem(
-            label: 'Home',
+            label: 'Cart',
             icon: Container(
               width: 42,
               decoration: BoxDecoration(
