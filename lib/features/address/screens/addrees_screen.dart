@@ -234,6 +234,7 @@ class _AddreesScreenState extends State<AddreesScreen> {
                                     .then((value) {
                                   if (value) {
                                     setState(() {
+                                      Navigator.pop(context);
                                       _launched = _launchInBrowser(toLaunch);
                                     });
                                   }
@@ -251,6 +252,7 @@ class _AddreesScreenState extends State<AddreesScreen> {
                                     .then((value) {
                                   if (value) {
                                     setState(() {
+                                      Navigator.pop(context);
                                       _launched = _launchInBrowser(toLaunch);
                                     });
                                   }
