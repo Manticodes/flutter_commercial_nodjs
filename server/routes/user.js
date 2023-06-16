@@ -131,11 +131,31 @@ userRouter.post('/api/add-address', auth, async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
-
+//Todo : first check are cart item that are in stock then loop through cart and 
 userRouter.post("/api/order", auth, async (req, res) => {
     try {
         const { cart, totalPrice, address } = req.body;
         let products = [];
+        for (let i = 0; i < cart.length; i++) {
+            let product = await Product.findById(cart[i].product._id);
+            if (!product) {
+                return res
+                    .status(404)
+                    .json({ msg: 'Product not found' });
+            }
+            if (product.quantity == 0) {
+                return res
+                    .status(404)
+                    .json({ msg: `${product.name} is out of stock!` });
+            }
+            if (product.quantity < cart[i].quantity) {
+                return res
+                    .status(400)
+                    .json({ msg: `${product.name} is more than stock!` });
+
+            }
+        }
+
 
         for (let i = 0; i < cart.length; i++) {
             let product = await Product.findById(cart[i].product._id);
