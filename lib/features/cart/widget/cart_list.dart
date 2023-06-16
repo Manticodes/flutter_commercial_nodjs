@@ -449,7 +449,7 @@ class _CartListState extends State<CartList> {
                               ),
                               Opacity(
                                 opacity: snapshot.data![0] == false ||
-                                        product.quantity == 0
+                                        orginalProduct.quantity == 0
                                     ? 0.1
                                     : 1,
                                 child: ClipRRect(
