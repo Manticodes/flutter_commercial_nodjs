@@ -6,12 +6,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_commercial_nodjs/model/product.dart';
 
 class Order extends Equatable {
-  final List<dynamic> products;
+  final List<Product> products;
   final int totalPrice;
   final String address;
   final String userId;
-  final String orderedAt;
+  final int orderedAt;
   final int status;
+  final List<int> quantity;
+  final String id;
   Order({
     required this.products,
     required this.totalPrice,
@@ -19,15 +21,19 @@ class Order extends Equatable {
     required this.userId,
     required this.orderedAt,
     required this.status,
+    required this.quantity,
+    required this.id,
   });
 
   Order copyWith({
-    List<dynamic>? products,
+    List<Product>? products,
     int? totalPrice,
     String? address,
     String? userId,
-    String? orderedAt,
+    int? orderedAt,
     int? status,
+    List<int>? quantity,
+    String? id,
   }) {
     return Order(
       products: products ?? this.products,
@@ -36,34 +42,37 @@ class Order extends Equatable {
       userId: userId ?? this.userId,
       orderedAt: orderedAt ?? this.orderedAt,
       status: status ?? this.status,
+      quantity: quantity ?? this.quantity,
+      id: id ?? this.id,
     );
   }
 
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
 
-    result.addAll({'products': products});
+    result.addAll({'products': products.map((x) => x.toMap()).toList()});
     result.addAll({'totalPrice': totalPrice});
     result.addAll({'address': address});
     result.addAll({'userId': userId});
     result.addAll({'orderedAt': orderedAt});
     result.addAll({'status': status});
+    result.addAll({'quantity': quantity});
+    result.addAll({'id': id});
 
     return result;
   }
 
   factory Order.fromMap(Map<String, dynamic> map) {
     return Order(
-      products: List<Map<String, dynamic>>.from(
-        map['products']?.map(
-          (x) => Map<String, dynamic>.from(x),
-        ),
-      ),
+      products: List<Product>.from(
+          map['products']?.map((x) => Product.fromMap(x['product']))),
       totalPrice: map['totalPrice']?.toInt() ?? 0,
       address: map['address'] ?? '',
       userId: map['userId'] ?? '',
-      orderedAt: map['orderedAt'] ?? '',
+      orderedAt: map['orderedAt']?.toInt() ?? 0,
       status: map['status']?.toInt() ?? 0,
+      quantity: List<int>.from(map['products']?.map((x) => x['quantity'])),
+      id: map['_id'] ?? '',
     );
   }
 
@@ -73,34 +82,21 @@ class Order extends Equatable {
 
   @override
   String toString() {
-    return 'Order(products: $products, totalPrice: $totalPrice, address: $address, userId: $userId, orderedAt: $orderedAt, status: $status)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is Order &&
-        listEquals(other.products, products) &&
-        other.totalPrice == totalPrice &&
-        other.address == address &&
-        other.userId == userId &&
-        other.orderedAt == orderedAt &&
-        other.status == status;
-  }
-
-  @override
-  int get hashCode {
-    return products.hashCode ^
-        totalPrice.hashCode ^
-        address.hashCode ^
-        userId.hashCode ^
-        orderedAt.hashCode ^
-        status.hashCode;
+    return 'Order(products: $products, totalPrice: $totalPrice, address: $address, userId: $userId, orderedAt: $orderedAt, status: $status, quantity: $quantity, id: $id)';
   }
 
   @override
   // TODO: implement props
-  List<Object?> get props =>
-      [products, totalPrice, address, userId, orderedAt, status];
+  List<Object> get props {
+    return [
+      products,
+      totalPrice,
+      address,
+      userId,
+      orderedAt,
+      status,
+      quantity,
+      id,
+    ];
+  }
 }
