@@ -43,12 +43,13 @@ class AddressServices {
     }
   }
 
-  void placeOrder({
+  Future<bool> placeOrder({
     required BuildContext context,
     required String address,
     required int totalSum,
     required List<dynamic> cart,
   }) async {
+    bool success = false;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('x-auth-token');
 
@@ -68,6 +69,7 @@ class AddressServices {
         response: res,
         context: context,
         onSuccess: () {
+          success = true;
           context.read<UserBloc>().add(ClearCart());
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -83,5 +85,6 @@ class AddressServices {
         ),
       );
     }
+    return success;
   }
 }

@@ -224,21 +224,37 @@ class _AddreesScreenState extends State<AddreesScreen> {
                               if (_formKey.currentState!.validate()) {
                                 AddressServices().addAddress(
                                     address: theAddress, context: context);
-                                AddressServices().placeOrder(
+                                AddressServices()
+                                    .placeOrder(
                                   address: theAddress,
                                   context: context,
                                   totalSum: widget.price,
                                   cart: state.user.cart,
-                                );
+                                )
+                                    .then((value) {
+                                  if (value) {
+                                    setState(() {
+                                      _launched = _launchInBrowser(toLaunch);
+                                    });
+                                  }
+                                });
 
                                 print('using from form');
                               } else if (state.user.adress.isNotEmpty) {
-                                AddressServices().placeOrder(
+                                AddressServices()
+                                    .placeOrder(
                                   address: state.user.adress,
                                   context: context,
                                   totalSum: widget.price,
                                   cart: state.user.cart,
-                                );
+                                )
+                                    .then((value) {
+                                  if (value) {
+                                    setState(() {
+                                      _launched = _launchInBrowser(toLaunch);
+                                    });
+                                  }
+                                });
                               } else {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
