@@ -26,6 +26,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<AddToCart>(_onAddToCart);
     on<LoadUser>(_onLoadUser);
     on<AddAddress>(_onAddAddress);
+    on<ClearCart>(_onClearCart);
   }
 
   FutureOr<void> _onSetUser(SetUser event, Emitter<UserState> emit) {
@@ -57,5 +58,9 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
   FutureOr<void> _onAddAddress(AddAddress event, Emitter<UserState> emit) {
     emit(UserState(user: state.user.copyWith(adress: event.adrress)));
+  }
+
+  FutureOr<void> _onClearCart(ClearCart event, Emitter<UserState> emit) {
+    emit(UserState(user: state.user.copyWith(cart: [])));
   }
 }
