@@ -68,7 +68,12 @@ class AddressServices {
         response: res,
         context: context,
         onSuccess: () {
-          print('msg from order service it was successfull');
+          context.read<UserBloc>().add(ClearCart());
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('سفارش شما ثبت شد'),
+            ),
+          );
         },
       );
     } catch (e) {

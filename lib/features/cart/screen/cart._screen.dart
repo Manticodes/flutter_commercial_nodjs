@@ -86,7 +86,7 @@ class ShoppingCartPageState extends State<ShoppingCartPage> {
             ),
           ),
           bottomNavigationBar: BottomAppBar(
-            height: MediaQuery.of(context).size.height * 0.09,
+            height: 70,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -107,7 +107,7 @@ class ShoppingCartPageState extends State<ShoppingCartPage> {
                       color: Colors.red,
                       borderRadius: BorderRadius.circular(8)),
                   width: 120,
-                  height: MediaQuery.of(context).size.height * 0.055,
+                  height: 40,
                   child: Center(
                       child: InkWell(
                     onTap: () => navigateToAddress(totalPrice.toInt()),
