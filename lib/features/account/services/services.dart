@@ -3,6 +3,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_commercial_nodjs/model/order.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -11,11 +12,11 @@ import '../../../constants/global_variable.dart';
 import '../../../model/product.dart';
 
 class AcountService {
-  Future<List<Product>> getUserOrders(
+  Future<List<Order>> getUserOrders(
       {required BuildContext context, required String category}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('x-auth-token');
-    List<Product> productList = [];
+    List<Order> orderList = [];
     try {
       http.Response response = await http.get(
           Uri.parse('$uriCategoryGetProduct?category=$category'),
@@ -29,9 +30,9 @@ class AcountService {
           context: context,
           onSuccess: () {
             for (int i = 0; i < jsonDecode(response.body).length; i++) {
-              Product product =
-                  Product.fromJson(jsonEncode(jsonDecode(response.body)[i]));
-              productList.add(product);
+              Order order =
+                  Order.fromJson(jsonEncode(jsonDecode(response.body)[i]));
+              orderList.add(order);
             }
           });
     } catch (e) {
@@ -39,6 +40,6 @@ class AcountService {
           .showSnackBar(SnackBar(content: Text(e.toString())));
     }
 
-    return productList;
+    return orderList;
   }
 }
