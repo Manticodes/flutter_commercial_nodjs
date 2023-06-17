@@ -42,6 +42,7 @@ class AddressServices {
       );
     }
   }
+  //TODO: solve the problem of null in string error
 
   Future<bool> placeOrder({
     required BuildContext context,
