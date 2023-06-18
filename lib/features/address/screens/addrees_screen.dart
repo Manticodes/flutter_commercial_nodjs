@@ -257,6 +257,9 @@ class _AddreesScreenState extends State<AddreesScreen> {
                                     });
                                   }
                                 });
+                                print(state.user.adress);
+                                print(widget.price);
+                                print(state.user.cart[0]['quantity']);
                               } else {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
