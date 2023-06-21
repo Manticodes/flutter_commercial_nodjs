@@ -137,7 +137,8 @@ userRouter.post("/api/order", auth, async (req, res) => {
 
         const { cart, totalPrice, address } = req.body;
         if (cart.length == 0) {
-            return res.status(400).json({ msg: 'Cart is empty' });
+            return res.status(400).json({ error: 'Cart is empty' });
+
 
 
         }
@@ -146,7 +147,7 @@ userRouter.post("/api/order", auth, async (req, res) => {
             if (!cart[i].product._id) {
                 return res
                     .status(404)
-                    .json({ msg: 'Product not found' });
+                    .json({ error: 'Product not found' });
 
 
             }
@@ -154,12 +155,12 @@ userRouter.post("/api/order", auth, async (req, res) => {
             if (!product) {
                 return res
                     .status(404)
-                    .json({ msg: 'Product not found' });
+                    .json({ error: 'Product not found' });
             }
             if (product.quantity == 0) {
                 return res
                     .status(404)
-                    .json({ msg: "is out of stock! " });
+                    .json({ error: "is out of stock! " });
             }
             if (product.quantity < cart[i].quantity) {
                 return res
