@@ -28,7 +28,7 @@ String uriGetOneProduct =
     'https://amazone-clone.iran.liara.run/api/get-one-product';
 String uriAddAdress = 'https://amazone-clone.iran.liara.run/api/add-address';
 String uriPlaceOrder = 'https://amazone-clone.iran.liara.run/api/order';
-String uriGetOrder = 'https://amazone-clone.iran.liara.run/api/order/me';
+String uriGetOrder = 'https://amazone-clone.iran.liara.run/api/orders/me';
 
 List categoryImageLinks = [
   {
