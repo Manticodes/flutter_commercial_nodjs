@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_commercial_nodjs/features/account/screens/order_screen.dart';
 import 'package:flutter_commercial_nodjs/features/address/screens/addrees_screen.dart';
 import 'package:flutter_commercial_nodjs/features/admin/screens/add_product_screen.dart';
 import 'package:flutter_commercial_nodjs/features/admin/screens/admin_screen.dart';
@@ -17,6 +18,9 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
     case AuthScreen.routeName:
       return MaterialPageRoute(
           builder: (_) => const AuthScreen(), settings: routeSettings);
+    case OrderScreen.routeName:
+      return MaterialPageRoute(
+          builder: (_) => const OrderScreen(), settings: routeSettings);
     case HomeScreen.routeName:
       return MaterialPageRoute(
           builder: (_) => const HomeScreen(), settings: routeSettings);

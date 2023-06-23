@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_commercial_nodjs/features/account/services/services.dart';
 import 'package:flutter_commercial_nodjs/model/order.dart';
 
-class MyWidget extends StatefulWidget {
-  const MyWidget({super.key});
+class OrderScreen extends StatefulWidget {
+  static const String routeName = "/orderScreen";
+  const OrderScreen({super.key});
 
   @override
-  State<MyWidget> createState() => _MyWidgetState();
+  State<OrderScreen> createState() => _OrderScreenState();
 }
 
-class _MyWidgetState extends State<MyWidget> {
+class _OrderScreenState extends State<OrderScreen> {
   List<Order>? orders;
   @override
   void initState() {
