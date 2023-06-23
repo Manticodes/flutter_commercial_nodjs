@@ -12,18 +12,15 @@ import '../../../constants/global_variable.dart';
 import '../../../model/product.dart';
 
 class AcountService {
-  Future<List<Order>> getUserOrders(
-      {required BuildContext context, required String category}) async {
+  Future<List<Order>> getUserOrders({required BuildContext context}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('x-auth-token');
     List<Order> orderList = [];
     try {
-      http.Response response = await http.get(
-          Uri.parse('$uriCategoryGetProduct?category=$category'),
-          headers: {
-            'Content-Type': 'application/json; charset=UTF-8',
-            'x-auth-token': token!,
-          });
+      http.Response response = await http.get(Uri.parse(uriGetOrder), headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'x-auth-token': token!,
+      });
 
       httpErrorHandle(
           response: response,
