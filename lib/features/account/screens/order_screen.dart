@@ -26,14 +26,17 @@ class _OrderScreenState extends State<OrderScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return orders != null
-        ? ListView.builder(
-            itemBuilder: (context, index) {
-              return Card(
-                child: Text(orders![index].id),
-              );
-            },
-          )
-        : Text('سفارشی یافت نشد');
+    return Scaffold(
+      body: orders != null
+          ? ListView.builder(
+              itemBuilder: (context, index) {
+                return Card(
+                  child: Text(orders![index].id),
+                );
+              },
+              itemCount: orders!.length,
+            )
+          : Text('سفارشی یافت نشد'),
+    );
   }
 }
