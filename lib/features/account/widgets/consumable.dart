@@ -62,12 +62,19 @@ class ProductScroller extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.all(15.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(50),
-                        child: Container(
-                            color: Colors.white,
-                            child: Image.network(
-                                orders![index].products[0].images[0])),
+                      child: Column(
+                        children: [
+                          Flexible(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(50),
+                              child: Container(
+                                  color: Colors.white,
+                                  child: Image.network(
+                                      orders![index].products[0].images[0])),
+                            ),
+                          ),
+                          Text(orders![index].totalPrice.toString()),
+                        ],
                       ),
                     );
                   },
