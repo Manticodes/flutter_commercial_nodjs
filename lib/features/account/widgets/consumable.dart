@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../model/order.dart';
+
 class AccountTopButton extends StatelessWidget {
   final String text;
   final VoidCallback func;
@@ -41,10 +43,10 @@ class AccountTopButton extends StatelessWidget {
 class ProductScroller extends StatelessWidget {
   const ProductScroller({
     super.key,
-    required this.images,
+    required this.orders,
   });
 
-  final List images;
+  final List<Order>? orders;
 
   @override
   Widget build(BuildContext context) {
@@ -53,22 +55,28 @@ class ProductScroller extends StatelessWidget {
       height: 300,
       width: double.infinity,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(50),
-                child: Container(
-                    color: Colors.white, child: Image.network(images[index])),
-              ),
-            );
-          },
-          itemCount: images.length,
-        ),
-      ),
+          padding: const EdgeInsets.all(8.0),
+          child: orders != null
+              ? ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(50),
+                        child: Container(
+                            color: Colors.white,
+                            child: Image.network(
+                                orders![index].products[0].images[0])),
+                      ),
+                    );
+                  },
+                  itemCount: orders!.length,
+                )
+              : const Text(
+                  'هیچ سفارشی یافت نشد',
+                  style: TextStyle(fontSize: 30),
+                )),
     );
   }
 }
