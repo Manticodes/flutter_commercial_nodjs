@@ -25,6 +25,7 @@ class _AccountScreenState extends State<AccountScreen> {
 
   void fetchOrder() async {
     orders = await AcountService().getUserOrders(context: context);
+    setState(() {});
   }
 
   @override
