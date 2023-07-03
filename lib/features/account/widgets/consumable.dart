@@ -73,7 +73,12 @@ class ProductScroller extends StatelessWidget {
                                       orders![index].products[0].images[0])),
                             ),
                           ),
-                          Text(orders![index].totalPrice.toString()),
+                          Padding(
+                            padding: const EdgeInsets.all(2.0),
+                            child: Text(" تومان " +
+                                orders![index].totalPrice.toString() +
+                                " : مجموع قیمت"),
+                          ),
                         ],
                       ),
                     );
