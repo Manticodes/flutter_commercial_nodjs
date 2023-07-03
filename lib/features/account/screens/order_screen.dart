@@ -28,14 +28,9 @@ class _OrderScreenState extends State<OrderScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: orders != null
-          ? ListView.builder(
-              itemBuilder: (context, index) {
-                return Card(
-                  child: Text(orders![index].id),
-                );
-              },
-              itemCount: orders!.length,
-            )
+          ?
+          // a gridview for the orders that shows two order in a row
+          
           : Text('سفارشی یافت نشد'),
     );
   }
