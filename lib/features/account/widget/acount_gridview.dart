@@ -4,41 +4,41 @@ import 'package:flutter_commercial_nodjs/features/product_details/screens/produc
 import 'package:flutter_commercial_nodjs/features/search/widget/stars.dart';
 import 'package:flutter_commercial_nodjs/model/order.dart';
 import 'package:flutter_commercial_nodjs/model/product.dart';
-
+import 'dart:math';
 import '../../../logic/bloc_user/user_bloc.dart';
 
 class AccountGridView extends StatelessWidget {
-  const AccountGridView({Key? key, required this.products}) : super(key: key);
-  final List<Order> products;
+  const AccountGridView({Key? key, required this.orders}) : super(key: key);
+  final List<Order> orders;
+
+  int getRandomNumber(int range) {
+    Random random = Random();
+    int randomNumber = random.nextInt(range);
+    return randomNumber;
+  }
 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      itemCount: orders!.length,
+      itemCount: orders.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
       ),
       itemBuilder: (context, index) {
-        Product product = products[index];
-        double avgStar = 0;
+        int productsLenght = orders[index].products.length;
+        Product product =
+            orders[index].products[getRandomNumber(productsLenght)];
 
-        if (product.ratings != null) {}
-        var ratingList = product.ratings;
-        double totalRating = 0;
-        for (var i = 0; i < ratingList!.length; i++) {
-          totalRating += ratingList[i].rate;
-        }
-        if (totalRating != 0) {
-          avgStar = totalRating / ratingList.length;
-        }
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: BlocBuilder<UserBloc, UserState>(
             builder: (context, state) {
               return InkWell(
-                onTap: () => Navigator.pushNamed(
+                onTap:
+                    () => /* Navigator.pushNamed(
                     context, ProductDetailsScreen.routeName,
-                    arguments: [product, state.user]),
+                    arguments: [product, state.user]) */
+                        () {},
                 child: SizedBox(
                   height: 200,
                   width: double.infinity,
@@ -48,7 +48,9 @@ class AccountGridView extends StatelessWidget {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(15),
                           child: Image.network(
-                            products[index].images[0],
+                            orders[index]
+                                .products[getRandomNumber(productsLenght)]
+                                .images[0],
                             width: MediaQuery.of(context).size.width * 0.4,
                             height: 200,
                             fit: BoxFit.cover,
@@ -83,7 +85,10 @@ class AccountGridView extends StatelessWidget {
                                       )),
                                       WidgetSpan(
                                         child: Text(
-                                          product.price.round().toString(),
+                                          orders[index]
+                                              .totalPrice
+                                              .round()
+                                              .toString(),
                                           style: const TextStyle(
                                               fontSize: 15,
                                               fontWeight: FontWeight.bold),
@@ -101,51 +106,12 @@ class AccountGridView extends StatelessWidget {
                                   padding:
                                       const EdgeInsets.only(left: 15.0, top: 5),
                                   child: Text(
-                                    '${product.category} : دسته ',
+                                    '$productsLenght محصول در این صبد ',
                                     overflow: TextOverflow.clip,
                                     textAlign: TextAlign.left,
                                     style: const TextStyle(
                                       fontSize: 12,
                                     ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 10.0, top: 5),
-                                  child: product.quantity > 0
-                                      ? product.quantity < 6
-                                          ? Text.rich(TextSpan(
-                                              children: [
-                                                const WidgetSpan(
-                                                    child: Text(
-                                                  ' عدد در انبار موجود می باشد ',
-                                                  style: TextStyle(
-                                                      color: Colors.red),
-                                                )),
-                                                WidgetSpan(
-                                                    child: Text(
-                                                  product.quantity
-                                                      .round()
-                                                      .toString(),
-                                                  style: const TextStyle(
-                                                      color: Colors.red),
-                                                )),
-                                                const WidgetSpan(
-                                                    child: Text(
-                                                  ' فقط ',
-                                                  style: TextStyle(
-                                                      color: Colors.red),
-                                                )),
-                                              ],
-                                            ))
-                                          : const Text(' موجود در انبار')
-                                      : const Text(' موجود نمی باشد'),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 14.0, top: 5),
-                                  child: Stars(
-                                    rating: avgStar,
                                   ),
                                 ),
                               ]),
