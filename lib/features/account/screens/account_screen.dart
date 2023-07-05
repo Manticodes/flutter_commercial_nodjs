@@ -24,7 +24,7 @@ class _AccountScreenState extends State<AccountScreen> {
   }
 
   void fetchOrder() async {
-    orders = await AcountService().getUserOrders(context: context);
+    orders = await AccountService().getUserOrders(context: context);
     setState(() {});
   }
 

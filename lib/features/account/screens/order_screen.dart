@@ -4,7 +4,7 @@ import 'package:flutter_commercial_nodjs/model/order.dart';
 
 class OrderScreen extends StatefulWidget {
   static const String routeName = "/orderScreen";
-  const OrderScreen({super.key});
+  const OrderScreen({Key? key}) : super(key: key);
 
   @override
   State<OrderScreen> createState() => _OrderScreenState();
@@ -12,15 +12,15 @@ class OrderScreen extends StatefulWidget {
 
 class _OrderScreenState extends State<OrderScreen> {
   List<Order>? orders;
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     fetchOrder();
   }
 
   void fetchOrder() async {
-    orders = await AcountService().getUserOrders(context: context);
+    orders = await AccountService().getUserOrders(context: context);
     setState(() {});
   }
 
@@ -28,10 +28,18 @@ class _OrderScreenState extends State<OrderScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: orders != null
-          ?
-          // a gridview for the orders that shows two order in a row
-          
-          : Text('سفارشی یافت نشد'),
+          ? GridView.builder(
+              itemCount: orders!.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+              ),
+              itemBuilder: (context, index) {
+                return Container();
+
+                // Replace the above Text widget with your desired widget
+              },
+            )
+          : Center(child: const Text('سفارشی یافت نشد')),
     );
   }
 }

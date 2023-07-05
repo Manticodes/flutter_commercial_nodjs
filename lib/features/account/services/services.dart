@@ -11,7 +11,7 @@ import '../../../constants/error_handle.dart';
 import '../../../constants/global_variable.dart';
 import '../../../model/product.dart';
 
-class AcountService {
+class AccountService {
   Future<List<Order>> getUserOrders({required BuildContext context}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('x-auth-token');
