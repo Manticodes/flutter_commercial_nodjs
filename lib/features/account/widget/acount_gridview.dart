@@ -19,110 +19,116 @@ class AccountGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      itemCount: orders.length,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-      ),
-      itemBuilder: (context, index) {
-        int productsLenght = orders[index].products.length;
-        Product product =
-            orders[index].products[getRandomNumber(productsLenght)];
+    if (orders == null) {
+      return Text('هیچ محصولی یافت نشد');
+    } else {
+      return Expanded(
+        child: GridView.builder(
+          itemCount: orders.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+          ),
+          itemBuilder: (context, index) {
+            int productsLenght = orders[index].products.length;
+            Product product =
+                orders[index].products[getRandomNumber(productsLenght)];
 
-        return Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: BlocBuilder<UserBloc, UserState>(
-            builder: (context, state) {
-              return InkWell(
-                onTap:
-                    () => /* Navigator.pushNamed(
-                    context, ProductDetailsScreen.routeName,
-                    arguments: [product, state.user]) */
-                        () {},
-                child: SizedBox(
-                  height: 200,
-                  width: double.infinity,
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: Image.network(
-                            orders[index]
-                                .products[getRandomNumber(productsLenght)]
-                                .images[0],
-                            width: MediaQuery.of(context).size.width * 0.4,
-                            height: 200,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Flexible(
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 15.0, top: 5),
-                                  child: Text(
-                                    product.name,
-                                    overflow: TextOverflow.clip,
-                                    textAlign: TextAlign.left,
-                                    style: const TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 10.0, top: 5),
-                                  child: Text.rich(TextSpan(
-                                    children: [
-                                      const WidgetSpan(
-                                          child: Icon(
-                                        Icons.attach_money_outlined,
-                                        size: 20,
-                                        color: Colors.green,
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: BlocBuilder<UserBloc, UserState>(
+                builder: (context, state) {
+                  return InkWell(
+                    onTap:
+                        () => /* Navigator.pushNamed(
+                      context, ProductDetailsScreen.routeName,
+                      arguments: [product, state.user]) */
+                            () {},
+                    child: SizedBox(
+                      height: 200,
+                      width: double.infinity,
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(15),
+                              child: Image.network(
+                                orders[index]
+                                    .products[getRandomNumber(productsLenght)]
+                                    .images[0],
+                                width: MediaQuery.of(context).size.width * 0.4,
+                                height: 200,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            Flexible(
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 15.0, top: 5),
+                                      child: Text(
+                                        product.name,
+                                        overflow: TextOverflow.clip,
+                                        textAlign: TextAlign.left,
+                                        style: const TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 10.0, top: 5),
+                                      child: Text.rich(TextSpan(
+                                        children: [
+                                          const WidgetSpan(
+                                              child: Icon(
+                                            Icons.attach_money_outlined,
+                                            size: 20,
+                                            color: Colors.green,
+                                          )),
+                                          WidgetSpan(
+                                            child: Text(
+                                              orders[index]
+                                                  .totalPrice
+                                                  .round()
+                                                  .toString(),
+                                              style: const TextStyle(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ),
+                                          const WidgetSpan(
+                                              child: Text(
+                                            '  تومان',
+                                            style: TextStyle(fontSize: 15),
+                                          ))
+                                        ],
                                       )),
-                                      WidgetSpan(
-                                        child: Text(
-                                          orders[index]
-                                              .totalPrice
-                                              .round()
-                                              .toString(),
-                                          style: const TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 15.0, top: 5),
+                                      child: Text(
+                                        '$productsLenght محصول در این صبد ',
+                                        overflow: TextOverflow.clip,
+                                        textAlign: TextAlign.left,
+                                        style: const TextStyle(
+                                          fontSize: 12,
                                         ),
                                       ),
-                                      const WidgetSpan(
-                                          child: Text(
-                                        '  تومان',
-                                        style: TextStyle(fontSize: 15),
-                                      ))
-                                    ],
-                                  )),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 15.0, top: 5),
-                                  child: Text(
-                                    '$productsLenght محصول در این صبد ',
-                                    overflow: TextOverflow.clip,
-                                    textAlign: TextAlign.left,
-                                    style: const TextStyle(
-                                      fontSize: 12,
                                     ),
-                                  ),
-                                ),
-                              ]),
-                        )
-                      ]),
-                ),
-              );
-            },
-          ),
-        );
-      },
-    );
+                                  ]),
+                            )
+                          ]),
+                    ),
+                  );
+                },
+              ),
+            );
+          },
+        ),
+      );
+    }
   }
 }
