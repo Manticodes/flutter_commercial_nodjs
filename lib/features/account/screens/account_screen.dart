@@ -24,6 +24,8 @@ class _AccountScreenState extends State<AccountScreen> {
     fetchOrder();
   }
 
+  bool showMore = false;
+
   void fetchOrder() async {
     orders = await AccountService().getUserOrders(context: context);
     setState(() {});
@@ -123,7 +125,11 @@ class _AccountScreenState extends State<AccountScreen> {
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold)),
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          setState(() {
+                            showMore = true;
+                          });
+                        },
                         child: const Text(
                           'See all',
                           style: TextStyle(fontSize: 15),
@@ -131,7 +137,10 @@ class _AccountScreenState extends State<AccountScreen> {
                   ],
                 ),
               ),
-              AccountGridView(orders: orders)
+              AccountGridView(
+                orders: orders,
+                showmore: showMore,
+              )
             ],
           ),
         );

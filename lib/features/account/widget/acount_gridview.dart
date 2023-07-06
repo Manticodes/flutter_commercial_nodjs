@@ -6,8 +6,11 @@ import 'dart:math';
 import '../../../logic/bloc_user/user_bloc.dart';
 
 class AccountGridView extends StatelessWidget {
-  const AccountGridView({Key? key, required this.orders}) : super(key: key);
+  const AccountGridView(
+      {Key? key, required this.orders, required this.showmore})
+      : super(key: key);
   final List<Order>? orders;
+  final bool showmore;
 
   int getRandomNumber(int range) {
     Random random = Random();
