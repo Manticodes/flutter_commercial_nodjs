@@ -18,6 +18,7 @@ class AccountScreen extends StatefulWidget {
 
 class _AccountScreenState extends State<AccountScreen> {
   List<Order>? orders;
+  List<Order>? activeOrders;
   @override
   void initState() {
     super.initState();
@@ -28,6 +29,8 @@ class _AccountScreenState extends State<AccountScreen> {
 
   void fetchOrder() async {
     orders = await AccountService().getUserOrders(context: context);
+    activeOrders = orders!.where((element) => element.status == 1).toList();
+
     setState(() {});
   }
 
@@ -138,7 +141,7 @@ class _AccountScreenState extends State<AccountScreen> {
                 ),
               ),
               AccountGridView(
-                orders: orders,
+                orders: activeOrders,
                 showmore: showMore,
               )
             ],
