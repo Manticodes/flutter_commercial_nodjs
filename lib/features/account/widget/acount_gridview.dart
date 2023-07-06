@@ -62,7 +62,8 @@ class AccountGridView extends StatelessWidget {
                         height: 400,
                         width: double.infinity,
                         child: Padding(
-                          padding: const EdgeInsets.all(12.0),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 5, vertical: 12),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               mainAxisAlignment: MainAxisAlignment.start,

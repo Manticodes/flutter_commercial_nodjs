@@ -128,7 +128,6 @@ class _AccountScreenState extends State<AccountScreen> {
                         onPressed: () {
                           setState(() {
                             showMore = !showMore;
-                            print(showMore);
                           });
                         },
                         child: Text(
