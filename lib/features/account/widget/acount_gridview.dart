@@ -33,7 +33,11 @@ class AccountGridView extends StatelessWidget {
     } else {
       return Expanded(
         child: GridView.builder(
-          itemCount: orders!.length,
+          itemCount: showmore == false
+              ? orders!.length > 1
+                  ? 2
+                  : orders!.length
+              : orders!.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2, childAspectRatio: 0.6),
           itemBuilder: (context, index) {
