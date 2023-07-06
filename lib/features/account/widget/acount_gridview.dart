@@ -9,7 +9,7 @@ import '../../../logic/bloc_user/user_bloc.dart';
 
 class AccountGridView extends StatelessWidget {
   const AccountGridView({Key? key, required this.orders}) : super(key: key);
-  final List<Order> orders;
+  final List<Order>? orders;
 
   int getRandomNumber(int range) {
     Random random = Random();
@@ -24,14 +24,14 @@ class AccountGridView extends StatelessWidget {
     } else {
       return Expanded(
         child: GridView.builder(
-          itemCount: orders.length,
+          itemCount: orders!.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
           ),
           itemBuilder: (context, index) {
-            int productsLenght = orders[index].products.length;
+            int productsLenght = orders![index].products.length;
             Product product =
-                orders[index].products[getRandomNumber(productsLenght)];
+                orders![index].products[getRandomNumber(productsLenght)];
 
             return Padding(
               padding: const EdgeInsets.all(8.0),
@@ -52,7 +52,7 @@ class AccountGridView extends StatelessWidget {
                             ClipRRect(
                               borderRadius: BorderRadius.circular(15),
                               child: Image.network(
-                                orders[index]
+                                orders![index]
                                     .products[getRandomNumber(productsLenght)]
                                     .images[0],
                                 width: MediaQuery.of(context).size.width * 0.4,
@@ -89,7 +89,7 @@ class AccountGridView extends StatelessWidget {
                                           )),
                                           WidgetSpan(
                                             child: Text(
-                                              orders[index]
+                                              orders![index]
                                                   .totalPrice
                                                   .round()
                                                   .toString(),

@@ -131,7 +131,7 @@ class _AccountScreenState extends State<AccountScreen> {
                   ],
                 ),
               ),
-              AccountGridView(orders: orders!)
+              AccountGridView(orders: orders)
             ],
           ),
         );
