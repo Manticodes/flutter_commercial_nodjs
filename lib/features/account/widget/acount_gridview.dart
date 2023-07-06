@@ -17,6 +17,14 @@ class AccountGridView extends StatelessWidget {
     return randomNumber;
   }
 
+  String getLastFiveCharacters(String input) {
+    if (input.length <= 5) {
+      return input;
+    } else {
+      return input.substring(input.length - 5);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     if (orders == null) {
@@ -26,8 +34,7 @@ class AccountGridView extends StatelessWidget {
         child: GridView.builder(
           itemCount: orders!.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-          ),
+              crossAxisCount: 2, childAspectRatio: 0.6),
           itemBuilder: (context, index) {
             int productsLenght = orders![index].products.length;
             Product product =
@@ -43,84 +50,130 @@ class AccountGridView extends StatelessWidget {
                       context, ProductDetailsScreen.routeName,
                       arguments: [product, state.user]) */
                             () {},
-                    child: SizedBox(
-                      height: 200,
-                      width: double.infinity,
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(15),
-                              child: Image.network(
-                                orders![index]
-                                    .products[getRandomNumber(productsLenght)]
-                                    .images[0],
-                                width: MediaQuery.of(context).size.width * 0.4,
-                                height: 200,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            Flexible(
-                              child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 15.0, top: 5),
-                                      child: Text(
-                                        product.name,
-                                        overflow: TextOverflow.clip,
-                                        textAlign: TextAlign.left,
-                                        style: const TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 10.0, top: 5),
-                                      child: Text.rich(TextSpan(
-                                        children: [
-                                          const WidgetSpan(
-                                              child: Icon(
-                                            Icons.attach_money_outlined,
-                                            size: 20,
-                                            color: Colors.green,
-                                          )),
-                                          WidgetSpan(
-                                            child: Text(
-                                              orders![index]
-                                                  .totalPrice
-                                                  .round()
-                                                  .toString(),
-                                              style: const TextStyle(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: Container(
+                        color: Color.fromARGB(172, 228, 227, 227),
+                        height: 400,
+                        width: double.infinity,
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Image.network(
+                                    orders![index]
+                                        .products[
+                                            getRandomNumber(productsLenght)]
+                                        .images[0],
+                                    width: MediaQuery.of(context).size.width *
+                                        0.45,
+                                    height: 200,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                Flexible(
+                                  child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 5),
+                                          child: Text.rich(
+                                              TextSpan(children: [
+                                                TextSpan(
+                                                  text: getLastFiveCharacters(
+                                                      orders![index].id),
+                                                ),
+                                                TextSpan(text: ' : '),
+                                                TextSpan(text: 'کد مرسوله')
+                                              ]),
+                                              style: TextStyle(
                                                   fontSize: 15,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                          const WidgetSpan(
-                                              child: Text(
-                                            '  تومان',
-                                            style: TextStyle(fontSize: 15),
-                                          ))
-                                        ],
-                                      )),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 15.0, top: 5),
-                                      child: Text(
-                                        '$productsLenght محصول در این صبد ',
-                                        overflow: TextOverflow.clip,
-                                        textAlign: TextAlign.left,
-                                        style: const TextStyle(
-                                          fontSize: 12,
+                                                  fontWeight: FontWeight.bold)),
                                         ),
-                                      ),
-                                    ),
-                                  ]),
-                            )
-                          ]),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 5),
+                                          child: Text.rich(
+                                            TextSpan(
+                                              children: [
+                                                const WidgetSpan(
+                                                    child: Icon(
+                                                  Icons.attach_money_outlined,
+                                                  size: 20,
+                                                  color: Colors.green,
+                                                )),
+                                                WidgetSpan(
+                                                  child: Text(
+                                                    orders![index]
+                                                        .totalPrice
+                                                        .round()
+                                                        .toString(),
+                                                    overflow: TextOverflow.fade,
+                                                    style: const TextStyle(
+                                                        fontSize: 15,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                ),
+                                                const WidgetSpan(
+                                                    child: Text(
+                                                  '  تومان',
+                                                  style:
+                                                      TextStyle(fontSize: 15),
+                                                ))
+                                              ],
+                                            ),
+                                            maxLines: 1,
+                                            overflow: TextOverflow.fade,
+                                            textAlign: TextAlign.right,
+                                            textDirection: TextDirection.rtl,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 5.0, top: 5),
+                                          child: Text.rich(
+                                            TextSpan(
+                                              children: [
+                                                const WidgetSpan(
+                                                    child: Text(
+                                                  'محصول در این سبد ',
+                                                  style:
+                                                      TextStyle(fontSize: 15),
+                                                )),
+                                                WidgetSpan(
+                                                  child: Text(
+                                                    orders![index]
+                                                        .products
+                                                        .length
+                                                        .toString(),
+                                                    overflow: TextOverflow.fade,
+                                                    style: const TextStyle(
+                                                        fontSize: 15,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                    textAlign: TextAlign.right,
+                                                    textDirection:
+                                                        TextDirection.rtl,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                            textAlign: TextAlign.right,
+                                            textDirection: TextDirection.rtl,
+                                          ),
+                                        ),
+                                      ]),
+                                )
+                              ]),
+                        ),
+                      ),
                     ),
                   );
                 },
