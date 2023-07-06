@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_commercial_nodjs/features/product_details/screens/product_details_screen.dart';
-import 'package:flutter_commercial_nodjs/features/search/widget/stars.dart';
 import 'package:flutter_commercial_nodjs/model/order.dart';
 import 'package:flutter_commercial_nodjs/model/product.dart';
 import 'dart:math';
