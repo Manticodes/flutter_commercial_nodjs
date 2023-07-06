@@ -127,11 +127,12 @@ class _AccountScreenState extends State<AccountScreen> {
                     TextButton(
                         onPressed: () {
                           setState(() {
-                            showMore = true;
+                            showMore = !showMore;
+                            print(showMore);
                           });
                         },
-                        child: const Text(
-                          'See all',
+                        child: Text(
+                          showMore ? 'See less' : 'See more',
                           style: TextStyle(fontSize: 15),
                         ))
                   ],
