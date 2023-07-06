@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_commercial_nodjs/features/account/screens/order_screen.dart';
 import 'package:flutter_commercial_nodjs/features/account/services/services.dart';
 import 'package:flutter_commercial_nodjs/features/account/widget/acount_gridview.dart';
-import 'package:flutter_commercial_nodjs/features/account/widgets/consumable.dart';
+import 'package:flutter_commercial_nodjs/features/account/widget/consumable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../logic/bloc_user/user_bloc.dart';
