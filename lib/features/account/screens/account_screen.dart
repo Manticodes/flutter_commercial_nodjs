@@ -124,7 +124,7 @@ class _AccountScreenState extends State<AccountScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(' Your Orders',
+                    const Text(' سفارشات فعال',
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold)),
                     TextButton(
@@ -134,7 +134,7 @@ class _AccountScreenState extends State<AccountScreen> {
                           });
                         },
                         child: Text(
-                          showMore ? 'See less' : 'See more',
+                          showMore ? 'مشاهده کمتر' : 'مشاهده بشتر',
                           style: TextStyle(fontSize: 15),
                         ))
                   ],
