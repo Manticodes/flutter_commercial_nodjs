@@ -45,8 +45,8 @@ class _OrderScreenState extends State<OrderScreen> {
                 return Padding(
                   padding:
                       const EdgeInsets.symmetric(vertical: 3, horizontal: 8),
-                  child: Card(
-                    color: const Color.fromARGB(255, 255, 255, 255),
+                  child: Container(
+                    color: Color.fromARGB(133, 246, 246, 246),
                     child: SizedBox(
                       height: 120,
                       width: double.infinity,
@@ -83,9 +83,102 @@ class _OrderScreenState extends State<OrderScreen> {
                               padding: const EdgeInsets.only(right: 15.0),
                               child: Text(
                                 d24,
-                                style: TextStyle(
-                                    color: const Color.fromARGB(
-                                        255, 136, 136, 136)),
+                                style: const TextStyle(
+                                    color: Color.fromARGB(255, 136, 136, 136)),
+                              ),
+                            ),
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 5.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Icon(Icons.arrow_left),
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        if (orders![index].products.length > 4)
+                                          Text(
+                                              '${(orders![index].products.length - 4)} + '),
+                                        if (orders![index].products.length > 3)
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 5.0),
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(6),
+                                              child: SizedBox(
+                                                width: 50,
+                                                height: 40,
+                                                child: Image.network(
+                                                    orders![index]
+                                                        .products[3]
+                                                        .images[0],
+                                                    fit: BoxFit.cover),
+                                              ),
+                                            ),
+                                          ),
+                                        if (orders![index].products.length > 2)
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 5.0),
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(6),
+                                              child: SizedBox(
+                                                width: 50,
+                                                height: 40,
+                                                child: Image.network(
+                                                    orders![index]
+                                                        .products[2]
+                                                        .images[0],
+                                                    fit: BoxFit.cover),
+                                              ),
+                                            ),
+                                          ),
+                                        if (orders![index].products.length > 1)
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 5.0),
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(6),
+                                              child: SizedBox(
+                                                width: 50,
+                                                height: 40,
+                                                child: Image.network(
+                                                    orders![index]
+                                                        .products[1]
+                                                        .images[0],
+                                                    fit: BoxFit.cover),
+                                              ),
+                                            ),
+                                          ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 5.0),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(6),
+                                            child: SizedBox(
+                                              width: 50,
+                                              height: 40,
+                                              child: Image.network(
+                                                  orders![index]
+                                                      .products[0]
+                                                      .images[0],
+                                                  fit: BoxFit.cover),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             )
                           ]),
