@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_commercial_nodjs/model/order.dart';
-import 'package:flutter_commercial_nodjs/model/product.dart';
 import 'dart:math';
 import '../../../logic/bloc_user/user_bloc.dart';
 
@@ -42,9 +41,6 @@ class AccountGridView extends StatelessWidget {
               crossAxisCount: 2, childAspectRatio: 0.6),
           itemBuilder: (context, index) {
             int productsLenght = orders![index].products.length;
-            Product product =
-                orders![index].products[getRandomNumber(productsLenght)];
-
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: BlocBuilder<UserBloc, UserState>(
@@ -96,7 +92,8 @@ class AccountGridView extends StatelessWidget {
                                                       orders![index].id),
                                                 ),
                                                 const TextSpan(text: ' : '),
-                                                const TextSpan(text: 'کد مرسوله')
+                                                const TextSpan(
+                                                    text: 'کد مرسوله')
                                               ]),
                                               style: const TextStyle(
                                                   fontSize: 15,

@@ -21,6 +21,7 @@ class AddreesScreen extends StatefulWidget {
 }
 
 class _AddreesScreenState extends State<AddreesScreen> {
+  // ignore: unused_field
   Future<void>? _launched;
   final Uri toLaunch = Uri.parse('https://zarinp.al/506979');
   TextEditingController addreesController = TextEditingController();
@@ -205,14 +206,16 @@ class _AddreesScreenState extends State<AddreesScreen> {
                           width: double.infinity,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color.fromARGB(255, 243, 65, 33),
+                              backgroundColor:
+                                  const Color.fromARGB(255, 243, 65, 33),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               padding: const EdgeInsets.symmetric(vertical: 16),
                             ),
                             onPressed: () {
-                              String theAddress = '${cityController.text},  ${regionController.text} ,  ${addreesController.text} , , postalcode: ${postalCodeController.text}';
+                              String theAddress =
+                                  '${cityController.text},  ${regionController.text} ,  ${addreesController.text} , , postalcode: ${postalCodeController.text}';
                               if (_formKey.currentState!.validate()) {
                                 AddressServices().addAddress(
                                     address: theAddress, context: context);

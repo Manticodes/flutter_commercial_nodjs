@@ -28,6 +28,7 @@ class ShoppingCartPageState extends State<ShoppingCartPage> {
     mathFunc(Match match) => '${match[1]},';
     double totalPrice = 0;
     double totalDiscount = 0;
+    // ignore: unused_local_variable
     double totalPriceWithDiscount = 0;
     void calculateTotal(UserState state) {
       totalPrice = 0; //clear the value of totalPrice before calculating
