@@ -101,6 +101,7 @@ class SingleProductImage extends StatelessWidget {
   });
   final Product product;
   final RegExp reg = RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))');
+  // ignore: prefer_function_declarations_over_variables
   final String Function(Match) mathFunc = (Match match) => '${match[1]},';
 
   @override

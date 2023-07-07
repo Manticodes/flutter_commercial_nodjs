@@ -15,21 +15,20 @@ void httpErrorHandle({
     case 400:
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(jsonDecode(response.body)['msg'])));
-      print(jsonDecode(response.body)['error']);
+
       break;
     case 500:
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(jsonDecode(response.body)['error'])));
-      print(jsonDecode(response.body)['error']);
+
       break;
     case 404:
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(jsonDecode(response.body)['error'])));
-      print(jsonDecode(response.body)['error']);
+
       break;
     default:
       ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('some thing wents wrong')));
-      print(jsonDecode(response.body)['error']);
   }
 }

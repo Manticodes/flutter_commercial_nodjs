@@ -234,8 +234,6 @@ class _AddreesScreenState extends State<AddreesScreen> {
                                     });
                                   }
                                 });
-
-                                print('using from form');
                               } else if (state.user.adress.isNotEmpty) {
                                 AddressServices()
                                     .placeOrder(
@@ -252,9 +250,6 @@ class _AddreesScreenState extends State<AddreesScreen> {
                                     });
                                   }
                                 });
-                                print(state.user.adress);
-                                print(widget.price);
-                                print(state.user.cart[0]['quantity']);
                               } else {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(

@@ -31,7 +31,6 @@ class AddressServices {
         context: context,
         onSuccess: () {
           context.read<UserBloc>().add(AddAddress(adrress: address));
-          print('success add address');
         },
       );
     } catch (e) {
@@ -85,7 +84,6 @@ class AddressServices {
           content: Text(e.toString()),
         ),
       );
-      print('error is from server catch');
     }
     return success;
   }
