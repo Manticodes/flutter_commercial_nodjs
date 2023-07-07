@@ -43,7 +43,15 @@ class _OrderScreenState extends State<OrderScreen> {
                                 const EdgeInsets.symmetric(horizontal: 15.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [Text('data'), Text('data')],
+                              children: [
+                                Row(
+                                  children: [
+                                    Text('تومان '),
+                                    Text(orders![index].totalPrice.toString()),
+                                  ],
+                                ),
+                                Text('data')
+                              ],
                             ),
                           ),
                           Text('data')
