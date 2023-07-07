@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_commercial_nodjs/features/account/services/services.dart';
 import 'package:flutter_commercial_nodjs/model/order.dart';
+import 'package:intl/intl.dart';
 
 class OrderScreen extends StatefulWidget {
   static const String routeName = "/orderScreen";
@@ -38,6 +39,9 @@ class _OrderScreenState extends State<OrderScreen> {
       body: orders != null
           ? ListView.builder(
               itemBuilder: (context, index) {
+                var date = DateTime.fromMillisecondsSinceEpoch(
+                    orders![index].orderedAt);
+                var d24 = DateFormat('dd/MM/yyyy').format(date);
                 return Padding(
                   padding:
                       const EdgeInsets.symmetric(vertical: 3, horizontal: 8),
@@ -67,13 +71,13 @@ class _OrderScreenState extends State<OrderScreen> {
                                     children: [
                                       Text(getLastFiveCharacters(
                                           orders![index].id)),
-                                      Text(' : کد سفارش'),
+                                      const Text(' : کد سفارش'),
                                     ],
                                   )
                                 ],
                               ),
                             ),
-                            Text('data')
+                            Text(d24)
                           ]),
                     ),
                   ),
