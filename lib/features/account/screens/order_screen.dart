@@ -28,16 +28,30 @@ class _OrderScreenState extends State<OrderScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: orders != null
-          ? GridView.builder(
-              itemCount: orders!.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-              ),
+          ? ListView.builder(
               itemBuilder: (context, index) {
-                return Container();
-
-                // Replace the above Text widget with your desired widget
+                return Card(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  child: SizedBox(
+                    height: 100,
+                    width: double.infinity,
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 15.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [Text('data'), Text('data')],
+                            ),
+                          ),
+                          Text('data')
+                        ]),
+                  ),
+                );
               },
+              itemCount: orders!.length,
             )
           : const Center(child: Text('سفارشی یافت نشد')),
     );
