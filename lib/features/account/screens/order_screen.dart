@@ -38,38 +38,44 @@ class _OrderScreenState extends State<OrderScreen> {
       body: orders != null
           ? ListView.builder(
               itemBuilder: (context, index) {
-                return Card(
-                  color: const Color.fromARGB(255, 255, 255, 255),
-                  child: SizedBox(
-                    height: 100,
-                    width: double.infinity,
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 15.0, vertical: 8),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    const Text('تومان '),
-                                    Text(orders![index].totalPrice.toString()),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Text(getLastFiveCharacters(
-                                        orders![index].id)),
-                                    Text(' : کد سفارش'),
-                                  ],
-                                )
-                              ],
+                return Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 3, horizontal: 8),
+                  child: Card(
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                    child: SizedBox(
+                      height: 100,
+                      width: double.infinity,
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 15.0, vertical: 8),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      const Text('تومان '),
+                                      Text(
+                                          orders![index].totalPrice.toString()),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(getLastFiveCharacters(
+                                          orders![index].id)),
+                                      Text(' : کد سفارش'),
+                                    ],
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
-                          Text('data')
-                        ]),
+                            Text('data')
+                          ]),
+                    ),
                   ),
                 );
               },
