@@ -73,7 +73,7 @@ class AddressServices {
           success = true;
           context.read<UserBloc>().add(ClearCart());
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
+            const SnackBar(
               content: Text('سفارش شما ثبت شد'),
             ),
           );

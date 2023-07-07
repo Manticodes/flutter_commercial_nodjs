@@ -18,7 +18,7 @@ class TabScreen extends StatefulWidget {
 class _TabScreenState extends State<TabScreen> {
   List pages = [
     const HomeScreen(),
-    AccountScreen(),
+    const AccountScreen(),
     // CartScreen(),
     const ShoppingCartPage()
   ];

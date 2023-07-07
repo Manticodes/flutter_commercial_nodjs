@@ -190,33 +190,33 @@ class ProductInCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(top: 12.0, bottom: 10),
+          padding: EdgeInsets.only(top: 12.0, bottom: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Row(
-                children: const [
+                children: [
                   Text(
                     ' در سبد شما ',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                   ),
                 ],
               ),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Icon(Icons.add),
               ),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.all(8.0),
                 child: CircleAvatar(
                   radius: 15,
                   child: Text('1'),
                 ),
               ),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Icon(Icons.remove),
               ),
@@ -225,7 +225,7 @@ class ProductInCardWidget extends StatelessWidget {
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             Text(
               ' تومان ',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),

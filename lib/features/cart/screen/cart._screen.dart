@@ -25,7 +25,7 @@ class ShoppingCartPageState extends State<ShoppingCartPage> {
   @override
   Widget build(BuildContext context) {
     RegExp reg = RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))');
-    String Function(Match) mathFunc = (Match match) => '${match[1]},';
+    mathFunc(Match match) => '${match[1]},';
     double totalPrice = 0;
     double totalDiscount = 0;
     double totalPriceWithDiscount = 0;

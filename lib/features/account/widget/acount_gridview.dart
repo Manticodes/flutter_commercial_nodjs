@@ -29,7 +29,7 @@ class AccountGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (orders == null) {
-      return Text('هیچ محصولی یافت نشد');
+      return const Text('هیچ محصولی یافت نشد');
     } else {
       return Expanded(
         child: GridView.builder(
@@ -58,7 +58,7 @@ class AccountGridView extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(15),
                       child: Container(
-                        color: Color.fromARGB(172, 228, 227, 227),
+                        color: const Color.fromARGB(172, 228, 227, 227),
                         height: 400,
                         width: double.infinity,
                         child: Padding(
@@ -95,10 +95,10 @@ class AccountGridView extends StatelessWidget {
                                                   text: getLastFiveCharacters(
                                                       orders![index].id),
                                                 ),
-                                                TextSpan(text: ' : '),
-                                                TextSpan(text: 'کد مرسوله')
+                                                const TextSpan(text: ' : '),
+                                                const TextSpan(text: 'کد مرسوله')
                                               ]),
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   fontSize: 15,
                                                   fontWeight: FontWeight.bold)),
                                         ),

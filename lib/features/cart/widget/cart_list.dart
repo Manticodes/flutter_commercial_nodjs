@@ -261,7 +261,7 @@ class _CartListState extends State<CartList> {
                                                             MainAxisAlignment
                                                                 .end,
                                                         children: [
-                                                          Container(
+                                                          SizedBox(
                                                             width: 35,
                                                             height: 35,
                                                             child: InkWell(

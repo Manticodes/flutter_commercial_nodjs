@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_commercial_nodjs/features/address/services/services.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:zarinpal/zarinpal.dart';
 
 import '../../../logic/bloc_user/user_bloc.dart';
 
@@ -81,7 +80,7 @@ class _AddreesScreenState extends State<AddreesScreen> {
                   'lib/assets/images/logo.png',
                 ),
               ),
-              Row(children: const [
+              const Row(children: [
                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Icon(Icons.notifications),
@@ -104,12 +103,12 @@ class _AddreesScreenState extends State<AddreesScreen> {
                   return Column(
                     children: [
                       if (state.user.adress.isNotEmpty) const Text('آدرس شما'),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Container(
                         decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 199, 197, 197),
+                            color: const Color.fromARGB(255, 199, 197, 197),
                             borderRadius: BorderRadius.circular(8)),
                         height: 40,
                         width: double.infinity,
@@ -119,20 +118,20 @@ class _AddreesScreenState extends State<AddreesScreen> {
                             state.user.adress.isEmpty
                                 ? 'شما هیچ آدرسی ندارید'
                                 : state.user.adress,
-                            style: TextStyle(fontSize: 15),
+                            style: const TextStyle(fontSize: 15),
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Text(
                         state.user.adress.isEmpty
                             ? 'لطفاآدرس خود را وارد کنید'
                             : 'یا جدید وارد کنید',
-                        style: TextStyle(fontSize: 17),
+                        style: const TextStyle(fontSize: 17),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 8,
                       ),
                       TextFormField(
@@ -206,21 +205,14 @@ class _AddreesScreenState extends State<AddreesScreen> {
                           width: double.infinity,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Color.fromARGB(255, 243, 65, 33),
+                              backgroundColor: const Color.fromARGB(255, 243, 65, 33),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               padding: const EdgeInsets.symmetric(vertical: 16),
                             ),
                             onPressed: () {
-                              String theAddress = '${cityController.text}' +
-                                  ', ' +
-                                  ' ${regionController.text} ' +
-                                  ', ' +
-                                  ' ${addreesController.text} ' +
-                                  ', ' +
-                                  ', postalcode: ' +
-                                  '${postalCodeController.text}';
+                              String theAddress = '${cityController.text},  ${regionController.text} ,  ${addreesController.text} , , postalcode: ${postalCodeController.text}';
                               if (_formKey.currentState!.validate()) {
                                 AddressServices().addAddress(
                                     address: theAddress, context: context);
@@ -262,7 +254,7 @@ class _AddreesScreenState extends State<AddreesScreen> {
                                 print(state.user.cart[0]['quantity']);
                               } else {
                                 ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
+                                    const SnackBar(
                                         content:
                                             Text('لطفا یک آدرس وارد کنید')));
                               }

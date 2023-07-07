@@ -39,7 +39,7 @@ class _OrderScreenState extends State<OrderScreen> {
                 // Replace the above Text widget with your desired widget
               },
             )
-          : Center(child: const Text('سفارشی یافت نشد')),
+          : const Center(child: Text('سفارشی یافت نشد')),
     );
   }
 }

@@ -183,7 +183,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     ? Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Container(
+                          SizedBox(
                             width: 50,
                             height: 50,
                             child: InkWell(
@@ -260,9 +260,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               height: 20,
             ),
             const CostumDivider(),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.end,
-              children: const [
+              children: [
                 Padding(
                   padding: EdgeInsets.only(right: 20.0),
                   child: Text(
@@ -305,9 +305,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
       // TODO : add functionallity here
       bottomNavigationBar: BottomAppBar(
         height: MediaQuery.of(context).size.height * 0.07,
-        child: Row(
+        child: const Row(
           mainAxisAlignment: MainAxisAlignment.end,
-          children: const [
+          children: [
             Text(' 200000 ',
                 style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
             Text(' : سبد خرید شما ',

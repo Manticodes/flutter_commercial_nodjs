@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
 
 import 'package:flutter_commercial_nodjs/model/product.dart';
 
@@ -14,7 +13,7 @@ class Order extends Equatable {
   final int status;
   final List<int> quantity;
   final String id;
-  Order({
+  const Order({
     required this.products,
     required this.totalPrice,
     required this.address,

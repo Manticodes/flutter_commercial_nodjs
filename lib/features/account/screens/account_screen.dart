@@ -10,7 +10,7 @@ import '../../../logic/bloc_user/user_bloc.dart';
 import '../../../model/order.dart';
 
 class AccountScreen extends StatefulWidget {
-  AccountScreen({Key? key}) : super(key: key);
+  const AccountScreen({Key? key}) : super(key: key);
 
   @override
   State<AccountScreen> createState() => _AccountScreenState();
@@ -52,7 +52,7 @@ class _AccountScreenState extends State<AccountScreen> {
                       'lib/assets/images/logo.png',
                     ),
                   ),
-                  Row(children: const [
+                  const Row(children: [
                     Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Icon(Icons.notifications),
@@ -135,7 +135,7 @@ class _AccountScreenState extends State<AccountScreen> {
                         },
                         child: Text(
                           showMore ? 'مشاهده کمتر' : 'مشاهده بشتر',
-                          style: TextStyle(fontSize: 15),
+                          style: const TextStyle(fontSize: 15),
                         ))
                   ],
                 ),

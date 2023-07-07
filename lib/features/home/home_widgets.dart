@@ -242,8 +242,8 @@ class DealOfDayText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: const [
+    return const Row(
+      children: [
         Padding(
           padding: EdgeInsets.only(
             top: 20.0,

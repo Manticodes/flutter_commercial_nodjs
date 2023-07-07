@@ -67,8 +67,8 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 'lib/assets/images/logo.png',
               ),
             ),
-            Row(
-              children: const [
+            const Row(
+              children: [
                 Text(
                   'Add Product page',
                   style: TextStyle(fontWeight: FontWeight.bold),
@@ -113,9 +113,9 @@ class _AddProductScreenState extends State<AddProductScreen> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                               ),
-                              child: Column(
+                              child: const Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
-                                  children: const [
+                                  children: [
                                     Icon(
                                       Icons.folder_open_outlined,
                                       size: 35,

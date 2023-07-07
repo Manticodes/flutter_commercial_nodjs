@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../model/order.dart';
 
 class AccountTopButton extends StatelessWidget {
   final String text;
