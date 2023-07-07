@@ -19,6 +19,14 @@ class _OrderScreenState extends State<OrderScreen> {
     fetchOrder();
   }
 
+  String getLastFiveCharacters(String input) {
+    if (input.length <= 5) {
+      return input;
+    } else {
+      return input.substring(input.length - 5);
+    }
+  }
+
   void fetchOrder() async {
     orders = await AccountService().getUserOrders(context: context);
     setState(() {});
@@ -31,7 +39,7 @@ class _OrderScreenState extends State<OrderScreen> {
           ? ListView.builder(
               itemBuilder: (context, index) {
                 return Card(
-                  color: Color.fromARGB(255, 255, 255, 255),
+                  color: const Color.fromARGB(255, 255, 255, 255),
                   child: SizedBox(
                     height: 100,
                     width: double.infinity,
@@ -39,18 +47,24 @@ class _OrderScreenState extends State<OrderScreen> {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 15.0),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 15.0, vertical: 8),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Row(
                                   children: [
-                                    Text('تومان '),
+                                    const Text('تومان '),
                                     Text(orders![index].totalPrice.toString()),
                                   ],
                                 ),
-                                Text('data')
+                                Row(
+                                  children: [
+                                    Text(getLastFiveCharacters(
+                                        orders![index].id)),
+                                    Text(' : کد سفارش'),
+                                  ],
+                                )
                               ],
                             ),
                           ),
