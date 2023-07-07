@@ -48,7 +48,7 @@ class _OrderScreenState extends State<OrderScreen> {
                   child: Card(
                     color: const Color.fromARGB(255, 255, 255, 255),
                     child: SizedBox(
-                      height: 100,
+                      height: 120,
                       width: double.infinity,
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
@@ -71,13 +71,23 @@ class _OrderScreenState extends State<OrderScreen> {
                                     children: [
                                       Text(getLastFiveCharacters(
                                           orders![index].id)),
-                                      const Text(' : کد سفارش'),
+                                      const Text(
+                                        ' : کد سفارش',
+                                      ),
                                     ],
                                   )
                                 ],
                               ),
                             ),
-                            Text(d24)
+                            Padding(
+                              padding: const EdgeInsets.only(right: 15.0),
+                              child: Text(
+                                d24,
+                                style: TextStyle(
+                                    color: const Color.fromARGB(
+                                        255, 136, 136, 136)),
+                              ),
+                            )
                           ]),
                     ),
                   ),
