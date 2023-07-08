@@ -94,9 +94,16 @@ class _OrderScreenState extends State<OrderScreen> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    const Padding(
-                                      padding: EdgeInsets.all(8.0),
-                                      child: Icon(Icons.arrow_left),
+                                    InkWell(
+                                      onTap: () {
+                                        Navigator.pushNamed(
+                                            context, OrderScreen.routeName,
+                                            arguments: orders![index]);
+                                      },
+                                      child: const Padding(
+                                        padding: EdgeInsets.all(8.0),
+                                        child: Icon(Icons.arrow_left),
+                                      ),
                                     ),
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
