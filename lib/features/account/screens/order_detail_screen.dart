@@ -44,9 +44,11 @@ class OrderDetailScreen extends StatelessWidget {
                         Text(' : ارسال به ',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 15)),
-                        Text(order.address,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 13))
+                        Center(
+                          child: Text(order.address,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 13)),
+                        )
                       ],
                     ),
                   ),
