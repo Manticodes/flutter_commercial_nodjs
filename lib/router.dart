@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_commercial_nodjs/features/account/screens/order_detail_screen.dart';
 import 'package:flutter_commercial_nodjs/features/account/screens/order_screen.dart';
 import 'package:flutter_commercial_nodjs/features/address/screens/addrees_screen.dart';
 import 'package:flutter_commercial_nodjs/features/admin/screens/add_product_screen.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_commercial_nodjs/features/home/home_screen.dart';
 import 'package:flutter_commercial_nodjs/features/home/tab_screen.dart';
 
 import 'features/product_details/screens/product_details_screen.dart';
+import 'model/order.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
   switch (routeSettings.name) {
@@ -53,6 +55,11 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
       return MaterialPageRoute(
           builder: (context) => ProductDetailsScreen(
               product: args[0] as Product, user: args[1] as User),
+          settings: routeSettings);
+    case OrderDetailScreen.route:
+      var order = routeSettings.arguments as Order;
+      return MaterialPageRoute(
+          builder: (context) => OrderDetailScreen(order: order),
           settings: routeSettings);
     default:
       return MaterialPageRoute(
