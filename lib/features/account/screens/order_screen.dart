@@ -46,7 +46,7 @@ class _OrderScreenState extends State<OrderScreen> {
                   padding:
                       const EdgeInsets.symmetric(vertical: 3, horizontal: 8),
                   child: Container(
-                    color: Color.fromARGB(133, 246, 246, 246),
+                    color: const Color.fromARGB(133, 246, 246, 246),
                     child: SizedBox(
                       height: 120,
                       width: double.infinity,
@@ -94,8 +94,8 @@ class _OrderScreenState extends State<OrderScreen> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                    const Padding(
+                                      padding: EdgeInsets.all(8.0),
                                       child: Icon(Icons.arrow_left),
                                     ),
                                     Row(
