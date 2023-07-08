@@ -21,7 +21,25 @@ class OrderDetailScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Column(
-          children: [OrderProductList(order: order)],
+          children: [
+            OrderProductList(order: order),
+            Padding(
+              padding: const EdgeInsets.all(9.0),
+              child: Container(
+                height: 100,
+                width: double.infinity,
+                color: const Color.fromARGB(255, 226, 225, 225),
+                child: Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [Text(' : ارسال به '), Text(order.address)],
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
       bottomNavigationBar: BottomAppBar(
