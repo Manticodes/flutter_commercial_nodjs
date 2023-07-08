@@ -48,7 +48,7 @@ class _OrderScreenState extends State<OrderScreen> {
                   child: Container(
                     color: const Color.fromARGB(133, 246, 246, 246),
                     child: SizedBox(
-                      height: 120,
+                      height: 140,
                       width: double.infinity,
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
@@ -113,7 +113,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                                   BorderRadius.circular(6),
                                               child: SizedBox(
                                                 width: 60,
-                                                height: 40,
+                                                height: 50,
                                                 child: Image.network(
                                                     orders![index]
                                                         .products[3]
@@ -131,7 +131,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                                   BorderRadius.circular(6),
                                               child: SizedBox(
                                                 width: 60,
-                                                height: 40,
+                                                height: 50,
                                                 child: Image.network(
                                                     orders![index]
                                                         .products[2]
@@ -149,7 +149,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                                   BorderRadius.circular(6),
                                               child: SizedBox(
                                                 width: 60,
-                                                height: 40,
+                                                height: 50,
                                                 child: Image.network(
                                                     orders![index]
                                                         .products[1]
@@ -166,7 +166,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                                 BorderRadius.circular(6),
                                             child: SizedBox(
                                               width: 60,
-                                              height: 40,
+                                              height: 50,
                                               child: Image.network(
                                                   orders![index]
                                                       .products[0]
