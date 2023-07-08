@@ -16,7 +16,7 @@ class OrderProductList extends StatelessWidget {
         child: Column(children: [
           Column(
               children: order.products.map((e) {
-            int quantity = e.quantity as int;
+            int quantity = e.quantity.toInt();
             double avgStar = 0;
 
             if (e.ratings != null) {}
