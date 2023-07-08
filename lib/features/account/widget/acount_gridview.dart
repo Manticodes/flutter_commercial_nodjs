@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_commercial_nodjs/features/account/screens/order_detail_screen.dart';
 import 'package:flutter_commercial_nodjs/model/order.dart';
 import 'dart:math';
 import '../../../logic/bloc_user/user_bloc.dart';
@@ -46,11 +47,10 @@ class AccountGridView extends StatelessWidget {
               child: BlocBuilder<UserBloc, UserState>(
                 builder: (context, state) {
                   return InkWell(
-                    onTap:
-                        () => /* Navigator.pushNamed(
-                      context, ProductDetailsScreen.routeName,
-                      arguments: [product, state.user]) */
-                            () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, OrderDetailScreen.route,
+                          arguments: orders![index]);
+                    },
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(15),
                       child: Container(
