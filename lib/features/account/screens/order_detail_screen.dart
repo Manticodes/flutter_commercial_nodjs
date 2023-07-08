@@ -11,8 +11,8 @@ class OrderDetailScreen extends StatelessWidget {
   }) : super(key: key);
   final Order order;
   static const String route = "/orderDetails";
-  RegExp reg = RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))');
-  String Function(Match) mathFunc = (Match match) => '${match[1]},';
+  final RegExp reg = RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))');
+  final String Function(Match) mathFunc = (Match match) => '${match[1]},';
 
   @override
   Widget build(BuildContext context) {

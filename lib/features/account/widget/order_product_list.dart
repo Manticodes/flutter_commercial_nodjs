@@ -6,8 +6,8 @@ import '../../search/widget/stars.dart';
 class OrderProductList extends StatelessWidget {
   OrderProductList({Key? key, required this.order}) : super(key: key);
   final Order order;
-  RegExp reg = RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))');
-  String Function(Match) mathFunc = (Match match) => '${match[1]},';
+  final RegExp reg = RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))');
+  final String Function(Match) mathFunc = (Match match) => '${match[1]},';
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,6 @@ class OrderProductList extends StatelessWidget {
         child: Column(children: [
           Column(
               children: order.products.map((e) {
-            int quantity = e.quantity.toInt();
             double avgStar = 0;
             int index = order.products.indexOf(e);
 
@@ -33,7 +32,7 @@ class OrderProductList extends StatelessWidget {
             var aPrice =
                 e.price.round().toString().replaceAllMapped(reg, mathFunc);
 
-            var totalPrice = (e.price * quantity)
+            var totalPrice = (e.price * order.quantity[index])
                 .round()
                 .toString()
                 .replaceAllMapped(reg, mathFunc);
@@ -103,6 +102,20 @@ class OrderProductList extends StatelessWidget {
                             padding: const EdgeInsets.only(left: 15.0, top: 5),
                             child: Text(
                               '${order.quantity[index]} : تعداد ',
+                              overflow: TextOverflow.clip,
+                              textAlign: TextAlign.left,
+                              style: const TextStyle(
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 15.0, top: 5),
+                            child: Text(
+                              '$totalPrice : مجموع ',
                               overflow: TextOverflow.clip,
                               textAlign: TextAlign.left,
                               style: const TextStyle(
