@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_commercial_nodjs/features/account/screens/order_detail_screen.dart';
 import 'package:flutter_commercial_nodjs/features/account/services/services.dart';
 import 'package:flutter_commercial_nodjs/model/order.dart';
 import 'package:intl/intl.dart';
@@ -97,7 +98,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                     InkWell(
                                       onTap: () {
                                         Navigator.pushNamed(
-                                            context, OrderScreen.routeName,
+                                            context, OrderDetailScreen.route,
                                             arguments: orders![index]);
                                       },
                                       child: const Padding(
