@@ -18,6 +18,7 @@ class OrderProductList extends StatelessWidget {
               children: order.products.map((e) {
             int quantity = e.quantity.toInt();
             double avgStar = 0;
+            int index = order.products.indexOf(e);
 
             if (e.ratings != null) {}
             var ratingList = e.ratings;
@@ -97,6 +98,17 @@ class OrderProductList extends StatelessWidget {
                           ),
                           const SizedBox(
                             height: 5,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 15.0, top: 5),
+                            child: Text(
+                              '${order.quantity[index]} : تعداد ',
+                              overflow: TextOverflow.clip,
+                              textAlign: TextAlign.left,
+                              style: const TextStyle(
+                                fontSize: 12,
+                              ),
+                            ),
                           ),
                         ],
                       ),
