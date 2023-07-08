@@ -112,7 +112,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                               borderRadius:
                                                   BorderRadius.circular(6),
                                               child: SizedBox(
-                                                width: 50,
+                                                width: 60,
                                                 height: 40,
                                                 child: Image.network(
                                                     orders![index]
@@ -130,7 +130,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                               borderRadius:
                                                   BorderRadius.circular(6),
                                               child: SizedBox(
-                                                width: 50,
+                                                width: 60,
                                                 height: 40,
                                                 child: Image.network(
                                                     orders![index]
@@ -148,7 +148,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                               borderRadius:
                                                   BorderRadius.circular(6),
                                               child: SizedBox(
-                                                width: 50,
+                                                width: 60,
                                                 height: 40,
                                                 child: Image.network(
                                                     orders![index]
@@ -165,7 +165,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                             borderRadius:
                                                 BorderRadius.circular(6),
                                             child: SizedBox(
-                                              width: 50,
+                                              width: 60,
                                               height: 40,
                                               child: Image.network(
                                                   orders![index]
