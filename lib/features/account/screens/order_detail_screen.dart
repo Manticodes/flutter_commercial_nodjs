@@ -24,17 +24,27 @@ class OrderDetailScreen extends StatelessWidget {
           children: [
             OrderProductList(order: order),
             Padding(
-              padding: const EdgeInsets.all(9.0),
-              child: Container(
-                height: 100,
-                width: double.infinity,
-                color: const Color.fromARGB(255, 226, 225, 225),
-                child: Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [Text(' : ارسال به '), Text(order.address)],
+              padding: const EdgeInsets.all(12.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Container(
+                  height: 100,
+                  width: double.infinity,
+                  color: const Color.fromARGB(255, 226, 225, 225),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(' : ارسال به ',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15)),
+                        Text(order.address,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 13))
+                      ],
+                    ),
                   ),
                 ),
               ),
