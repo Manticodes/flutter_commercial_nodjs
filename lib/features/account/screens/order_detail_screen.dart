@@ -8,6 +8,7 @@ class OrderDetailScreen extends StatelessWidget {
     required this.order,
   }) : super(key: key);
   final Order order;
+  static const String route = "/orderDetails";
 
   @override
   Widget build(BuildContext context) {
