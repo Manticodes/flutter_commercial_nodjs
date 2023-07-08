@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_commercial_nodjs/features/account/widget/order_product_list.dart';
+import 'package:intl/intl.dart';
 
 import '../../../model/order.dart';
 
@@ -15,12 +16,15 @@ class OrderDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var date = DateTime.fromMillisecondsSinceEpoch(order.orderedAt);
+    var date24 = DateFormat('dd/MM/yyyy').format(date);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Shopping Cart'),
       ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             OrderProductList(order: order),
             Padding(
@@ -57,6 +61,17 @@ class OrderDetailScreen extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            Column(
+              children: [
+                Text.rich(TextSpan(
+                    children: [
+                      TextSpan(text: 'تاریخ ارسال'),
+                    ],
+                    style:
+                        TextStyle(fontSize: 15, fontWeight: FontWeight.bold))),
+                Text(date24)
+              ],
+            ),
             Column(
               children: [
                 Text.rich(TextSpan(
