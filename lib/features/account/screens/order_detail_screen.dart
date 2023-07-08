@@ -20,7 +20,7 @@ class OrderDetailScreen extends StatelessWidget {
     var date24 = DateFormat('dd/MM/yyyy').format(date);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Shopping Cart'),
+        title: const Text('جزئیات سفارش'),
       ),
       body: SingleChildScrollView(
         child: Column(
