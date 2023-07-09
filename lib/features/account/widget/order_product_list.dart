@@ -15,6 +15,23 @@ class OrderProductList extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 15.0, top: 5),
+            child: Text(
+              '${order.id} : کد مرسوله ',
+              overflow: TextOverflow.clip,
+              textAlign: TextAlign.left,
+              style: const TextStyle(
+                fontSize: 12,
+              ),
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            child: Divider(
+              color: Color.fromARGB(190, 138, 143, 146),
+            ),
+          ),
           Column(
               children: order.products.map((e) {
             double avgStar = 0;
@@ -149,10 +166,10 @@ class OrderProductList extends StatelessWidget {
                   child: Divider(
                     color: Color.fromARGB(190, 138, 143, 146),
                   ),
-                )
+                ),
               ],
             );
-          }).toList())
+          }).toList()),
         ]));
   }
 }
