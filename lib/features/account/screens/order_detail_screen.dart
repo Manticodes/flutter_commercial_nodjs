@@ -12,6 +12,7 @@ class OrderDetailScreen extends StatelessWidget {
   final Order order;
   static const String route = "/orderDetails";
   final RegExp reg = RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))');
+  // ignore: prefer_function_declarations_over_variables
   final String Function(Match) mathFunc = (Match match) => '${match[1]},';
 
   @override
@@ -41,12 +42,12 @@ class OrderDetailScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Text(' : ارسال به ',
+                        const Text(' : ارسال به ',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 15)),
                         Center(
                           child: Text(order.address,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 13)),
                         )
                       ],
@@ -65,7 +66,7 @@ class OrderDetailScreen extends StatelessWidget {
           children: [
             Column(
               children: [
-                Text.rich(TextSpan(
+                const Text.rich(TextSpan(
                     children: [
                       TextSpan(text: 'تاریخ ارسال'),
                     ],
@@ -76,7 +77,7 @@ class OrderDetailScreen extends StatelessWidget {
             ),
             Column(
               children: [
-                Text.rich(TextSpan(
+                const Text.rich(TextSpan(
                     children: [
                       TextSpan(text: ' جمع کل'),
                     ],
