@@ -13,6 +13,13 @@ class AdminOrderScreen extends StatefulWidget {
   State<AdminOrderScreen> createState() => _AdminOrderScreenState();
 }
 
+enum statusCode {
+  pending,
+  sending,
+  sent,
+  recieved,
+}
+
 class _AdminOrderScreenState extends State<AdminOrderScreen> {
   List<Order>? orders;
 
@@ -33,6 +40,21 @@ class _AdminOrderScreenState extends State<AdminOrderScreen> {
   void fetchOrder() async {
     orders = await AdminServices().getAllOrders(context: context);
     setState(() {});
+  }
+
+  String orderStatus(Order order) {
+    switch (order.status) {
+      case 0:
+        return 'در حال پردازش';
+      case 1:
+        return 'انتظار ارسال';
+      case 2:
+        return 'ارسال شده';
+      case 3:
+        return 'تحویل شده';
+      default:
+        return 'نا مشخص';
+    }
   }
 
   @override
@@ -81,13 +103,23 @@ class _AdminOrderScreenState extends State<AdminOrderScreen> {
                                 ],
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 15.0),
-                              child: Text(
-                                d24,
-                                style: const TextStyle(
-                                    color: Color.fromARGB(255, 136, 136, 136)),
-                              ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 15.0),
+                                  child: Text('data'),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 15.0),
+                                  child: Text(
+                                    d24,
+                                    style: const TextStyle(
+                                        color:
+                                            Color.fromARGB(255, 136, 136, 136)),
+                                  ),
+                                ),
+                              ],
                             ),
                             Expanded(
                               child: Padding(
