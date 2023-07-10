@@ -108,7 +108,7 @@ class _AdminOrderScreenState extends State<AdminOrderScreen> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(left: 15.0),
-                                  child: Text('data'),
+                                  child: Text(orderStatus(orders![index])),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(right: 15.0),
