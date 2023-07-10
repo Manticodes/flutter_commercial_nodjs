@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_commercial_nodjs/features/admin/screens/admin_order_screen.dart';
 import 'package:flutter_commercial_nodjs/features/admin/screens/post_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -18,9 +19,7 @@ class AdminScreen extends StatefulWidget {
 class _AdminScreenState extends State<AdminScreen> {
   List pages = [
     const PostScreen(),
-    const Center(
-      child: Text('kart'),
-    ),
+    const AdminOrderScreen(),
     const Center(
       child: Text('kart'),
     )
