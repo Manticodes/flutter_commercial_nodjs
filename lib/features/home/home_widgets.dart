@@ -59,7 +59,7 @@ class Cataloge extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      height: 90,
+      height: MediaQuery.of(context).size.height * 0.13,
       child: ListView.builder(
           itemExtent: 95,
           scrollDirection: Axis.horizontal,
@@ -76,7 +76,7 @@ class Cataloge extends StatelessWidget {
                         right: 8.0, left: 8, top: 8, bottom: 4),
                     child: CircleAvatar(
                         backgroundColor: Colors.transparent,
-                        radius: 28,
+                        radius: MediaQuery.of(context).size.width * 1 / 14,
                         child: Image.network(categoryImageLinks[index]['image'],
                             fit: BoxFit.cover)),
                   ),
