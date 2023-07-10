@@ -55,6 +55,51 @@ class OrderDetailScreen extends StatelessWidget {
                 ),
               ),
             ),
+            Stepper(
+              currentStep: order.status,
+              steps: [
+                Step(
+                    title: const Text('در حال پردازش'),
+                    content: const Text(
+                        'سفارش شما در حال پردازش می باشد لطفا شکیبا باشید',
+                        textAlign: TextAlign.right),
+                    isActive: order.status >= 0,
+                    state: order.status > 0
+                        ? StepState.complete
+                        : StepState.indexed),
+                Step(
+                    title: const Text('در حال ارسال'),
+                    content: const Text(
+                        'سفارش شما پردازش شده است و در صف انتظار ارسال می باشد',
+                        textAlign: TextAlign.right),
+                    isActive: order.status > 0,
+                    state: order.status > 1
+                        ? StepState.complete
+                        : StepState.indexed),
+                Step(
+                    title: const Text('ارسال شده'),
+                    content: const Text(
+                        'سفارش شما ارسال شده است و بزودی به دست شما می رسد',
+                        textAlign: TextAlign.right),
+                    isActive: order.status > 1,
+                    state: order.status > 2
+                        ? StepState.complete
+                        : StepState.indexed),
+                Step(
+                  title: const Text('تحویل داده شده'),
+                  content: const Text('سفارش شما با موفقیت تحویل داده شد',
+                      textAlign: TextAlign.right),
+                  isActive: order.status > 2,
+                  state:
+                      order.status > 2 ? StepState.complete : StepState.indexed,
+                ),
+              ],
+              controlsBuilder: (context, details) {
+                return const SizedBox(
+                  width: double.infinity,
+                );
+              },
+            )
           ],
         ),
       ),
