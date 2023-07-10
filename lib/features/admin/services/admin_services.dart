@@ -14,6 +14,8 @@ import 'package:flutter_commercial_nodjs/constants/error_handle.dart';
 import 'package:flutter_commercial_nodjs/constants/global_variable.dart';
 import 'package:flutter_commercial_nodjs/model/product.dart';
 
+import '../../../model/order.dart';
+
 class AdminServices {
   Future<bool> sellProduct({
     required BuildContext context,
@@ -137,5 +139,34 @@ class AdminServices {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.toString())));
     }
+  }
+
+  Future<List<Order>> getAllOrders({required BuildContext context}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('x-auth-token');
+    List<Order> orderList = [];
+    try {
+      http.Response response =
+          await http.get(Uri.parse(uriAllGetOrder), headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'x-auth-token': token!,
+      });
+
+      httpErrorHandle(
+          response: response,
+          context: context,
+          onSuccess: () {
+            for (int i = 0; i < jsonDecode(response.body).length; i++) {
+              Order order =
+                  Order.fromJson(jsonEncode(jsonDecode(response.body)[i]));
+              orderList.add(order);
+            }
+          });
+    } catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.toString())));
+    }
+
+    return orderList;
   }
 }
