@@ -20,7 +20,7 @@ class CarouselSliderImage extends StatelessWidget {
       options: CarouselOptions(
           viewportFraction: 1,
           autoPlay: true,
-          height: 200,
+          height: MediaQuery.of(context).size.height * 0.25,
           autoPlayInterval: const Duration(seconds: 7)),
     );
   }
