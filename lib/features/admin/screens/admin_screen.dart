@@ -73,7 +73,7 @@ class _AdminScreenState extends State<AdminScreen> {
         iconSize: 28,
         items: [
           BottomNavigationBarItem(
-            label: 'Home',
+            label: 'افزودن',
             icon: Container(
               width: 42,
               decoration: BoxDecoration(
@@ -87,7 +87,7 @@ class _AdminScreenState extends State<AdminScreen> {
             ),
           ),
           BottomNavigationBarItem(
-            label: 'Acount',
+            label: 'سفارشات',
             icon: Container(
               width: 42,
               decoration: BoxDecoration(
