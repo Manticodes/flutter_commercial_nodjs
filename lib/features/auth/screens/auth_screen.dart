@@ -114,6 +114,7 @@ class _AuthScreenState extends State<AuthScreen> {
                         label: 'Password',
                       ),
                       CostumeButton(
+                          color: Color.fromARGB(255, 132, 202, 132),
                           title: 'Sing In',
                           onTap: () {
                             if (_signInFormKey.currentState!.validate()) {
