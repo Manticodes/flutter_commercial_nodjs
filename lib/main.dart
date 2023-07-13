@@ -48,7 +48,7 @@ class _MyAppState extends State<MyApp> {
             theme: ThemeData(
                 useMaterial3: true,
                 colorScheme: const ColorScheme.light(
-                    primary: Color.fromARGB(255, 239, 80, 62))),
+                    primary: Color.fromARGB(255, 132, 202, 132))),
             darkTheme: ThemeData(
                 useMaterial3: true,
                 colorScheme: const ColorScheme.dark(
