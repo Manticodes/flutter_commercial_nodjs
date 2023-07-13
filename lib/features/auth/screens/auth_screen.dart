@@ -72,6 +72,8 @@ class _AuthScreenState extends State<AuthScreen> {
                       CostumeTextField(
                           controller: _nameController, label: 'Name'),
                       CostumeButton(
+                          color1: const Color.fromARGB(255, 132, 202, 132),
+                          color2: Colors.white,
                           title: 'Sing up',
                           onTap: () {
                             if (_signUpFormKey.currentState!.validate()) {
@@ -114,7 +116,8 @@ class _AuthScreenState extends State<AuthScreen> {
                         label: 'Password',
                       ),
                       CostumeButton(
-                          color1: Color.fromARGB(255, 132, 202, 132),
+                          color1: const Color.fromARGB(255, 132, 202, 132),
+                          color2: Colors.white,
                           title: 'Sing In',
                           onTap: () {
                             if (_signInFormKey.currentState!.validate()) {
