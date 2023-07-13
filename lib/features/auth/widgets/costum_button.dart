@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 
 class CostumeButton extends StatelessWidget {
-  const CostumeButton({super.key, required this.title, required this.onTap});
+  const CostumeButton({
+    Key? key,
+    required this.title,
+    required this.onTap,
+    this.color,
+  }) : super(key: key);
   final String title;
   final VoidCallback onTap;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +18,9 @@ class CostumeButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onTap,
         style: ElevatedButton.styleFrom(
-            elevation: 15, minimumSize: const Size(double.infinity, 50)),
+            elevation: 15,
+            minimumSize: const Size(double.infinity, 50),
+            backgroundColor: color == null ? Colors.white : color),
         child: Text(
           title,
           style: const TextStyle(
