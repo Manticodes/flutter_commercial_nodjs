@@ -5,11 +5,13 @@ class CostumeButton extends StatelessWidget {
     Key? key,
     required this.title,
     required this.onTap,
-    this.color,
+    this.color1,
+    this.color2,
   }) : super(key: key);
   final String title;
   final VoidCallback onTap;
-  final Color? color;
+  final Color? color1;
+  final Color? color2;
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +22,11 @@ class CostumeButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
             elevation: 15,
             minimumSize: const Size(double.infinity, 50),
-            backgroundColor: color == null ? Colors.white : color),
+            backgroundColor: color1 ?? Colors.white),
         child: Text(
           title,
-          style: const TextStyle(
-              color: Color.fromARGB(255, 83, 14, 14),
+          style: TextStyle(
+              color: color2 ?? const Color.fromARGB(255, 0, 0, 0),
               fontSize: 15,
               fontWeight: FontWeight.bold),
         ),
