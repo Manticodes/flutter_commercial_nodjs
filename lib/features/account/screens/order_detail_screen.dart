@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_commercial_nodjs/features/account/widget/order_product_list.dart';
+import 'package:flutter_commercial_nodjs/features/auth/widgets/costum_button.dart';
 import 'package:intl/intl.dart';
 
 import '../../../logic/bloc_user/user_bloc.dart';
@@ -100,6 +101,16 @@ class OrderDetailScreen extends StatelessWidget {
                     ),
                   ],
                   controlsBuilder: (context, details) {
+                    if (state.user.type == 'admin') {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        child: CostumeButton(
+                          title: 'Done',
+                          onTap: () {},
+                          color1: Colors.blue,
+                        ),
+                      );
+                    }
                     return const SizedBox(
                       width: double.infinity,
                     );
