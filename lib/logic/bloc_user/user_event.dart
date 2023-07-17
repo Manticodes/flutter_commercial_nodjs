@@ -48,3 +48,8 @@ class LoadUser extends UserEvent {
   @override
   List<Object?> get props => [];
 }
+
+class ChangeOrderStatus extends UserEvent {
+  @override
+  List<Object?> get props => [];
+}
