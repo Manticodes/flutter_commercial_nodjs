@@ -187,6 +187,8 @@ class AdminServices {
             'id': order.id,
             'status': status,
           }));
+      httpErrorHandle(
+          response: response, context: context, onSuccess: onSuccess);
     } catch (e) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.toString())));
