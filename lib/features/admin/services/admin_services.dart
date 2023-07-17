@@ -173,17 +173,23 @@ class AdminServices {
   void changeOrderStatus(
       {required BuildContext context,
       required int status,
+      required Order order,
       required VoidCallback onSuccess}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('x-auth-token');
     try {
-      http.Response response = await http.post(
-        Uri.parse(uriChangeOrderStatus),
-        headers: {
-          'Content-Type': 'application/json; charset=UTF-8',
-          'x-auth-token': token!,
-        },
-      );
-    } catch (e) {}
+      http.Response response = await http.post(Uri.parse(uriChangeOrderStatus),
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            'x-auth-token': token!,
+          },
+          body: jsonEncode({
+            'order_Id': order.id,
+            'status': status,
+          }));
+    } catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.toString())));
+    }
   }
 }
