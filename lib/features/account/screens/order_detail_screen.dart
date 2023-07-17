@@ -8,21 +8,14 @@ import 'package:intl/intl.dart';
 import '../../../logic/bloc_user/user_bloc.dart';
 import '../../../model/order.dart';
 
-class OrderDetailScreen extends StatefulWidget {
+class OrderDetailScreen extends StatelessWidget {
   OrderDetailScreen({
     Key? key,
     required this.order,
   }) : super(key: key);
   final Order order;
   static const String route = "/orderDetails";
-
-  @override
-  State<OrderDetailScreen> createState() => _OrderDetailScreenState();
-}
-
-class _OrderDetailScreenState extends State<OrderDetailScreen> {
   final RegExp reg = RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))');
-
   // ignore: prefer_function_declarations_over_variables
   final String Function(Match) mathFunc = (Match match) => '${match[1]},';
 
@@ -32,15 +25,13 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
       int status,
     ) {
       AdminServices().changeOrderStatus(
-          context: context,
-          status: status + 1,
-          order: widget.order,
-          onSuccess: () {
-            setState(() {});
-          });
+        context: context,
+        status: status + 1,
+        order: order,
+      );
     }
 
-    var date = DateTime.fromMillisecondsSinceEpoch(widget.order.orderedAt);
+    var date = DateTime.fromMillisecondsSinceEpoch(order.orderedAt);
     var date24 = DateFormat('dd/MM/yyyy').format(date);
     return Scaffold(
       appBar: AppBar(
@@ -50,7 +41,7 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            OrderProductList(order: widget.order),
+            OrderProductList(order: order),
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: ClipRRect(
@@ -68,7 +59,7 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 15)),
                         Center(
-                          child: Text(widget.order.address,
+                          child: Text(order.address,
                               style: const TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 13)),
                         )
@@ -81,15 +72,15 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
             BlocBuilder<UserBloc, UserState>(
               builder: (context, state) {
                 return Stepper(
-                  currentStep: widget.order.status,
+                  currentStep: order.status,
                   steps: [
                     Step(
                         title: const Text('در حال پردازش'),
                         content: const Text(
                             'سفارش شما در حال پردازش می باشد لطفا شکیبا باشید',
                             textAlign: TextAlign.right),
-                        isActive: widget.order.status >= 0,
-                        state: widget.order.status > 0
+                        isActive: order.status >= 0,
+                        state: order.status > 0
                             ? StepState.complete
                             : StepState.indexed),
                     Step(
@@ -97,8 +88,8 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
                         content: const Text(
                             'سفارش شما پردازش شده است و در صف انتظار ارسال می باشد',
                             textAlign: TextAlign.right),
-                        isActive: widget.order.status > 0,
-                        state: widget.order.status > 1
+                        isActive: order.status > 0,
+                        state: order.status > 1
                             ? StepState.complete
                             : StepState.indexed),
                     Step(
@@ -106,16 +97,16 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
                         content: const Text(
                             'سفارش شما ارسال شده است و بزودی به دست شما می رسد',
                             textAlign: TextAlign.right),
-                        isActive: widget.order.status > 1,
-                        state: widget.order.status > 2
+                        isActive: order.status > 1,
+                        state: order.status > 2
                             ? StepState.complete
                             : StepState.indexed),
                     Step(
                       title: const Text('تحویل داده شده'),
                       content: const Text('سفارش شما با موفقیت تحویل داده شد',
                           textAlign: TextAlign.right),
-                      isActive: widget.order.status > 2,
-                      state: widget.order.status > 2
+                      isActive: order.status > 2,
+                      state: order.status > 2
                           ? StepState.complete
                           : StepState.indexed,
                     ),
@@ -166,7 +157,7 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
                     style:
                         TextStyle(fontSize: 15, fontWeight: FontWeight.bold))),
                 Text(
-                    ' ${widget.order.totalPrice.round().toString().replaceAllMapped(reg, mathFunc)} ')
+                    ' ${order.totalPrice.round().toString().replaceAllMapped(reg, mathFunc)} ')
               ],
             ),
           ],
