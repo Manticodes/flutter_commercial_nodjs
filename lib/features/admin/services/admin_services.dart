@@ -170,7 +170,10 @@ class AdminServices {
     return orderList;
   }
 
-  void changeOrderStatus() async {
+  void changeOrderStatus(
+      {required BuildContext context,
+      required int status,
+      required VoidCallback onSuccess}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('x-auth-token');
     try {
