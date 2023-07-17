@@ -62,12 +62,21 @@ adminRouter.get('/admin/get-orders', admin, async (req, res) => {
 adminRouter.post('/admin/change-order-status', admin, async (req, res) => {
     try {
         const { id, status } = req.body;
-        const order = await Order.findByIdAndUpdate(id, { status }, { new: true });
-        res.json(order);
+        const updatedOrder = await updateOrderStatus(id, status);
+        res.json(updatedOrder);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
+});
 
-})
+async function updateOrderStatus(id, status) {
+    try {
+        const updatedOrder = await Order.findByIdAndUpdate(id, { status }, { new: true });
+        return updatedOrder;
+    } catch (error) {
+        throw new Error(`Failed to update order status: ${error.message}`);
+    }
+}
+
 
 module.exports = adminRouter;
