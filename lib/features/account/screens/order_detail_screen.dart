@@ -96,8 +96,8 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
                         content: const Text(
                             'سفارش شما در حال پردازش می باشد لطفا شکیبا باشید',
                             textAlign: TextAlign.right),
-                        isActive: widget.order.status >= 0,
-                        state: widget.order.status > 0
+                        isActive: currenStep >= 0,
+                        state: currenStep > 0
                             ? StepState.complete
                             : StepState.indexed),
                     Step(
@@ -105,8 +105,8 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
                         content: const Text(
                             'سفارش شما پردازش شده است و در صف انتظار ارسال می باشد',
                             textAlign: TextAlign.right),
-                        isActive: widget.order.status > 0,
-                        state: widget.order.status > 1
+                        isActive: currenStep > 0,
+                        state: currenStep > 1
                             ? StepState.complete
                             : StepState.indexed),
                     Step(
@@ -114,27 +114,27 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
                         content: const Text(
                             'سفارش شما ارسال شده است و بزودی به دست شما می رسد',
                             textAlign: TextAlign.right),
-                        isActive: widget.order.status > 1,
-                        state: widget.order.status > 2
+                        isActive: currenStep > 1,
+                        state: currenStep > 2
                             ? StepState.complete
                             : StepState.indexed),
                     Step(
                       title: const Text('تحویل داده شده'),
                       content: const Text('سفارش شما با موفقیت تحویل داده شد',
                           textAlign: TextAlign.right),
-                      isActive: widget.order.status > 2,
-                      state: widget.order.status > 2
+                      isActive: currenStep > 2,
+                      state: currenStep > 2
                           ? StepState.complete
                           : StepState.indexed,
                     ),
                   ],
                   controlsBuilder: (context, details) {
-                    if (state.user.type == 'admin') {
+                    if (state.user.type == 'admin' && details.currentStep < 3) {
                       return Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 30),
                         child: CostumeButton(
-                          title: 'قذم بعدی',
-                          onTap: () => changeOrderStatus(currenStep),
+                          title: 'قدم بعدی',
+                          onTap: () => changeOrderStatus(details.currentStep),
                           color1: Colors.blue,
                         ),
                       );
