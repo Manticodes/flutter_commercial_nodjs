@@ -169,4 +169,18 @@ class AdminServices {
 
     return orderList;
   }
+
+  void changeOrderStatus() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('x-auth-token');
+    try {
+      http.Response response = await http.post(
+        Uri.parse(uriChangeOrderStatus),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'x-auth-token': token!,
+        },
+      );
+    } catch (e) {}
+  }
 }
