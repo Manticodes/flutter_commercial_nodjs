@@ -59,4 +59,15 @@ adminRouter.get('/admin/get-orders', admin, async (req, res) => {
 
 })
 
+adminRouter.post('/admin/change-order-status', admin, async (req, res) => {
+    try {
+        const { id, status } = req.body;
+        const order = await Order.findByIdAndUpdate(id, { status }, { new: true });
+        res.json(order);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+
+})
+
 module.exports = adminRouter;
