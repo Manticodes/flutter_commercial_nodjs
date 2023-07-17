@@ -79,4 +79,6 @@ async function updateOrderStatus(id, status) {
 }
 
 
+adminRouter.get('/admin/analytics', admin, async (req, res) => { })
+
 module.exports = adminRouter;
