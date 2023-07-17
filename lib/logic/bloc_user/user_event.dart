@@ -50,6 +50,10 @@ class LoadUser extends UserEvent {
 }
 
 class ChangeOrderStatus extends UserEvent {
+  final Order order;
+  const ChangeOrderStatus({
+    required this.order,
+  });
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [order];
 }
