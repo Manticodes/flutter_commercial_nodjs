@@ -79,6 +79,28 @@ async function updateOrderStatus(id, status) {
 }
 
 
-adminRouter.get('/admin/analytics', admin, async (req, res) => { })
+adminRouter.get('/admin/analytics', admin, async (req, res) => {
+    try {
+        const orders = await Order.find({});
+        let totalEarnings = 0;
+
+        for (let i = 0; i < orders.length; i++) {
+            for (let j = 0; j < orders[i].products.length; j++) {
+                totalEarnings += orders[i].products[j].quantity * orders[i].products[j].price;
+            };
+
+        }
+
+        const numOfOrders = orders.length;
+
+        res.json({ totalEarnings, numOfOrders });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+
+
+})
+
+
 
 module.exports = adminRouter;
