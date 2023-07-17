@@ -3,7 +3,6 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_commercial_nodjs/features/admin/screens/admin_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:minio/io.dart';
@@ -15,7 +14,6 @@ import 'package:flutter_commercial_nodjs/constants/error_handle.dart';
 import 'package:flutter_commercial_nodjs/constants/global_variable.dart';
 import 'package:flutter_commercial_nodjs/model/product.dart';
 
-import '../../../logic/bloc_user/user_bloc.dart';
 import '../../../model/order.dart';
 
 class AdminServices {
@@ -172,11 +170,11 @@ class AdminServices {
     return orderList;
   }
 
-  void changeOrderStatus({
-    required BuildContext context,
-    required int status,
-    required Order order,
-  }) async {
+  void changeOrderStatus(
+      {required BuildContext context,
+      required int status,
+      required Order order,
+      required VoidCallback onSuccess}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('x-auth-token');
     try {
@@ -190,11 +188,7 @@ class AdminServices {
             'status': status,
           }));
       httpErrorHandle(
-          response: response,
-          context: context,
-          onSuccess: () {
-            context.read<UserBloc>().add(ChangeOrderStatus(order: order));
-          });
+          response: response, context: context, onSuccess: onSuccess);
     } catch (e) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.toString())));

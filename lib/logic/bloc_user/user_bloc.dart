@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../model/order.dart';
 import '../../model/user.dart';
 
 part 'user_event.dart';
