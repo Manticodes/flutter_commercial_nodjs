@@ -90,12 +90,16 @@ adminRouter.get('/admin/analytics', admin, async (req, res) => {
             };
 
         }
+        const numOfOrders = orders.length;
+
         let mobilesEarning = await fetchCategoryWiseProductAnalytics('Mobiles');
         let essentialsEarning = await fetchCategoryWiseProductAnalytics('Essentials');
         let appliancesEarning = await fetchCategoryWiseProductAnalytics('Appliances');
         let booksEarning = await fetchCategoryWiseProductAnalytics('Books');
         let fashionEarning = await fetchCategoryWiseProductAnalytics('Fashion');
         let earnings = {
+            numOfOrders,
+            totalEarnings,
             mobilesEarning,
             essentialsEarning,
             appliancesEarning,
@@ -103,9 +107,9 @@ adminRouter.get('/admin/analytics', admin, async (req, res) => {
             fashionEarning
         }
 
-        const numOfOrders = orders.length;
 
-        res.json({ totalEarnings, numOfOrders });
+
+        res.json(earnings);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
