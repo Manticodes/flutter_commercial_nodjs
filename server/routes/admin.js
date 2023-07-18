@@ -95,6 +95,13 @@ adminRouter.get('/admin/analytics', admin, async (req, res) => {
         let appliancesEarning = await fetchCategoryWiseProductAnalytics('Appliances');
         let booksEarning = await fetchCategoryWiseProductAnalytics('Books');
         let fashionEarning = await fetchCategoryWiseProductAnalytics('Fashion');
+        let earnings = {
+            mobilesEarning,
+            essentialsEarning,
+            appliancesEarning,
+            booksEarning,
+            fashionEarning
+        }
 
         const numOfOrders = orders.length;
 
