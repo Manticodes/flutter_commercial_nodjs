@@ -90,6 +90,11 @@ adminRouter.get('/admin/analytics', admin, async (req, res) => {
             };
 
         }
+        let mobilesEarning = await fetchCategoryWiseProductAnalytics('Mobiles');
+        let essentialsEarning = await fetchCategoryWiseProductAnalytics('Essentials');
+        let appliancesEarning = await fetchCategoryWiseProductAnalytics('Appliances');
+        let booksEarning = await fetchCategoryWiseProductAnalytics('Books');
+        let fashionEarning = await fetchCategoryWiseProductAnalytics('Fashion');
 
         const numOfOrders = orders.length;
 
@@ -100,6 +105,25 @@ adminRouter.get('/admin/analytics', admin, async (req, res) => {
 
 
 })
+
+async function fetchCategoryWiseProductAnalytics(category) {
+    try {
+        const categoryOrdersProducts = await Order.find({ "products.product.category": category });
+        let totalEarnings = 0;
+
+        for (let i = 0; i < categoryOrdersProducts.length; i++) {
+            for (let j = 0; j < categoryOrdersProducts[i].products.length; j++) {
+                totalEarnings += categoryOrdersProducts[i].products[j].quantity * categoryOrdersProducts[i].products[j].price;
+            }
+        }
+
+        return { category, totalEarnings };
+    } catch (error) {
+        throw new Error(`Failed to fetch category wise product analytics: ${error.message}`);
+    }
+}
+
+
 
 
 
