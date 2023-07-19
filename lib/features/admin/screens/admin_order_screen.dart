@@ -13,13 +13,6 @@ class AdminOrderScreen extends StatefulWidget {
   State<AdminOrderScreen> createState() => _AdminOrderScreenState();
 }
 
-enum statusCode {
-  pending,
-  sending,
-  sent,
-  recieved,
-}
-
 class _AdminOrderScreenState extends State<AdminOrderScreen> {
   List<Order>? orders;
 
