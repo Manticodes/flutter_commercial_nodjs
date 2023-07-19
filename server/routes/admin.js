@@ -128,7 +128,7 @@ async function fetchCategoryWiseProductAnalytics(category) {
             }
         }
 
-        return { category, totalEarnings };
+        return totalEarnings;
     } catch (error) {
         throw new Error(`Failed to fetch category wise product analytics: ${error.message}`);
     }
