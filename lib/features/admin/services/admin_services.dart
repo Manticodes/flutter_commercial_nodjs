@@ -15,6 +15,7 @@ import 'package:flutter_commercial_nodjs/constants/global_variable.dart';
 import 'package:flutter_commercial_nodjs/model/product.dart';
 
 import '../../../model/order.dart';
+import '../../../model/sales.dart';
 
 class AdminServices {
   Future<bool> sellProduct({
@@ -193,5 +194,43 @@ class AdminServices {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.toString())));
     }
+  }
+
+  Future<Map<String, dynamic>> getEarnings(BuildContext context) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('x-auth-token');
+    List<Sales> sales = [];
+    int totalEarnings = 0;
+    try {
+      http.Response res = await http.get(Uri.parse(uriAnalytics), headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'x-auth-token': token!,
+      });
+      httpErrorHandle(
+          response: res,
+          context: context,
+          onSuccess: () {
+            /*       numOfOrders,
+            totalEarnings,
+            mobilesEarning,
+            essentialsEarning,
+            appliancesEarning,
+            booksEarning,
+            fashionEarning */
+            var response = jsonDecode(res.body);
+            totalEarnings = response['totalEarnings'];
+            sales = [
+              Sales('Mobiles', response['mobilesEarning']),
+              Sales('Essential', response['essentialsEarning']),
+              Sales('Fashion', response['fashionEarning']),
+              Sales('Appliance', response['appliancesEarning']),
+              Sales('Book', response['booksEarning']),
+            ];
+          });
+    } catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.toString())));
+    }
+    return {'sales': sales, 'totalEarnings': totalEarnings};
   }
 }
