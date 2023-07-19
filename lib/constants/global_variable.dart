@@ -32,6 +32,7 @@ String uriGetOrder = 'https://amazone-clone.iran.liara.run/api/orders/me';
 String uriAllGetOrder = 'https://amazone-clone.iran.liara.run/admin/get-orders';
 String uriChangeOrderStatus =
     'https://amazone-clone.iran.liara.run/admin/change-order-status';
+String uriAnalytics = 'https://amazone-clone.iran.liara.run/admin/analytics';
 
 List categoryImageLinks = [
   {
