@@ -29,7 +29,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
   @override
   Widget build(BuildContext context) {
     return saleList == null || totalsales == null
-        ? const CircularProgressIndicator()
+        ? Center(child: const CircularProgressIndicator())
         : Column(
             children: [
               Text(
