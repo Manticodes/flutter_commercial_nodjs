@@ -223,7 +223,7 @@ class _AdminOrderScreenState extends State<AdminOrderScreen> {
               },
               itemCount: orders!.length,
             )
-          : const Center(child: Text('سفارشی یافت نشد')),
+          : const Center(child: CircularProgressIndicator()),
     );
   }
 }
