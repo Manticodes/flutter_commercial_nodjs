@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_commercial_nodjs/features/admin/screens/admin_order_screen.dart';
+import 'package:flutter_commercial_nodjs/features/admin/screens/analytics_screen.dart';
 import 'package:flutter_commercial_nodjs/features/admin/screens/post_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -20,9 +21,7 @@ class _AdminScreenState extends State<AdminScreen> {
   List pages = [
     const PostScreen(),
     const AdminOrderScreen(),
-    const Center(
-      child: Text('kart'),
-    )
+    const AnalyticsScreen()
   ];
   int _pageIndex = 0;
   @override

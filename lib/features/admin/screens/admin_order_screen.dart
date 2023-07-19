@@ -32,7 +32,8 @@ class _AdminOrderScreenState extends State<AdminOrderScreen> {
 
   void fetchOrder() async {
     orders = await AdminServices().getAllOrders(context: context);
-    setState(() {});
+
+    if (mounted) setState(() {});
   }
 
   String orderStatus(Order order) {

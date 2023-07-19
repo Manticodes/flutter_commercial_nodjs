@@ -17,7 +17,13 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
     var earningData = await AdminServices().getEarnings(context);
     totalsales = earningData['totalEarnings'];
     saleList = earningData['sales'];
-    setState(() {});
+    if (mounted) setState(() {});
+  }
+
+  @override
+  void initState() {
+    getEarnings();
+    super.initState();
   }
 
   @override
