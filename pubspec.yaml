@@ -50,6 +50,7 @@ dependencies:
   url_launcher: ^6.1.11
   uni_links: ^0.5.1
   intl: ^0.17.0
+  charts_flutter_new: ^0.12.0
 
 dev_dependencies:
   flutter_test:
