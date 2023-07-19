@@ -226,6 +226,7 @@ class AdminServices {
               Sales('Appliance', response['appliancesEarning']),
               Sales('Book', response['booksEarning']),
             ];
+            debugPrint(sales.toString());
           });
     } catch (e) {
       ScaffoldMessenger.of(context)

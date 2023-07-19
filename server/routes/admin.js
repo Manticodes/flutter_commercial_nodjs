@@ -86,11 +86,15 @@ adminRouter.get('/admin/analytics', admin, async (req, res) => {
 
         for (let i = 0; i < orders.length; i++) {
             for (let j = 0; j < orders[i].products.length; j++) {
-                totalEarnings += orders[i].products[j].quantity * orders[i].products[j].price;
+                let price = orders[i].products[j].product.price
+                if (price == null) { price = 0 }
+                let quantity = orders[i].products[j].quantity
+                if (quantity == null) { quantity = 0 }
+                totalEarnings += quantity * price;
             };
 
         }
-        const numOfOrders = orders.length;
+
 
         let mobilesEarning = await fetchCategoryWiseProductAnalytics('Mobiles');
         let essentialsEarning = await fetchCategoryWiseProductAnalytics('Essentials');
@@ -98,7 +102,6 @@ adminRouter.get('/admin/analytics', admin, async (req, res) => {
         let booksEarning = await fetchCategoryWiseProductAnalytics('Books');
         let fashionEarning = await fetchCategoryWiseProductAnalytics('Fashion');
         let earnings = {
-            numOfOrders,
             totalEarnings,
             mobilesEarning,
             essentialsEarning,
@@ -120,15 +123,29 @@ adminRouter.get('/admin/analytics', admin, async (req, res) => {
 async function fetchCategoryWiseProductAnalytics(category) {
     try {
         const categoryOrdersProducts = await Order.find({ "products.product.category": category });
-        let totalEarnings = 0;
+        let totalCategoryEarnings = 0;
+
+        if (categoryOrdersProducts == null || categoryOrdersProducts.length == 0) {
+            return 0;
+        }
+
+
+
 
         for (let i = 0; i < categoryOrdersProducts.length; i++) {
+
+
+
             for (let j = 0; j < categoryOrdersProducts[i].products.length; j++) {
-                totalEarnings += categoryOrdersProducts[i].products[j].quantity * categoryOrdersProducts[i].products[j].price;
+                let price = categoryOrdersProducts[i].products[j].product.price;
+                if (price == null) { price = 0 }
+                let quantity = categoryOrdersProducts[i].products[j].quantity
+                if (quantity == null) { quantity = 0 }
+                totalCategoryEarnings += quantity * price;
             }
         }
 
-        return totalEarnings;
+        return totalCategoryEarnings;
     } catch (error) {
         throw new Error(`Failed to fetch category wise product analytics: ${error.message}`);
     }
