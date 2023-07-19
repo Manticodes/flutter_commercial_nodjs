@@ -1,6 +1,6 @@
-class sales {
+class Sales {
   final String label;
   final int earning;
 
-  sales(this.label, this.earning);
+  Sales(this.label, this.earning);
 }
