@@ -1,5 +1,7 @@
+import 'package:charts_flutter_new/flutter.dart' as chart;
 import 'package:flutter/material.dart';
 import 'package:flutter_commercial_nodjs/features/admin/services/admin_services.dart';
+import 'package:flutter_commercial_nodjs/features/admin/widgets/category_product_charts.dart';
 
 import '../../../model/sales.dart';
 
@@ -36,6 +38,19 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                 '\$$totalsales',
                 style:
                     const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 250,
+                child: CategoryProductCharts(seriesList: [
+                  chart.Series(
+                    id: 'sales',
+                    data: saleList!,
+                    //x axis
+                    domainFn: (Sales sale, _) => sale.label,
+                    //y axis
+                    measureFn: (Sales sale, _) => sale.earning,
+                  )
+                ]),
               )
             ],
           );
