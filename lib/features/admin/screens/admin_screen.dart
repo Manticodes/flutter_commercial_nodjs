@@ -96,11 +96,11 @@ class _AdminScreenState extends State<AdminScreen> {
                               ? const Color.fromARGB(255, 248, 90, 90)
                               : Colors.white,
                           width: 5))),
-              child: const Icon(Icons.analytics_outlined),
+              child: const Icon(Icons.shop),
             ),
           ),
           BottomNavigationBarItem(
-            label: 'Home',
+            label: 'گزارش',
             icon: Container(
               width: 42,
               decoration: BoxDecoration(
@@ -110,7 +110,7 @@ class _AdminScreenState extends State<AdminScreen> {
                               ? const Color.fromARGB(255, 248, 90, 90)
                               : Colors.white,
                           width: 5))),
-              child: const Icon(Icons.inbox_outlined),
+              child: const Icon(Icons.analytics_outlined),
             ),
           )
         ],
