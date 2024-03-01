@@ -2,11 +2,7 @@
 <div align="center">
 
   <img src="assets/logo.png" alt="logo" width="200" height="auto" />
-  <h1>Awesome Readme Template</h1>
-  
-  <p>
-    An awesome README template for your projects! 
-  </p>
+  <h1>Shopping App</h1>
   
   
 <!-- Badges -->
