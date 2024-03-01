@@ -1,7 +1,7 @@
 
 <div align="center">
 
-  <img src="assets/logo.png" alt="logo" width="200" height="auto" />
+  <img src="https://drive.google.com/file/d/1mrFWsUzIsFjvQowcgFeVbqHeJcjhA8O1/view?usp=sharing" alt="logo" width="200" height="auto" />
   <h1>Shopping App</h1>
   
   
