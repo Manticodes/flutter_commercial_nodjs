@@ -31,17 +31,11 @@
 <!-- Screenshots -->
 ### :camera: Screenshots
 
-<style>
- .image-container img {
-    margin-bottom: 20px; 
- }
-</style>
-
-<div align="center" class="image-container"> 
+<div align="center"> 
  <img src="https://amazone-clone.storage.iran.liara.space/Shop%20App%20user%20-%20Copy.png" alt="screenshot" />
 </div>
-
-<div align="center" class="image-container"> 
+<p style="font-size: 0;">&nbsp;</p>
+<div align="center"> 
  <img src="https://amazone-clone.storage.iran.liara.space/Shop%20app%20admin%20-%20Copy.png" alt="screenshot" />
 </div>
 
