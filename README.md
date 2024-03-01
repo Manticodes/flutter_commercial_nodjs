@@ -1,7 +1,7 @@
 
 <div align="center">
 
-  <img src="https://drive.google.com/file/d/1mrFWsUzIsFjvQowcgFeVbqHeJcjhA8O1/view?usp=sharing" alt="logo" width="200" height="auto" />
+  <img src="https://amazone-clone.storage.iran.liara.space/shop%20icon.png" alt="logo" width="200" height="auto" />
   <h1>Shopping App</h1>
   
   
