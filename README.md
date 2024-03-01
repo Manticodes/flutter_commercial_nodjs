@@ -8,16 +8,16 @@
 <!-- Badges -->
 <p>
   <a href="https://github.com/Sinazrp/flutter_commercial_nodjs/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors/Louis3797/awesome-readme-template" alt="contributors" />
+    <img src="https://img.shields.io/github/contributors/Sinazrp/flutter_commercial_nodjs" alt="contributors" />
   </a>
   <a href="">
-    <img src="https://img.shields.io/github/last-commit/Louis3797/awesome-readme-template" alt="last update" />
+    <img src="https://img.shields.io/github/last-commit/Sinazrp/flutter_commercial_nodjs" alt="last update" />
   </a>
   <a href="https://github.com/Sinazrp/flutter_commercial_nodjs/network/members">
-    <img src="https://img.shields.io/github/forks/Louis3797/awesome-readme-template" alt="forks" />
+    <img src="https://img.shields.io/github/forks/Sinazrp/flutter_commercial_nodjs" alt="forks" />
   </a>
   <a href="https://github.com/Sinazrp/flutter_commercial_nodjs/stargazers">
-    <img src="https://img.shields.io/github/stars/Louis3797/awesome-readme-template" alt="stars" />
+    <img src="https://img.shields.io/github/stars/Sinazrp/flutter_commercial_nodjs" alt="stars" />
   </a>
 </p>
    
