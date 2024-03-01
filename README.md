@@ -33,7 +33,7 @@
 
 <style>
  .image-container img {
-    margin-bottom: 20px; /* Adjust the value as needed */
+    margin-bottom: 20px; 
  }
 </style>
 
