@@ -47,6 +47,7 @@
   <summary>Client</summary>
   <ul>
     <li><a href="https://flutter.dev/">Flutter</a></li>
+    <li><a href="https://bloclibrary.dev/#/">Bloc State Manager</a></li>
   </ul>
 </details>
 
