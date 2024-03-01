@@ -31,12 +31,18 @@
 <!-- Screenshots -->
 ### :camera: Screenshots
 
-<div align="center"> 
-  <img src="https://amazone-clone.storage.iran.liara.space/Shop%20App%20user%20-%20Copy.png" alt="screenshot" />
+<style>
+ .image-container img {
+    margin-bottom: 20px; /* Adjust the value as needed */
+ }
+</style>
+
+<div align="center" class="image-container"> 
+ <img src="https://amazone-clone.storage.iran.liara.space/Shop%20App%20user%20-%20Copy.png" alt="screenshot" />
 </div>
 
-<div align="center"> 
-  <img src="https://amazone-clone.storage.iran.liara.space/Shop%20app%20admin%20-%20Copy.png" alt="screenshot" />
+<div align="center" class="image-container"> 
+ <img src="https://amazone-clone.storage.iran.liara.space/Shop%20app%20admin%20-%20Copy.png" alt="screenshot" />
 </div>
 
 
